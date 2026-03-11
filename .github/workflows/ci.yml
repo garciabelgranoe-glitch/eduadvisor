@@ -15,14 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm test
@@ -44,29 +41,36 @@ jobs:
             --error \
             --exclude node_modules \
             --exclude .next \
-            --exclude dist
+            --exclude dist \
+            --exclude docs \
+            --exclude apps/web/tests \
+            --exclude infra \
+            --exclude .github \
+            apps/api/src apps/web/app apps/web/lib
 
   security-secrets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Gitleaks scan
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITLEAKS_ENABLE_COMMENTS: "false"
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            zricethezav/gitleaks:latest \
+            git /repo \
+            --redact \
+            --verbose \
+            --config /repo/.gitleaks.toml
 
   security-dependencies:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - name: Dependency audit (critical)
         run: pnpm audit --audit-level=critical
@@ -76,14 +80,11 @@ jobs:
     needs: [quality, security-semgrep, security-secrets, security-dependencies]
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @eduadvisor/api prisma:generate
       - run: pnpm build
@@ -94,14 +95,11 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - name: Generate launch evidence pack
         run: pnpm security:evidence

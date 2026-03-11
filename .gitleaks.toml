@@ -1,0 +1,20 @@
+title = "EduAdvisor gitleaks config"
+
+[allowlist]
+description = "Allow known non-sensitive placeholders in docs and examples"
+paths = [
+  '''^docs/''',
+  '''^README\.md$''',
+  '''^\.env\.example$'''
+]
+regexes = [
+  '''dev-admin-key''',
+  '''test-admin-key''',
+  '''test-auth-session-secret''',
+  '''test-google-client-secret''',
+  '''test-turnstile-secret-key''',
+  '''your-google-client-secret''',
+  '''your-google-client-id''',
+  '''your-turnstile-site-key''',
+  '''your-turnstile-secret-key'''
+]
