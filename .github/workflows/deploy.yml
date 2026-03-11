@@ -64,13 +64,13 @@ jobs:
             echo "skipped=1" >> "$GITHUB_OUTPUT"
             echo "exit_code=0" >> "$GITHUB_OUTPUT"
             echo "timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$GITHUB_OUTPUT"
-            cat > artifacts/smoke/summary.md <<'EOF'
-# Post-deploy smoke report
-
-Status: SKIPPED
-
-Reason: `PRODUCTION_WEB_URL` o `PRODUCTION_API_URL` no configuradas.
-EOF
+            {
+              echo "# Post-deploy smoke report"
+              echo
+              echo "Status: SKIPPED"
+              echo
+              echo "Reason: PRODUCTION_WEB_URL o PRODUCTION_API_URL no configuradas."
+            } > artifacts/smoke/summary.md
             exit 0
           fi
 
@@ -89,20 +89,20 @@ EOF
             smoke_status="FAIL"
           fi
 
-          cat > artifacts/smoke/summary.md <<EOF
-# Post-deploy smoke report
-
-- Status: ${smoke_status}
-- Timestamp (UTC): $(date -u +"%Y-%m-%dT%H:%M:%SZ")
-- Web URL: ${SMOKE_WEB_BASE_URL}
-- API URL: ${SMOKE_API_BASE_URL}
-- Script: \`infra/scripts/smoke-post-deploy.sh\`
-- Exit code: ${smoke_exit}
-
-## Log file
-
-- \`artifacts/smoke/smoke.log\`
-EOF
+          {
+            echo "# Post-deploy smoke report"
+            echo
+            echo "- Status: ${smoke_status}"
+            echo "- Timestamp (UTC): $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+            echo "- Web URL: ${SMOKE_WEB_BASE_URL}"
+            echo "- API URL: ${SMOKE_API_BASE_URL}"
+            echo "- Script: infra/scripts/smoke-post-deploy.sh"
+            echo "- Exit code: ${smoke_exit}"
+            echo
+            echo "## Log file"
+            echo
+            echo "- artifacts/smoke/smoke.log"
+          } > artifacts/smoke/summary.md
 
           exit 0
 
