@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: corepack enable
+      - run: corepack enable && corepack prepare pnpm@9.0.0 --activate
       - run: pnpm install --frozen-lockfile
 
       - name: Generate security evidence (fresh)

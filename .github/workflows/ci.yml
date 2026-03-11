@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: corepack enable
+      - run: corepack enable && corepack prepare pnpm@9.0.0 --activate
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm test
@@ -70,7 +70,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: corepack enable
+      - run: corepack enable && corepack prepare pnpm@9.0.0 --activate
       - run: pnpm install --frozen-lockfile
       - name: Dependency audit (critical)
         run: pnpm audit --audit-level=critical
@@ -84,7 +84,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: corepack enable
+      - run: corepack enable && corepack prepare pnpm@9.0.0 --activate
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @eduadvisor/api prisma:generate
       - run: pnpm build
@@ -99,7 +99,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: corepack enable
+      - run: corepack enable && corepack prepare pnpm@9.0.0 --activate
       - run: pnpm install --frozen-lockfile
       - name: Generate launch evidence pack
         run: pnpm security:evidence
