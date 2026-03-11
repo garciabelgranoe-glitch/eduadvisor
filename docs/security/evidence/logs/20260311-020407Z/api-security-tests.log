@@ -1,0 +1,14 @@
+
+> @eduadvisor/api@0.1.0 test /Users/emilianobel/Desktop/Eduadvisor/apps/api
+> jest --passWithNoTests "src/common/rate-limit/rate-limit.service.spec.ts" "src/common/http-security/http-security.config.spec.ts" "src/common/observability/audit-log.service.spec.ts" "src/modules/billing/billing.service.spec.ts"
+
+PASS src/common/http-security/http-security.config.spec.ts
+PASS src/common/observability/audit-log.service.spec.ts
+PASS src/common/rate-limit/rate-limit.service.spec.ts
+PASS src/modules/billing/billing.service.spec.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        4.315 s
+Ran all test suites matching /src\/common\/rate-limit\/rate-limit.service.spec.ts|src\/common\/http-security\/http-security.config.spec.ts|src\/common\/observability\/audit-log.service.spec.ts|src\/modules\/billing\/billing.service.spec.ts/i.

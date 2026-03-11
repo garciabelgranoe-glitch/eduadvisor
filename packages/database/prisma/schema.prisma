@@ -1,0 +1,787 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  PARENT
+  SCHOOL_ADMIN
+  PLATFORM_ADMIN
+}
+
+enum SchoolLevel {
+  INICIAL
+  PRIMARIA
+  SECUNDARIA
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CLOSED
+}
+
+enum SchoolProfileStatus {
+  BASIC
+  CURATED
+  VERIFIED
+  PREMIUM
+}
+
+enum ClaimStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum VerificationMethod {
+  PHONE_OTP
+  EMAIL_DOMAIN
+  MANUAL
+}
+
+enum SubscriptionStatus {
+  TRIAL
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+enum BillingProvider {
+  MANUAL
+  STRIPE
+  MERCADO_PAGO
+}
+
+enum BillingWebhookEventStatus {
+  RECEIVED
+  PROCESSED
+  FAILED
+  DUPLICATE
+  IGNORED
+}
+
+enum BillingInvoiceStatus {
+  DRAFT
+  OPEN
+  PAID
+  VOID
+  UNCOLLECTIBLE
+}
+
+enum BillingCheckoutSessionStatus {
+  OPEN
+  COMPLETED
+  EXPIRED
+}
+
+enum ImportSource {
+  GOOGLE_PLACES
+  CSV
+  MANUAL
+}
+
+enum ImportRunStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  PARTIAL_FAILED
+  FAILED
+}
+
+enum ScheduleType {
+  HALF_DAY
+  FULL_DAY
+}
+
+enum SchoolOrientation {
+  BILINGUAL
+  TECHNICAL
+  ARTISTIC
+  INTERNATIONAL
+}
+
+enum SchoolCharacteristic {
+  RELIGIOUS
+  SECULAR
+}
+
+enum ClaimRequestType {
+  CLAIM
+  PUBLISH
+}
+
+enum ChangeActorType {
+  SYSTEM
+  ADMIN
+  SCHOOL_REP
+}
+
+enum EducationType {
+  BILINGUAL
+  RELIGIOUS
+  MONTESSORI
+  INTERNATIONAL
+  TECHNICAL
+  ARTISTIC
+  SPORTS
+  TRADITIONAL
+}
+
+enum ParentAlertType {
+  SAVED_SCHOOL_ADDED
+  COMPARISON_SAVED
+  SCHOOL_UPDATE
+}
+
+enum ProductEventType {
+  REVIEW_APPROVED
+  SCHOOL_PROFILE_UPDATED
+  EDUADVISOR_SCORE_CHANGED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  role      UserRole
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reviews          Review[]
+  leads            Lead[]
+  preferences      ParentPreference[]
+  matchSessions    MatchSession[]
+  savedSchools     SavedSchool[]
+  savedComparisons SavedComparison[]
+  alerts           ParentAlert[]
+}
+
+model Country {
+  id        String   @id @default(cuid())
+  name      String
+  isoCode   String   @unique
+  createdAt DateTime @default(now())
+
+  provinces Province[]
+  schools   School[]
+
+  @@index([name])
+}
+
+model Province {
+  id        String   @id @default(cuid())
+  countryId String
+  name      String
+  slug      String
+  createdAt DateTime @default(now())
+
+  country Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  cities  City[]
+  schools School[]
+
+  @@unique([countryId, slug])
+  @@index([countryId, name])
+}
+
+model City {
+  id         String   @id @default(cuid())
+  provinceId String
+  name       String
+  slug       String
+  latitude   Float?
+  longitude  Float?
+  createdAt  DateTime @default(now())
+
+  province Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+  schools  School[]
+
+  @@unique([provinceId, slug])
+  @@index([name])
+}
+
+model School {
+  id                    String                 @id @default(cuid())
+  cityId                String
+  provinceId            String
+  countryId             String
+  name                  String
+  slug                  String                 @unique
+  profileStatus         SchoolProfileStatus    @default(BASIC)
+  verifiedAt            DateTime?
+  curatedAt             DateTime?
+  premiumSince          DateTime?
+  premiumUntil          DateTime?
+  addressLine           String?
+  postalCode            String?
+  latitude              Float
+  longitude             Float
+  googlePlaceId         String?                @unique
+  googleRating          Float?
+  googleReviewCount     Int?
+  googlePhotos          Json?
+  educationOrientations SchoolOrientation[]    @default([])
+  schoolCharacteristics SchoolCharacteristic[] @default([])
+  scheduleType          ScheduleType?
+  modality              String?
+  tags                  String[]               @default([])
+  hasLaboratory         Boolean                @default(false)
+  hasLibrary            Boolean                @default(false)
+  hasSportsFacilities   Boolean                @default(false)
+  hasCafeteria          Boolean                @default(false)
+  hasTransportation     Boolean                @default(false)
+  monthlyFeeEstimate    Int?
+  enrollmentFee         Int?
+  scholarshipsAvailable Boolean                @default(false)
+  studentsCount         Int?
+  profileCompleteness   Int                    @default(0)
+  dataFreshnessAt       DateTime?
+  description           String?
+  website               String?
+  phone                 String?
+  email                 String?
+  active                Boolean                @default(true)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+
+  city     City     @relation(fields: [cityId], references: [id])
+  province Province @relation(fields: [provinceId], references: [id])
+  country  Country  @relation(fields: [countryId], references: [id])
+
+  levels                  SchoolToLevel[]
+  reviews                 Review[]
+  leads                   Lead[]
+  scores                  EduAdvisorScore[]
+  metricsDaily            SchoolMetricsDaily[]
+  matchResults            MatchResult[]
+  savedByParents          SavedSchool[]
+  claimRequests           SchoolClaimRequest[]
+  representatives         SchoolRepresentative[]
+  subscriptions           SchoolSubscription[]
+  billingCustomers        SchoolBillingCustomer[]
+  billingInvoices         BillingInvoice[]
+  billingCheckoutSessions BillingCheckoutSession[]
+  billingWebhookEvents    BillingWebhookEvent[]
+  sourceRecords           SchoolSourceRecord[]
+  importItems             SchoolImportItem[]
+  changeLogs              SchoolProfileChangeLog[]
+  photos                  SchoolPhoto[]
+  parentAlerts            ParentAlert[]
+  productEvents           ProductEvent[]
+
+  @@index([countryId, provinceId, cityId])
+  @@index([name])
+  @@index([latitude, longitude])
+  @@index([monthlyFeeEstimate])
+  @@index([profileStatus, active])
+  @@index([cityId, profileStatus])
+  @@index([verifiedAt])
+  @@index([premiumUntil])
+}
+
+model SavedSchool {
+  id        String   @id @default(cuid())
+  userId    String
+  schoolId  String
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, schoolId])
+  @@index([userId, createdAt])
+  @@index([schoolId, createdAt])
+}
+
+model SavedComparison {
+  id          String   @id @default(cuid())
+  userId      String
+  schoolSlugs String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model ParentAlert {
+  id        String          @id @default(cuid())
+  userId    String
+  schoolId  String?
+  type      ParentAlertType
+  title     String
+  message   String
+  linkPath  String?
+  payload   Json?
+  isRead    Boolean         @default(false)
+  readAt    DateTime?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  school School? @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+
+  @@index([userId, isRead, createdAt])
+  @@index([schoolId, createdAt])
+}
+
+model ProductEvent {
+  id            String           @id @default(cuid())
+  type          ProductEventType
+  schoolId      String?
+  dedupeKey     String           @unique
+  title         String
+  message       String
+  payload       Json?
+  alertsCreated Int              @default(0)
+  createdAt     DateTime         @default(now())
+
+  school School? @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+
+  @@index([type, createdAt])
+  @@index([schoolId, createdAt])
+}
+
+model GrowthFunnelSnapshot {
+  id                      String   @id @default(cuid())
+  date                    DateTime
+  windowDays              Int      @default(30)
+  parentsTotal            Int
+  parentsWithSavedSchools Int
+  parentsWithComparisons  Int
+  parentsWithLeads        Int
+  parentsWithClosedLeads  Int
+  conversionToSaved       Float
+  conversionToCompared    Float
+  conversionToLead        Float
+  conversionToClosedLead  Float
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  @@unique([date, windowDays])
+  @@index([windowDays, date])
+}
+
+model SchoolToLevel {
+  schoolId String
+  level    SchoolLevel
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@id([schoolId, level])
+}
+
+model Review {
+  id               String       @id @default(cuid())
+  schoolId         String
+  userId           String?
+  rating           Int
+  comment          String
+  schoolResponse   String?
+  schoolResponseAt DateTime?
+  status           ReviewStatus @default(PENDING)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id])
+
+  @@index([schoolId, status, createdAt])
+  @@index([rating])
+}
+
+model Lead {
+  id             String      @id @default(cuid())
+  schoolId       String
+  userId         String?
+  parentName     String
+  childAge       Int
+  educationLevel SchoolLevel
+  phone          String
+  email          String
+  status         LeadStatus  @default(NEW)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id])
+
+  @@index([schoolId, status, createdAt])
+  @@index([email])
+}
+
+model ParentPreference {
+  id             String          @id @default(cuid())
+  userId         String
+  cityId         String?
+  budgetMin      Int?
+  budgetMax      Int?
+  childAge       Int
+  educationLevel SchoolLevel
+  maxDistanceKm  Int?
+  preferredTypes EducationType[]
+  priorities     Json
+  createdAt      DateTime        @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model MatchSession {
+  id        String   @id @default(cuid())
+  userId    String
+  queryText String?
+  createdAt DateTime @default(now())
+
+  user    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  results MatchResult[]
+
+  @@index([userId, createdAt])
+}
+
+model MatchResult {
+  id             String   @id @default(cuid())
+  sessionId      String
+  schoolId       String
+  score          Float
+  distanceKm     Float?
+  scoreBreakdown Json
+  createdAt      DateTime @default(now())
+
+  session MatchSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  school  School       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, score])
+  @@index([schoolId])
+}
+
+model SchoolMetricsDaily {
+  id                  String   @id @default(cuid())
+  schoolId            String
+  date                DateTime
+  profileViews        Int      @default(0)
+  searchesAppearances Int      @default(0)
+  leadsReceived       Int      @default(0)
+  avgRating           Float?
+  satisfactionIndex   Float?
+  createdAt           DateTime @default(now())
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@unique([schoolId, date])
+  @@index([date])
+}
+
+model MarketMetricDaily {
+  id                  String   @id @default(cuid())
+  countryId           String
+  provinceId          String?
+  cityId              String?
+  date                DateTime
+  avgMonthlyFee       Float?
+  demandInicial       Int      @default(0)
+  demandPrimaria      Int      @default(0)
+  demandSecundaria    Int      @default(0)
+  avgSatisfaction     Float?
+  mostSearchedSchools Json?
+  createdAt           DateTime @default(now())
+
+  @@index([countryId, date])
+  @@index([provinceId, cityId, date])
+}
+
+model EduAdvisorScore {
+  id                   String   @id @default(cuid())
+  schoolId             String
+  score                Float
+  reviewsComponent     Float
+  engagementComponent  Float
+  consistencyComponent Float
+  dataQualityComponent Float
+  calculatedAt         DateTime @default(now())
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId, calculatedAt])
+  @@index([score])
+}
+
+model SchoolRepresentative {
+  id         String    @id @default(cuid())
+  schoolId   String?
+  fullName   String
+  role       String
+  email      String
+  phone      String
+  isPrimary  Boolean   @default(true)
+  verifiedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  school        School?              @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+  claimRequests SchoolClaimRequest[]
+
+  @@index([schoolId])
+  @@index([email])
+}
+
+model SchoolClaimRequest {
+  id                  String              @id @default(cuid())
+  schoolId            String?
+  representativeId    String?
+  requestType         ClaimRequestType    @default(CLAIM)
+  status              ClaimStatus         @default(PENDING)
+  verificationMethod  VerificationMethod?
+  verifiedAt          DateTime?
+  reviewedAt          DateTime?
+  reviewedBy          String?
+  notes               String?
+  requestedSchoolName String
+  requestedCity       String
+  requestedProvince   String
+  requestedCountry    String              @default("Argentina")
+  requestedWebsite    String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  school         School?               @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+  representative SchoolRepresentative? @relation(fields: [representativeId], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@index([schoolId])
+  @@index([representativeId])
+}
+
+model SchoolSubscription {
+  id               String             @id @default(cuid())
+  schoolId         String
+  status           SubscriptionStatus @default(TRIAL)
+  planCode         String             @default("premium")
+  priceMonthly     Int?
+  currency         String             @default("ARS")
+  provider         BillingProvider    @default(MANUAL)
+  sourceExternalId String?
+  sourceEventId    String?
+  startsAt         DateTime
+  endsAt           DateTime?
+  trialEndsAt      DateTime?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  school           School                   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  invoices         BillingInvoice[]
+  checkoutSessions BillingCheckoutSession[]
+
+  @@unique([provider, sourceExternalId])
+  @@index([schoolId, status])
+  @@index([endsAt])
+  @@index([sourceEventId])
+}
+
+model SchoolBillingCustomer {
+  id                 String          @id @default(cuid())
+  schoolId           String
+  provider           BillingProvider @default(MANUAL)
+  externalCustomerId String
+  email              String?
+  metadata           Json?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, externalCustomerId])
+  @@unique([schoolId, provider])
+  @@index([schoolId])
+}
+
+model BillingCheckoutSession {
+  id                String                       @id @default(cuid())
+  schoolId          String
+  subscriptionId    String?
+  provider          BillingProvider              @default(MANUAL)
+  status            BillingCheckoutSessionStatus @default(OPEN)
+  planCode          String                       @default("premium")
+  amountMonthly     Int
+  currency          String                       @default("ARS")
+  intervalMonths    Int                          @default(1)
+  externalSessionId String?
+  checkoutUrl       String
+  successUrl        String?
+  cancelUrl         String?
+  expiresAt         DateTime?
+  completedAt       DateTime?
+  metadata          Json?
+  createdAt         DateTime                     @default(now())
+  updatedAt         DateTime                     @updatedAt
+
+  school       School              @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  subscription SchoolSubscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  @@unique([provider, externalSessionId])
+  @@index([schoolId, createdAt])
+  @@index([status, createdAt])
+}
+
+model BillingInvoice {
+  id                String               @id @default(cuid())
+  schoolId          String
+  subscriptionId    String?
+  provider          BillingProvider      @default(MANUAL)
+  status            BillingInvoiceStatus @default(OPEN)
+  externalInvoiceId String?
+  externalEventId   String?
+  amountSubtotal    Int
+  amountTax         Int                  @default(0)
+  amountTotal       Int
+  currency          String               @default("ARS")
+  issuedAt          DateTime             @default(now())
+  dueAt             DateTime?
+  paidAt            DateTime?
+  hostedInvoiceUrl  String?
+  pdfUrl            String?
+  rawPayload        Json?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+
+  school       School              @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  subscription SchoolSubscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+
+  @@unique([provider, externalInvoiceId])
+  @@index([schoolId, status, issuedAt])
+  @@index([subscriptionId, issuedAt])
+  @@index([externalEventId])
+}
+
+model BillingWebhookEvent {
+  id              String                    @id @default(cuid())
+  provider        BillingProvider
+  externalEventId String
+  eventType       String
+  status          BillingWebhookEventStatus @default(RECEIVED)
+  signatureValid  Boolean                   @default(false)
+  schoolId        String?
+  payload         Json
+  errorMessage    String?
+  processedAt     DateTime?
+  receivedAt      DateTime                  @default(now())
+  createdAt       DateTime                  @default(now())
+  updatedAt       DateTime                  @updatedAt
+
+  school School? @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+
+  @@unique([provider, externalEventId])
+  @@index([provider, status, receivedAt])
+  @@index([schoolId, receivedAt])
+}
+
+model SchoolSourceRecord {
+  id          String       @id @default(cuid())
+  schoolId    String
+  source      ImportSource
+  externalId  String
+  payload     Json
+  payloadHash String
+  fetchedAt   DateTime     @default(now())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@unique([source, externalId])
+  @@index([schoolId, source])
+  @@index([payloadHash])
+}
+
+model SchoolImportRun {
+  id             String          @id @default(cuid())
+  source         ImportSource
+  status         ImportRunStatus @default(QUEUED)
+  countryCode    String          @default("AR")
+  province       String?
+  city           String?
+  query          String?
+  startedAt      DateTime?
+  finishedAt     DateTime?
+  totalFetched   Int             @default(0)
+  createdCount   Int             @default(0)
+  updatedCount   Int             @default(0)
+  duplicateCount Int             @default(0)
+  errorCount     Int             @default(0)
+  notes          String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  items SchoolImportItem[]
+
+  @@index([status, createdAt])
+}
+
+model SchoolImportItem {
+  id           String       @id @default(cuid())
+  runId        String
+  source       ImportSource
+  externalId   String
+  schoolId     String?
+  operation    String
+  payloadHash  String?
+  errorMessage String?
+  rawPayload   Json?
+  processedAt  DateTime     @default(now())
+  createdAt    DateTime     @default(now())
+
+  run    SchoolImportRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  school School?         @relation(fields: [schoolId], references: [id], onDelete: SetNull)
+
+  @@unique([runId, source, externalId])
+  @@index([schoolId])
+  @@index([operation])
+}
+
+model SchoolProfileChangeLog {
+  id        String          @id @default(cuid())
+  schoolId  String
+  actorType ChangeActorType
+  actorId   String?
+  fieldName String
+  fromValue Json?
+  toValue   Json?
+  source    ImportSource?
+  note      String?
+  createdAt DateTime        @default(now())
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId, createdAt])
+  @@index([fieldName])
+}
+
+model SchoolPhoto {
+  id        String       @id @default(cuid())
+  schoolId  String
+  source    ImportSource
+  url       String
+  sortOrder Int          @default(0)
+  isPrimary Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  school School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId, sortOrder])
+  @@index([schoolId, isPrimary])
+}

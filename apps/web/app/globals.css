@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ea-v2-color-bg: #f4f8f7;
+  --ea-v2-color-surface: #ffffff;
+  --ea-v2-color-surface-soft: #f8fbfb;
+  --ea-v2-color-border: #d7ebe4;
+  --ea-v2-color-border-strong: #9ccdbd;
+  --ea-v2-color-ink: #102126;
+  --ea-v2-color-ink-soft: #4b5e66;
+  --ea-v2-color-brand: #1f5c4d;
+  --ea-v2-color-brand-strong: #143b31;
+  --ea-v2-color-brand-soft: #d4efe8;
+  --ea-v2-color-warning: #fbbf24;
+  --ea-v2-color-danger: #dc2626;
+  --ea-v2-space-1: 0.25rem;
+  --ea-v2-space-2: 0.5rem;
+  --ea-v2-space-3: 0.75rem;
+  --ea-v2-space-4: 1rem;
+  --ea-v2-space-5: 1.25rem;
+  --ea-v2-space-6: 1.5rem;
+  --ea-v2-space-8: 2rem;
+  --ea-v2-radius-sm: 0.5rem;
+  --ea-v2-radius-md: 0.75rem;
+  --ea-v2-radius-lg: 1rem;
+  --ea-v2-radius-xl: 1.25rem;
+  --ea-v2-radius-2xl: 1.5rem;
+  --ea-v2-shadow-soft: 0 8px 22px rgba(16, 33, 38, 0.06);
+  --ea-v2-shadow-card: 0 14px 35px rgba(16, 33, 38, 0.1);
+  --ea-v2-shadow-raised: 0 20px 44px rgba(16, 33, 38, 0.14);
+  --ea-v2-motion-fast: 160ms;
+  --ea-v2-motion-base: 240ms;
+  --ea-v2-motion-slow: 360ms;
+  --ea-v2-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ea-v2-ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --surface: #f6faf9;
+  --ink: #0d1b1f;
+  --muted: #5a6a70;
+  --ea-bg-page: #f6faf9;
+  --ea-bg-surface: #ffffff;
+  --ea-bg-soft: #f1f9f7;
+  --ea-bg-warning: #fff8e7;
+  --ea-text-primary: #0d1b1f;
+  --ea-text-secondary: #3f5056;
+  --ea-text-muted: #64748b;
+  --ea-border-subtle: #d4efe8;
+  --ea-border-strong: #9fcfbe;
+  --ea-accent: #1f5c4d;
+  --ea-accent-strong: #173c34;
+  --ea-accent-soft: #d4efe8;
+  --ea-focus: rgba(47, 143, 115, 0.24);
+  --ea-radius-md: 0.75rem;
+  --ea-radius-lg: 1rem;
+  --ea-radius-xl: 1.25rem;
+  --ea-shadow-sm: 0 8px 24px rgba(13, 27, 31, 0.06);
+  --ea-shadow-md: 0 12px 28px rgba(13, 27, 31, 0.1);
+  --font-sans:
+    "Avenir Next", "Avenir", "Nunito Sans", "Segoe UI", "Helvetica Neue", "Noto Sans", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Baskerville", serif;
+  color-scheme: light;
+}
+
+body {
+  background:
+    radial-gradient(1200px 500px at 100% -10%, rgba(124, 197, 170, 0.25), transparent 60%),
+    radial-gradient(900px 500px at -5% 25%, rgba(254, 215, 123, 0.25), transparent 55%),
+    linear-gradient(180deg, #f6faf9 0%, #ffffff 35%, #f9fbfb 100%);
+  color: var(--ink);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(to right, rgba(31, 92, 77, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 92, 77, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: riseIn 0.55s ease-out both;
+}
+
+@keyframes eaShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes eaFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ea-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ea-accent);
+  font-weight: 700;
+}
+
+.ea-text-muted {
+  color: var(--ea-text-muted);
+}
+
+.ea-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ea-focus);
+}
+
+.ea-surface-card {
+  border: 1px solid var(--ea-v2-color-border);
+  border-radius: var(--ea-v2-radius-xl);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 251, 251, 0.96) 100%);
+  box-shadow: var(--ea-v2-shadow-soft);
+}
+
+.ea-transition-standard {
+  transition-property: transform, box-shadow, border-color, background-color, color, opacity;
+  transition-duration: var(--ea-v2-motion-base);
+  transition-timing-function: var(--ea-v2-ease-standard);
+}
+
+.ea-enter {
+  animation: eaFadeSlide var(--ea-v2-motion-slow) var(--ea-v2-ease-emphasis) both;
+}
+
+.ea-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 239, 232, 0.55) 0%,
+    rgba(249, 251, 251, 0.8) 50%,
+    rgba(212, 239, 232, 0.55) 100%
+  );
+  background-size: 240% 100%;
+  animation: eaShimmer 1.4s linear infinite;
+}

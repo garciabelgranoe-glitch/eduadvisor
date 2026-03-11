@@ -1,0 +1,25 @@
+{
+  "name": "eduadvisor",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "corepack pnpm -r --parallel --filter @eduadvisor/api --filter @eduadvisor/web dev",
+    "dev:turbo": "turbo run dev --parallel",
+    "build": "corepack pnpm --filter @eduadvisor/api build && corepack pnpm --filter @eduadvisor/web build",
+    "lint": "corepack pnpm --filter @eduadvisor/api lint && corepack pnpm --filter @eduadvisor/web lint",
+    "test": "corepack pnpm --filter @eduadvisor/api test && corepack pnpm --filter @eduadvisor/web test",
+    "format": "turbo run format",
+    "ci:full": "corepack pnpm lint && corepack pnpm test && corepack pnpm build",
+    "security:evidence": "bash infra/scripts/security-launch-evidence.sh",
+    "release:preflight": "bash infra/scripts/deploy-readiness-preflight.sh",
+    "release:signoff": "bash infra/scripts/generate-go-no-go-signoff.sh",
+    "smoke:post-deploy": "bash infra/scripts/smoke-post-deploy.sh",
+    "backup:db": "bash infra/scripts/backup-postgres.sh",
+    "restore:db": "bash infra/scripts/restore-postgres.sh"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.4"
+  }
+}

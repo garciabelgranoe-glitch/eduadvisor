@@ -1,0 +1,5 @@
+export enum UserRole {
+  PARENT = "PARENT",
+  SCHOOL_ADMIN = "SCHOOL_ADMIN",
+  PLATFORM_ADMIN = "PLATFORM_ADMIN"
+}

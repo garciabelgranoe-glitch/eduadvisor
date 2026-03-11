@@ -1,0 +1,64 @@
+name: Release Signoff
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Identificador de release (ej: 2026.03-rc1)"
+        required: true
+        default: "release-candidate"
+      ci_run_url:
+        description: "URL del run de CI principal"
+        required: false
+        default: "pendiente"
+      deploy_run_url:
+        description: "URL del run de deploy"
+        required: false
+        default: "pendiente"
+      decision:
+        description: "Decisión inicial (PENDING/GO/NO_GO)"
+        required: true
+        default: "PENDING"
+      decision_owner:
+        description: "Responsable de la decisión"
+        required: true
+        default: "Equipo Plataforma"
+
+jobs:
+  generate-signoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate security evidence (fresh)
+        run: pnpm security:evidence
+
+      - name: Generate Go/No-Go signoff
+        env:
+          GO_NO_GO_RELEASE_VERSION: ${{ inputs.release_version }}
+          GO_NO_GO_CI_RUN_URL: ${{ inputs.ci_run_url }}
+          GO_NO_GO_DEPLOY_RUN_URL: ${{ inputs.deploy_run_url }}
+          GO_NO_GO_DECISION: ${{ inputs.decision }}
+          GO_NO_GO_DECISION_OWNER: ${{ inputs.decision_owner }}
+        run: pnpm release:signoff
+
+      - name: Upload signoff artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-signoff
+          path: |
+            docs/security/evidence/latest.md
+            docs/security/evidence/go-no-go-latest.md
+            docs/security/evidence/go-no-go-signoff-*.md
+            docs/security/evidence/launch-evidence-*.md
+            docs/security/evidence/logs
+          retention-days: 30

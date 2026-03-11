@@ -1,0 +1,107 @@
+
+> @eduadvisor/web@0.1.0 build /Users/emilianobel/Desktop/Eduadvisor/apps/web
+> next build
+
+  ▲ Next.js 14.2.5
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · typedRoutes
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/62) ...
+   Generating static pages (15/62) 
+   Generating static pages (30/62) 
+   Generating static pages (46/62) 
+ ✓ Generating static pages (62/62)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                      Size     First Load JS
+┌ ○ /                                            8.06 kB         121 kB
+├ ○ /_not-found                                  199 B          87.3 kB
+├ ƒ /[cityLanding]                               199 B          87.3 kB
+├ ○ /[sitemap].xml                               0 B                0 B
+├ ƒ /admin                                       198 B          87.3 kB
+├ ƒ /admin/analytics                             199 B          87.3 kB
+├ ƒ /admin/billing                               3.07 kB        90.2 kB
+├ ƒ /admin/claims                                2.95 kB        90.1 kB
+├ ƒ /admin/launch                                199 B          87.3 kB
+├ ƒ /admin/reviews                               1.76 kB        88.9 kB
+├ ƒ /admin/schools                               2.15 kB        89.3 kB
+├ ƒ /admin/seo-health                            199 B          87.3 kB
+├ ƒ /api/admin/billing/checkout                  0 B                0 B
+├ ƒ /api/admin/billing/simulate                  0 B                0 B
+├ ƒ /api/admin/claim-requests/status             0 B                0 B
+├ ƒ /api/admin/launch-readiness                  0 B                0 B
+├ ƒ /api/admin/schools/search                    0 B                0 B
+├ ƒ /api/admin/schools/status                    0 B                0 B
+├ ƒ /api/admin/subscriptions/status              0 B                0 B
+├ ƒ /api/analytics/capture                       0 B                0 B
+├ ƒ /api/beta/status                             0 B                0 B
+├ ƒ /api/billing/checkout/simulate               0 B                0 B
+├ ƒ /api/leads                                   0 B                0 B
+├ ƒ /api/leads/status                            0 B                0 B
+├ ƒ /api/parent/alerts                           0 B                0 B
+├ ƒ /api/parent/comparisons                      0 B                0 B
+├ ƒ /api/parent/saved-schools                    0 B                0 B
+├ ƒ /api/reviews                                 0 B                0 B
+├ ƒ /api/reviews/moderate                        0 B                0 B
+├ ƒ /api/reviews/respond                         0 B                0 B
+├ ƒ /api/schools/billing/checkout                0 B                0 B
+├ ƒ /api/schools/leads-export                    0 B                0 B
+├ ƒ /api/schools/login-options                   0 B                0 B
+├ ƒ /api/schools/media/upload                    0 B                0 B
+├ ƒ /api/schools/profile                         0 B                0 B
+├ ƒ /api/schools/publish                         0 B                0 B
+├ ƒ /api/session/admin                           0 B                0 B
+├ ƒ /api/session/google/callback                 0 B                0 B
+├ ƒ /api/session/google/start                    0 B                0 B
+├ ƒ /api/session/logout                          0 B                0 B
+├ ƒ /api/session/me                              0 B                0 B
+├ ƒ /api/session/role                            0 B                0 B
+├ ƒ /api/session/school-claim-status             0 B                0 B
+├ ○ /ar                                          204 B          94.1 kB
+├ ● /ar/[province]                               204 B          94.1 kB
+├ ƒ /ar/[province]/[city]                        204 B          94.1 kB
+├ ● /ar/[province]/[city]/colegios               1.02 kB         109 kB
+├ ƒ /ar/[province]/[city]/colegios/[schoolSlug]  3.47 kB         120 kB
+├ ƒ /ar/[province]/[city]/rankings               204 B          94.1 kB
+├ ƒ /ar/[province]/[city]/rankings/[category]    199 B          87.3 kB
+├ ƒ /beta-acceso                                 204 B          94.1 kB
+├ ƒ /checkout/[sessionId]                        1.28 kB        95.2 kB
+├ ƒ /compare                                     2.14 kB         111 kB
+├ ƒ /compare/[ids]                               199 B          87.3 kB
+├ ƒ /ingresar                                    3.06 kB          97 kB
+├ ƒ /market-insights                             199 B          87.3 kB
+├ ƒ /matches                                     199 B          87.3 kB
+├ ƒ /para-colegios                               4.03 kB         101 kB
+├ ƒ /parent-dashboard                            1.86 kB         105 kB
+├ ○ /rankings                                    204 B          94.1 kB
+├ ƒ /review                                      4.06 kB         101 kB
+├ ○ /robots.txt                                  0 B                0 B
+├ ƒ /school-dashboard                            6.71 kB        93.8 kB
+├ ƒ /school/[slug]                               199 B          87.3 kB
+├ ƒ /search                                      3.68 kB         112 kB
+├ ○ /sitemaps/geo                                0 B                0 B
+├ ƒ /sitemaps/geo/[page]                         0 B                0 B
+├ ○ /sitemaps/index                              0 B                0 B
+├ ○ /sitemaps/rankings                           0 B                0 B
+├ ƒ /sitemaps/rankings/[page]                    0 B                0 B
+├ ○ /sitemaps/schools                            0 B                0 B
+├ ƒ /sitemaps/schools/[page]                     0 B                0 B
+└ ○ /sitemaps/static                             0 B                0 B
++ First Load JS shared by all                    87.1 kB
+  ├ chunks/7625-9b0893767c9556b6.js              31.5 kB
+  ├ chunks/8d4a3326-e33c3dc38849caae.js          53.6 kB
+  └ other shared chunks (total)                  1.96 kB
+
+
+ƒ Middleware                                     29.3 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

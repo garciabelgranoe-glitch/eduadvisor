@@ -1,0 +1,85 @@
+
+> @eduadvisor/web@0.1.0 test /Users/emilianobel/Desktop/Eduadvisor/apps/web
+> playwright test --pass-with-no-tests "tests/security-admin-rbac.spec.ts" "tests/security-authz-regression.spec.ts" "tests/security-school-profile-ownership.spec.ts" "tests/security-public-form-abuse.spec.ts" "tests/security-session-cookie-hardening.spec.ts" "tests/security-billing-authz.spec.ts" "tests/security-headers-web.spec.ts" "tests/security-claim-status-enumeration.spec.ts"
+
+[2m[WebServer] [22m(node:66019) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66042) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66047) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66054) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66058) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66055) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66059) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66057) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66050) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66049) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66065) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m(node:66075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 34 tests using 1 worker
+
+(node:66081) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66081) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/security-admin-rbac.spec.ts:54:5 › admin endpoints reject anonymous access (76ms)
+  ✓   2 [chromium] › tests/security-admin-rbac.spec.ts:67:5 › admin endpoints reject invalid admin session cookie (5ms)
+  ✓   3 [chromium] › tests/security-admin-rbac.spec.ts:84:5 › admin endpoint accepts a valid admin session and continues validation (8ms)
+  ✓   4 [chromium] › tests/security-authz-regression.spec.ts:23:5 › regression: parent session is recognized by /api/session/me (7ms)
+  ✓   5 [chromium] › tests/security-authz-regression.spec.ts:43:5 › regression: school session is recognized by /api/session/me (23ms)
+  ✓   6 [chromium] › tests/security-authz-regression.spec.ts:65:5 › regression: parent session cannot call school-owned endpoints (5ms)
+  ✓   7 [chromium] › tests/security-authz-regression.spec.ts:83:5 › regression: school session cannot call admin endpoints (3ms)
+  ✓   8 [chromium] › tests/security-billing-authz.spec.ts:32:5 › school billing checkout redirects anonymous users to sign in (4ms)
+  ✓   9 [chromium] › tests/security-billing-authz.spec.ts:44:5 › school billing checkout denies ownership mismatch (5ms)
+  ✓  10 [chromium] › tests/security-billing-authz.spec.ts:60:5 › billing checkout simulate rejects non-school sessions (4ms)
+  ✓  11 [chromium] › tests/security-billing-authz.spec.ts:79:5 › billing checkout simulate denies school ownership mismatch (5ms)
+  ✓  12 [chromium] › tests/security-claim-status-enumeration.spec.ts:3:5 › school claim status returns a shaped generic response (72ms)
+  ✓  13 [chromium] › tests/security-claim-status-enumeration.spec.ts:31:5 › school claim status does not leak metadata across different identities (15ms)
+  ✓  14 [chromium] › tests/security-claim-status-enumeration.spec.ts:79:5 › school claim status applies request throttling (43ms)
+  ✓  15 [chromium] › tests/security-headers-web.spec.ts:3:5 › web responses include hardened security headers (49ms)
+  ✓  16 [chromium] › tests/security-public-form-abuse.spec.ts:3:5 › leads endpoint silently drops honeypot submissions (6ms)
+  ✓  17 [chromium] › tests/security-public-form-abuse.spec.ts:26:5 › leads endpoint blocks disposable email domains (3ms)
+  ✓  18 [chromium] › tests/security-public-form-abuse.spec.ts:49:5 › reviews endpoint silently drops too-fast submissions (3ms)
+  ✓  19 [chromium] › tests/security-public-form-abuse.spec.ts:69:5 › reviews endpoint blocks duplicate payload fingerprint submissions (11ms)
+  ✓  20 [chromium] › tests/security-public-form-abuse.spec.ts:101:5 › claim/publish endpoint blocks automated user-agent signatures (3ms)
+  ✓  21 [chromium] › tests/security-public-form-abuse.spec.ts:128:5 › claim/publish endpoint blocks suspicious URL spam content (3ms)
+  ✓  22 [chromium] › tests/security-public-form-abuse.spec.ts:155:5 › leads endpoint applies rate-limit for repeated abuse attempts (7ms)
+  ✓  23 [chromium] › tests/security-public-form-abuse.spec.ts:216:5 › public forms block missing challenge token when challenge is required (3ms)
+  ✓  24 [chromium] › tests/security-public-form-abuse.spec.ts:239:5 › public forms reject invalid challenge token when challenge is required (7ms)
+  ✓  25 [chromium] › tests/security-school-profile-ownership.spec.ts:6:5 › schools/profile rejects anonymous access (3ms)
+  ✓  26 [chromium] › tests/security-school-profile-ownership.spec.ts:20:5 › schools/profile enforces school ownership from session scope (3ms)
+  ✓  27 [chromium] › tests/security-school-profile-ownership.spec.ts:49:5 › schools/leads-export rejects anonymous access (3ms)
+  ✓  28 [chromium] › tests/security-school-profile-ownership.spec.ts:59:5 › schools/leads-export enforces school ownership from session scope (3ms)
+  ✓  29 [chromium] › tests/security-school-profile-ownership.spec.ts:84:5 › reviews/respond rejects anonymous access (3ms)
+  ✓  30 [chromium] › tests/security-school-profile-ownership.spec.ts:99:5 › reviews/respond enforces school ownership from session scope (3ms)
+  ✓  31 [chromium] › tests/security-school-profile-ownership.spec.ts:129:5 › leads/status rejects anonymous access (4ms)
+  ✓  32 [chromium] › tests/security-school-profile-ownership.spec.ts:144:5 › leads/status enforces school ownership from session scope (4ms)
+  ✓  33 [chromium] › tests/security-session-cookie-hardening.spec.ts:17:5 › admin oauth start sets hardened transient cookies (7ms)
+  ✓  34 [chromium] › tests/security-session-cookie-hardening.spec.ts:42:5 › session/me rotates near-expiry sessions (4ms)
+
+  34 passed (16.1s)
