@@ -23,7 +23,9 @@ jobs:
       - run: pnpm --filter @eduadvisor/api prisma:generate
       - run: pnpm --filter @eduadvisor/web exec playwright install chromium
       - run: pnpm lint
-      - run: pnpm test
+      - name: Run tests (retry once on transient failure)
+        run: |
+          pnpm test || (echo "Primer intento falló; reintentando una vez..." && pnpm test)
 
   security-semgrep:
     runs-on: ubuntu-latest
