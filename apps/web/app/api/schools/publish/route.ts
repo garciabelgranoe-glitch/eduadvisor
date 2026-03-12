@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { evaluatePublicAbuseProtection, sanitizeForwardPayload } from "@/lib/security/public-abuse-protection";
 import { evaluatePublicFormChallenge } from "@/lib/security/public-form-challenge";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 
 interface PublishRequestBody {
   flow?: "publish" | "claim";

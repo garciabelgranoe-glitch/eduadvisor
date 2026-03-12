@@ -2,8 +2,11 @@ export const SEO_SITE_NAME = "EduAdvisor";
 export const SEO_DEFAULT_LOCALE = "es_AR";
 export const SEO_DEFAULT_LANG = "es-AR";
 
-export const SEO_SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://eduadvisor.com";
+const rawSiteUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
+export const SEO_SITE_URL = (rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://eduadvisor.com").replace(
+  /\/$/,
+  ""
+);
 
 export const SEO_GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 

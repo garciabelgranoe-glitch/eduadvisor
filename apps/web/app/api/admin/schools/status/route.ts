@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdminPermission } from "@/lib/auth/admin-rbac";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 
 export async function PATCH(request: NextRequest) {
   const auth = await requireAdminPermission(request, "schools:write");

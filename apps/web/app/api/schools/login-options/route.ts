@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 
 function sanitizeQuery(value: string | null) {
   if (!value) {

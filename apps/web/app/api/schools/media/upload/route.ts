@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ensureSchoolOwnership, requireSchoolAdminSession } from "@/lib/auth/api-access";
 import { canManageSchoolByProfileStatus } from "@/lib/school-permissions";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 const MAX_FILE_SIZE_BYTES = 8 * 1024 * 1024;
 const MAX_GALLERY_UPLOAD = 12;
 const allowedMimeTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/avif"]);

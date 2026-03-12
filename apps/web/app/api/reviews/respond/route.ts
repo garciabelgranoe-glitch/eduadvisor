@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureSchoolOwnership, requireSchoolAdminSession } from "@/lib/auth/api-access";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 
 export async function PATCH(request: NextRequest) {
   const auth = await requireSchoolAdminSession(request);

@@ -29,7 +29,7 @@ import type {
   SearchResponse
 } from "./types";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 const API_PREFIX = `${API_BASE}/v1`;
 
 const defaultListResponse: SchoolsListResponse = {

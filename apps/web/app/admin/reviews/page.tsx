@@ -25,7 +25,7 @@ interface QueueResponse {
 }
 
 async function getModerationQueue(): Promise<QueueResponse> {
-  const apiBase = process.env.API_URL ?? "http://localhost:4000";
+  const apiBase = process.env.API_URL?.trim() || "http://localhost:4000";
   const adminApiKey = process.env.ADMIN_API_KEY?.trim() ?? "";
 
   try {

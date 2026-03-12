@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { consumeRateLimit } from "@/lib/security/in-memory-rate-limit";
 
-const API_BASE = process.env.API_URL ?? "http://localhost:4000";
+const API_BASE = process.env.API_URL?.trim() || "http://localhost:4000";
 const RATE_LIMIT_MAX_REQUESTS = 6;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_BLOCK_MS = 5 * 60_000;
