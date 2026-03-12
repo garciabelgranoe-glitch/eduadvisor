@@ -1,3 +1,5 @@
+import path from "node:path";
+
 /** @type {import('next').NextConfig} */
 const isProduction = process.env.NODE_ENV === "production";
 const hasHostedRuntime =
@@ -31,6 +33,13 @@ function buildContentSecurityPolicy() {
 const nextConfig = {
   poweredByHeader: false,
   compress: true,
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      "@": path.resolve(process.cwd())
+    };
+    return config;
+  },
   images: {
     remotePatterns: [
       {
