@@ -8,7 +8,9 @@ export type AdminPermission =
   | "reviews:moderate"
   | "billing:checkout"
   | "billing:simulate"
-  | "launch:read";
+  | "launch:read"
+  | "import:write"
+  | "search:reindex";
 
 type AdminRole = "PLATFORM_ADMIN";
 
@@ -25,7 +27,9 @@ const ROLE_PERMISSIONS: Record<AdminRole, Set<AdminPermission>> = {
     "reviews:moderate",
     "billing:checkout",
     "billing:simulate",
-    "launch:read"
+    "launch:read",
+    "import:write",
+    "search:reindex"
   ])
 };
 
