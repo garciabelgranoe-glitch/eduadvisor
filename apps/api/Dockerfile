@@ -24,4 +24,4 @@ ENV PORT=4000
 
 EXPOSE 4000
 
-CMD ["sh", "-c", "pnpm exec prisma migrate deploy --schema packages/database/prisma/schema.prisma && pnpm --filter @eduadvisor/api start"]
+CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy --schema /app/packages/database/prisma/schema.prisma && pnpm --filter @eduadvisor/api start"]
