@@ -119,8 +119,9 @@ export async function POST(request: NextRequest) {
   const payload = await parsePayload(request);
   const safeNextPath = sanitizeNextPath(payload.next);
 
+  const hasSharedCode = Boolean(process.env.ADMIN_CONSOLE_TOKEN?.trim());
   const isLocalRuntime = LOCAL_NODE_ENVS.has(process.env.NODE_ENV ?? "development");
-  if (!isLocalRuntime) {
+  if (!isLocalRuntime && !hasSharedCode) {
     if (isJsonRequest(request)) {
       return NextResponse.json(
         {

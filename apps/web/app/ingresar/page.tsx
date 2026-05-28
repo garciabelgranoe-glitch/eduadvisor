@@ -158,7 +158,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const parentGoogleStartPath = `/api/session/google/start?next=${encodeURIComponent(parentNextPath)}`;
   const adminNextPath = requestedNext?.startsWith("/admin") ? requestedNext : "/admin";
   const adminGoogleStartPath = `/api/session/google/start?intent=admin&next=${encodeURIComponent(adminNextPath)}`;
-  const adminSharedCodeEnabled = isLocalRuntime && Boolean(process.env.ADMIN_CONSOLE_TOKEN?.trim());
+  const adminSharedCodeEnabled = Boolean(process.env.ADMIN_CONSOLE_TOKEN?.trim());
 
   const schoolsResponse = await getAdminSchools({
     status: "active",
