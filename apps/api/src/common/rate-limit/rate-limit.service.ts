@@ -137,11 +137,14 @@ export class RateLimitService {
     const parsed = new URL(this.redisUrl);
     const host = parsed.hostname;
     const port = Number(parsed.port || 6379);
+    const password = parsed.password ? decodeURIComponent(parsed.password) : null;
+    const username = parsed.username ? decodeURIComponent(parsed.username) : null;
 
     return new Promise<string | number | null>((resolve, reject) => {
       const socket = new Socket();
       let settled = false;
       let buffer = Buffer.alloc(0);
+      let authenticated = !password;
 
       const finish = (callback: () => void) => {
         if (settled) {
@@ -154,7 +157,14 @@ export class RateLimitService {
       socket.setTimeout(1_500);
 
       socket.on("connect", () => {
-        socket.write(this.serializeRedisCommand(args));
+        if (password) {
+          const authArgs = username && username !== "default"
+            ? ["AUTH", username, password]
+            : ["AUTH", password];
+          socket.write(this.serializeRedisCommand(authArgs));
+        } else {
+          socket.write(this.serializeRedisCommand(args));
+        }
       });
 
       socket.on("data", (chunk: Buffer) => {
@@ -163,6 +173,18 @@ export class RateLimitService {
         try {
           const parsedResponse = this.parseRedisResponse(buffer);
           if (!parsedResponse) {
+            return;
+          }
+
+          if (!authenticated) {
+            if (parsedResponse.value !== "OK") {
+              finish(() => reject(new Error("Redis AUTH failed")));
+              socket.destroy();
+              return;
+            }
+            authenticated = true;
+            buffer = Buffer.alloc(0);
+            socket.write(this.serializeRedisCommand(args));
             return;
           }
 
