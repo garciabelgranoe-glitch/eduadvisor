@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { DataEvidence } from "@/components/ui/data-evidence";
 import { MetricTile } from "@/components/ui/metric-tile";
+import { Button } from "@/components/ui/button";
 import { getAdminOverview } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
@@ -78,6 +80,24 @@ export default async function AdminHomePage() {
           </ul>
         </Card>
       </div>
+
+      <Card className="space-y-3 border-amber-200 bg-amber-50/40">
+        <p className="ea-kicker text-amber-700">Acciones rápidas</p>
+        <div className="flex flex-wrap gap-3">
+          <Button asChild>
+            <Link href="/admin/import-runs">🚀 Importar colegios</Link>
+          </Button>
+          <Button asChild variant="ghost">
+            <Link href="/admin/schools">Ver colegios</Link>
+          </Button>
+          <Button asChild variant="ghost">
+            <Link href="/admin/claims">Solicitudes de claim</Link>
+          </Button>
+          <Button asChild variant="ghost">
+            <Link href="/admin/reviews">Moderación de reseñas</Link>
+          </Button>
+        </div>
+      </Card>
     </div>
   );
 }
