@@ -93,15 +93,24 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.51.23
         version: 5.90.21(react@18.3.1)
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.27(postcss@8.5.8)
       next:
         specifier: 14.2.35
         version: 14.2.35(@playwright/test@1.58.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss:
+        specifier: ^8.4.41
+        version: 8.5.8
       react:
         specifier: 18.3.1
         version: 18.3.1
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      tailwindcss:
+        specifier: ^3.4.10
+        version: 3.4.19(tsx@4.21.0)
     devDependencies:
       '@playwright/test':
         specifier: ^1.46.0
@@ -115,21 +124,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.7(@types/react@18.3.28)
-      autoprefixer:
-        specifier: ^10.4.20
-        version: 10.4.27(postcss@8.5.8)
       eslint:
         specifier: ^8.57.0
         version: 8.57.1
       eslint-config-next:
         specifier: 14.2.35
         version: 14.2.35(eslint@8.57.1)(typescript@5.9.3)
-      postcss:
-        specifier: ^8.4.41
-        version: 8.5.8
-      tailwindcss:
-        specifier: ^3.4.10
-        version: 3.4.19(tsx@4.21.0)
       typescript:
         specifier: ^5.5.4
         version: 5.9.3
