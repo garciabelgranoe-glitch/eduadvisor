@@ -56,18 +56,17 @@ function sanitizeNextPath(value: string | undefined, fallback: string, role: Ses
   return value;
 }
 
+function getOrigin(request: NextRequest) {
+  const host = request.headers.get("host") ?? request.nextUrl.host;
+  return `${request.nextUrl.protocol}//${host}`;
+}
+
 function buildRedirectUrl(request: NextRequest, nextPath: string) {
-  const target = new URL(nextPath, request.nextUrl.origin);
-  const redirectUrl = request.nextUrl.clone();
-  redirectUrl.pathname = target.pathname;
-  redirectUrl.search = target.search;
-  return redirectUrl;
+  return new URL(nextPath, getOrigin(request));
 }
 
 function buildErrorRedirect(request: NextRequest, code: string) {
-  const redirectUrl = request.nextUrl.clone();
-  redirectUrl.pathname = "/ingresar";
-  redirectUrl.search = "";
+  const redirectUrl = new URL("/ingresar", getOrigin(request));
   redirectUrl.searchParams.set("error", code);
   return NextResponse.redirect(redirectUrl, { status: 303 });
 }

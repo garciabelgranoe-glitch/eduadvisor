@@ -2,13 +2,9 @@
 
 import Link from "next/link";
 import { SaveSchoolButton } from "@/components/parent/save-school-button";
-import { TrustStrip } from "@/components/school/trust-strip";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { DataEvidence } from "@/components/ui/data-evidence";
-import { ProfileStatusBadge } from "@/components/school/profile-status-badge";
-import { PremiumNameMark } from "@/components/school/premium-name-mark";
 import type { ApiSchoolListItem } from "@/lib/api";
 import { trackEvent } from "@/lib/analytics";
 import { formatCurrency, formatRating } from "@/lib/format";
@@ -23,6 +19,12 @@ interface SearchResultCardProps {
   rank?: number;
 }
 
+const levelLabelMap: Record<string, string> = {
+  INICIAL: "Inicial",
+  PRIMARIA: "Primaria",
+  SECUNDARIA: "Secundaria"
+};
+
 export function SearchResultCard({
   school,
   showSaveButton = true,
@@ -33,171 +35,163 @@ export function SearchResultCard({
 }: SearchResultCardProps) {
   const googleRating = school.quality?.google?.rating ?? null;
   const googleReviewCount = school.quality?.google?.reviewCount ?? 0;
-  const hasGoogleRating = googleRating !== null;
   const parentRating = school.rating.average;
-  const hasParentRating = parentRating !== null;
-  const leadIntentScore = school.leadIntentScore ?? null;
-  const leadIntentLabel =
-    leadIntentScore === null
-      ? null
-      : leadIntentScore >= 75
-        ? "Alta respuesta"
-        : leadIntentScore >= 55
-          ? "Respuesta media"
-          : "Perfil en desarrollo";
-  const levelLabelMap: Record<string, string> = {
-    INICIAL: "Inicial",
-    PRIMARIA: "Primaria",
-    SECUNDARIA: "Secundaria"
-  };
-  const website = school.contacts.website;
-  const schoolProfilePath = citySchoolProfilePath(school.location.province, school.location.city, school.slug);
-  const isCompact = variant === "compact-mobile";
+  const isPremiumProfile = school.profile.status === "PREMIUM";
   const isRanking = variant === "ranking";
   const isSaved = variant === "saved";
-  const isPremiumProfile = school.profile.status === "PREMIUM";
-  const websiteHost = (() => {
-    if (!website) {
-      return null;
-    }
-    try {
-      return new URL(website).hostname.replace(/^www\./i, "");
-    } catch {
-      return website;
-    }
-  })();
-  const scoreTone =
+
+  const schoolProfilePath = citySchoolProfilePath(
+    school.location.province,
+    school.location.city,
+    school.slug
+  );
+
+  const scoreColor =
     school.eduAdvisorScore !== null && school.eduAdvisorScore >= 80
       ? "bg-emerald-700"
       : school.eduAdvisorScore !== null && school.eduAdvisorScore >= 60
-        ? "bg-brand-900"
-        : "bg-slate-800";
+        ? "bg-brand-800"
+        : "bg-slate-600";
+
+  const ratingDisplay = (() => {
+    if (parentRating !== null) return { value: formatRating(parentRating), source: `${school.rating.count} reseñas` };
+    if (googleRating !== null) return { value: formatRating(googleRating), source: `${googleReviewCount} en Google` };
+    return null;
+  })();
 
   return (
     <Card
-      className={`group ea-transition-standard ea-enter relative overflow-hidden border-brand-200 p-0 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(13,27,31,0.12)] ${
-        isRanking ? "border-brand-300 shadow-[0_14px_28px_rgba(31,92,77,0.12)]" : ""
-      } ${isSaved ? "border-amber-200 bg-gradient-to-b from-white to-amber-50/30" : ""} ${
-        isPremiumProfile ? "border-amber-300 bg-gradient-to-b from-white via-amber-50/45 to-white shadow-[0_16px_34px_rgba(161,98,7,0.14)]" : ""
-      }`}
+      className={[
+        "group ea-transition-standard relative overflow-hidden border-brand-200 p-0",
+        "hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(13,27,31,0.12)]",
+        isRanking ? "border-brand-300" : "",
+        isSaved ? "border-amber-200" : "",
+        isPremiumProfile
+          ? "border-amber-300 bg-gradient-to-b from-white via-amber-50/40 to-white shadow-[0_16px_34px_rgba(161,98,7,0.12)]"
+          : ""
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-600 via-emerald-500 to-amber-400" />
+      {/* Thin accent bar */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-brand-500 via-emerald-400 to-amber-400" />
 
-      <div className="space-y-4 p-4 pt-5">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 space-y-2">
+      <div className="flex flex-col gap-4 p-5">
+
+        {/* Header: name + score */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0 space-y-1">
             {isRanking && rank ? (
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Ranking #{rank}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-600">#{rank}</p>
             ) : null}
-            <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-xl font-semibold leading-tight text-ink">{school.name}</h3>
-              <PremiumNameMark show={isPremiumProfile} size="sm" />
-            </div>
-            <p className="text-sm text-slate-600">
+            <h3 className="font-display text-xl leading-snug text-ink">
+              {school.name}
+              {isPremiumProfile && (
+                <span className="ml-2 inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-amber-700">
+                  Premium
+                </span>
+              )}
+            </h3>
+            <p className="text-sm text-slate-500">
               {school.location.city}, {school.location.province}
             </p>
+          </div>
 
-            <div className="flex flex-wrap gap-2">
-              <ProfileStatusBadge profile={school.profile} />
-              {leadIntentLabel ? (
-                <Badge
-                  className={
-                    leadIntentScore !== null && leadIntentScore >= 75
-                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                      : "border-slate-200 bg-slate-50 text-slate-700"
-                  }
-                >
-                  {leadIntentLabel}
-                </Badge>
-              ) : null}
-              {school.levels.map((level) => (
-                <Badge key={level}>{levelLabelMap[level] ?? level}</Badge>
-              ))}
+          {/* EduAdvisor Score */}
+          {school.eduAdvisorScore !== null && (
+            <div
+              className={`shrink-0 rounded-xl px-3 py-2 text-center text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}
+            >
+              <p className="text-lg font-bold leading-none">{school.eduAdvisorScore}</p>
+              <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score</p>
             </div>
-          </div>
-
-          <div className={`shrink-0 rounded-xl px-3 py-2 text-right text-white shadow-[0_10px_25px_rgba(31,92,77,0.35)] ${scoreTone}`}>
-            <p className="text-[10px] uppercase tracking-[0.14em]">Score</p>
-            <p className="text-lg font-semibold leading-none">{school.eduAdvisorScore ?? "-"}</p>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.08em] text-white/80">EduAdvisor</p>
-          </div>
+          )}
         </div>
 
-        {websiteHost ? (
-          <div className="rounded-xl border border-brand-100 bg-brand-50/40 px-3 py-2 text-xs text-slate-600">
-            Sitio oficial:{" "}
-            <a
-              href={website ?? undefined}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="font-semibold text-brand-700 underline decoration-brand-300 underline-offset-2"
-            >
-              {websiteHost}
-            </a>
-          </div>
-        ) : (
-          <div className="rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-2 text-xs text-slate-600">
-            Sitio oficial no informado
+        {/* Level pills */}
+        {school.levels.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {school.levels.map((level) => (
+              <Badge key={level} className="rounded-full border-brand-100 bg-brand-50 text-brand-700">
+                {levelLabelMap[level] ?? level}
+              </Badge>
+            ))}
           </div>
         )}
 
-        <TrustStrip
-          profileStatus={school.profile.status}
-          profileLabel={school.profile.label}
-          verifiedAt={school.profile.verifiedAt}
-          updatedAt={school.profile.curatedAt ?? school.profile.verifiedAt}
-          sourceLabel={hasGoogleRating ? "Google + EduAdvisor" : "EduAdvisor + fuentes institucionales"}
-          compact={isCompact}
-        />
-
-        <div className={`grid gap-2 text-sm ${isCompact ? "grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
-          <DataEvidence
-            label="Cuota"
-            value={formatCurrency(school.monthlyFeeEstimate)}
-            context={isCompact ? undefined : "Estimación mensual"}
-          />
-          <DataEvidence
-            label="Google"
-            value={hasGoogleRating ? formatRating(googleRating) : "Sin datos"}
-            context={hasGoogleRating ? `${googleReviewCount} reseñas` : "Sin reseñas públicas"}
-          />
-          <DataEvidence
-            label="Familias"
-            value={hasParentRating ? formatRating(parentRating) : "Sin reseñas"}
-            context={hasParentRating ? `${school.rating.count} reseñas` : "Sin muestra suficiente"}
-          />
-          {!isCompact ? (
-            <DataEvidence label="Alumnos" value={school.studentsCount ?? "No informado"} context="Matrícula estimada" />
-          ) : null}
+        {/* Key stats row */}
+        <div className="grid grid-cols-3 divide-x divide-brand-100 rounded-xl border border-brand-100 bg-brand-50/40">
+          <div className="px-3 py-2.5 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-slate-400">Cuota est.</p>
+            <p className="mt-0.5 text-sm font-semibold text-ink">
+              {formatCurrency(school.monthlyFeeEstimate) ?? "—"}
+            </p>
+          </div>
+          <div className="px-3 py-2.5 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-slate-400">Valoración</p>
+            <p className="mt-0.5 text-sm font-semibold text-ink">
+              {ratingDisplay ? (
+                <span title={ratingDisplay.source}>⭐ {ratingDisplay.value}</span>
+              ) : (
+                <span className="text-slate-400">—</span>
+              )}
+            </p>
+          </div>
+          <div className="px-3 py-2.5 text-center">
+            <p className="text-[10px] uppercase tracking-widest text-slate-400">Alumnos</p>
+            <p className="mt-0.5 text-sm font-semibold text-ink">
+              {school.studentsCount !== null ? (
+                school.studentsCount
+              ) : (
+                <span className="text-slate-400">—</span>
+              )}
+            </p>
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        {/* Trust line — minimal */}
+        <p className="text-[11px] text-slate-400">
+          {school.profile.status === "PREMIUM"
+            ? "✓ Perfil premium · datos verificados por EduAdvisor"
+            : school.profile.status === "VERIFIED"
+              ? "✓ Perfil verificado por EduAdvisor"
+              : "Perfil en consolidación · datos de fuentes públicas"}
+        </p>
+
+        {/* Actions */}
+        <div className="flex items-center gap-2 pt-1">
           <Button
             asChild
-            onClick={() => {
+            className="flex-1"
+            onClick={() =>
               trackEvent("school_profile_opened", {
                 source: "search_card",
                 schoolSlug: school.slug,
                 variant
-              });
-            }}
+              })
+            }
           >
-            <Link href={schoolProfilePath as never}>Ver perfil completo</Link>
+            <Link href={schoolProfilePath as never}>Ver perfil</Link>
           </Button>
+
           <Button
             asChild
-            variant="secondary"
-            onClick={() => {
+            variant="ghost"
+            size="sm"
+            onClick={() =>
               trackEvent("school_compare_clicked", {
                 source: "search_card",
                 schoolSlug: school.slug,
                 variant
-              });
-            }}
+              })
+            }
           >
-            <Link href={((compareHref ?? `/compare?schools=${school.slug}`) as never)}>{compareButtonLabel}</Link>
+            <Link href={(compareHref ?? `/compare?schools=${school.slug}`) as never}>
+              {compareButtonLabel}
+            </Link>
           </Button>
-          {showSaveButton ? <SaveSchoolButton schoolId={school.id} schoolSlug={school.slug} /> : null}
+
+          {showSaveButton && <SaveSchoolButton schoolId={school.id} schoolSlug={school.slug} />}
         </div>
       </div>
     </Card>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { LeadPipelineBoard } from "@/components/dashboard/lead-pipeline-board";
 import { SchoolReviewResponseBoard } from "@/components/dashboard/school-review-response-board";
@@ -6,7 +7,6 @@ import { LeadTrendChart } from "@/components/dashboard/lead-trend-chart";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
 import { SchoolProfileEditor } from "@/components/dashboard/school-profile-editor";
 import { PremiumUpgradeHighlight } from "@/components/school/premium-upgrade-highlight";
-import { TrustStrip } from "@/components/school/trust-strip";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FormField } from "@/components/ui/form-field";
@@ -48,6 +48,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         : billingStatus === "missing_school"
           ? "Falta el colegio objetivo para iniciar checkout."
           : null;
+
   const session = await getServerAuthSession();
   const sessionSchoolSlug = session?.role === APP_ROLE_SCHOOL_ADMIN ? session.schoolSlug : null;
   const requestedSlug = pickParam(searchParams?.school)?.trim().toLowerCase();
@@ -88,10 +89,10 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
     return (
       <DashboardShell
         title="Panel de colegio"
-        subtitle="No se encontró el colegio solicitado para visualizar el panel."
+        subtitle="No se encontró el colegio solicitado."
       >
         <Card className="text-sm text-slate-600">
-          Revisá el slug en query param (`?school=&lt;slug&gt;`) o seleccioná otro colegio.
+          Revisá el slug en el query param <code>?school=slug</code> o seleccioná otro colegio.
         </Card>
       </DashboardShell>
     );
@@ -102,11 +103,11 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
   if (!dashboard) {
     return (
       <DashboardShell
-        title={`Panel de colegio · ${schoolPublic.name}`}
+        title={`Panel · ${schoolPublic.name}`}
         subtitle="No se pudo cargar el panel privado del colegio."
       >
         <Card className="text-sm text-slate-600">
-          Verifica `ADMIN_API_KEY` y que el backend esté activo para consultar endpoints protegidos.
+          Verificá <code>ADMIN_API_KEY</code> y que el backend esté activo.
         </Card>
       </DashboardShell>
     );
@@ -117,8 +118,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
     detail: `${lead.educationLevel} · ${lead.childAge} años · ${lead.status}`,
     time: new Date(lead.createdAt).toLocaleString("es-AR")
   }));
-  const averageReviewResponseTimeLabel =
-    dashboard.stats.averageReviewResponseHours === null ? "-" : `${dashboard.stats.averageReviewResponseHours} h`;
+
   const managementEnabled = canManageSchoolByProfileStatus(dashboard.school.profile.status);
   const premiumEnabled = canAccessPremiumFeatures(dashboard.school.profile.status);
   const canClaimProfile =
@@ -127,182 +127,287 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
   const premiumMessage = premiumUnlockMessage(dashboard.school.profile.status);
   const currentPlan = dashboard.school.billing.currentPlan;
 
+  const newLeadsCount = dashboard.stats.leadsByStatus.NEW;
+  const hasNewLeads = newLeadsCount > 0;
+  const profileCompleteness = dashboard.stats.profileCompleteness;
+  const profileIsLow = profileCompleteness < 60;
+
   return (
     <DashboardShell
-      title={`Panel de colegio · ${dashboard.school.name}`}
-      subtitle="Gestiona leads, actualiza perfil institucional y monitorea métricas clave del colegio."
+      title={dashboard.school.name}
+      subtitle="Panel de gestión · leads, perfil y métricas comerciales"
     >
-      <div className="space-y-6">
-        {billingMessage ? (
-          <Card className="border-amber-200 bg-amber-50/70 text-sm text-amber-900">{billingMessage}</Card>
-        ) : null}
 
-        <Card className="space-y-3 border-brand-100 bg-white/95">
-          <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Confianza operativa</p>
-          <TrustStrip
-            profileStatus={dashboard.school.profile.status}
-            profileLabel={dashboard.school.profile.label}
-            verifiedAt={dashboard.school.profile.verifiedAt}
-            updatedAt={dashboard.school.profile.curatedAt ?? dashboard.school.profile.verifiedAt}
-            sourceLabel="Datos institucionales + actividad comercial del colegio"
-            methodologyHref="/market-insights"
+      {/* Billing error banner */}
+      {billingMessage && (
+        <Card className="border-amber-200 bg-amber-50/70 text-sm text-amber-900">
+          ⚠️ {billingMessage}
+        </Card>
+      )}
+
+      {/* School selector — admin only */}
+      {availableSchools.length > 1 && !sessionSchoolSlug && (
+        <Card className="border-brand-100">
+          <form className="flex flex-wrap items-end gap-3" action="/school-dashboard" method="get">
+            <FormField label="Colegio activo" className="min-w-[280px]">
+              <Select name="school" defaultValue={activeSlug}>
+                {availableSchools.map((item) => (
+                  <option key={item.slug} value={item.slug}>
+                    {item.name} · {item.city}
+                  </option>
+                ))}
+              </Select>
+            </FormField>
+            <Button type="submit" variant="ghost">Cambiar</Button>
+          </form>
+        </Card>
+      )}
+
+      {/* ── SECCIÓN 1: Estado del negocio ── */}
+      <section className="space-y-3">
+        <p className="ea-kicker">Resumen del período</p>
+
+        {/* Lead highlight — protagonista cuando hay leads nuevos */}
+        {hasNewLeads && (
+          <div className="rounded-2xl border border-emerald-300 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 p-5 shadow-[0_8px_24px_rgba(16,185,129,0.12)]">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-[0_8px_20px_rgba(16,185,129,0.35)]">
+                  <span className="text-2xl font-bold">{newLeadsCount}</span>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-emerald-900">
+                    {newLeadsCount === 1 ? "1 lead nuevo sin responder" : `${newLeadsCount} leads nuevos sin responder`}
+                  </p>
+                  <p className="text-sm text-emerald-700">
+                    Respondé antes de las 72 hs para mejorar tu tasa de conversión
+                  </p>
+                </div>
+              </div>
+              <Button asChild className="bg-emerald-600 hover:bg-emerald-700">
+                <a href="#leads">Ver leads →</a>
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Métricas principales — 3 datos clave, no 12 */}
+        <div className="grid gap-4 md:grid-cols-3">
+          <MetricTile
+            label="Leads totales"
+            value={String(dashboard.stats.leadsTotal)}
+            hint="consultas de familias recibidas"
+            tone={hasNewLeads ? "positive" : "default"}
           />
-          <p className="text-xs text-slate-500">
-            Estas métricas combinan datos de perfil, leads y reseñas para priorizar decisiones de captación.
+          <MetricTile
+            label="Tasa de cierre"
+            value={`${dashboard.stats.conversionRate}%`}
+            hint="leads convertidos en matrículas"
+            tone={dashboard.stats.conversionRate >= 20 ? "positive" : "default"}
+          />
+          <MetricTile
+            label="Perfil completo"
+            value={`${profileCompleteness}%`}
+            hint={profileIsLow ? "completar perfil mejora tu visibilidad" : "perfil bien optimizado"}
+            tone={profileIsLow ? "warning" : "positive"}
+          />
+        </div>
+
+        {/* Pipeline rápido — 4 estados en una fila más compacta */}
+        <div className="grid grid-cols-4 divide-x divide-brand-100 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-[0_4px_12px_rgba(13,27,31,0.05)]">
+          {[
+            { label: "Nuevos", value: dashboard.stats.leadsByStatus.NEW, urgent: true },
+            { label: "Contactados", value: dashboard.stats.leadsByStatus.CONTACTED, urgent: false },
+            { label: "Calificados", value: dashboard.stats.leadsByStatus.QUALIFIED, urgent: false },
+            { label: "Cerrados", value: dashboard.stats.leadsByStatus.CLOSED, urgent: false }
+          ].map((item) => (
+            <div key={item.label} className="px-4 py-4 text-center">
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                {item.label}
+              </p>
+              <p className={`mt-1 text-2xl font-bold ${item.urgent && item.value > 0 ? "text-emerald-700" : "text-ink"}`}>
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SECCIÓN 2: Plan y facturación ── */}
+      <section className="space-y-3">
+        <p className="ea-kicker">Plan comercial</p>
+        <div className={`rounded-2xl border p-5 ${premiumEnabled ? "border-amber-300 bg-gradient-to-r from-amber-50 to-white" : "border-slate-200 bg-slate-50/60"}`}>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <p className="text-lg font-semibold text-ink">
+                  {currentPlan ? currentPlan.planCode.toUpperCase() : "Sin plan activo"}
+                </p>
+                {premiumEnabled && (
+                  <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-amber-700">
+                    Premium
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-slate-600">
+                {currentPlan
+                  ? `${formatCurrency(currentPlan.priceMonthly)}/mes · vence ${currentPlan.endsAt ? currentPlan.endsAt.slice(0, 10) : "sin fecha"}`
+                  : "Activá Premium para recibir leads y acceder a estadísticas completas"}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {dashboard.school.billing.entitlements.canUsePremiumLeadExport ? (
+                <Button asChild variant="ghost" size="sm">
+                  <a href={`/api/schools/leads-export?schoolId=${encodeURIComponent(dashboard.school.id)}`}>
+                    Exportar leads CSV
+                  </a>
+                </Button>
+              ) : (
+                <Button asChild variant="secondary" size="sm">
+                  <a href={`/api/schools/billing/checkout?schoolId=${encodeURIComponent(dashboard.school.id)}&school=${encodeURIComponent(dashboard.school.slug)}`}>
+                    Activar Premium →
+                  </a>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {!premiumEnabled && (
+            <div className="mt-4 rounded-xl border border-amber-200 bg-white/80 p-3">
+              <p className="text-xs font-semibold text-amber-800">{premiumMessage}</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── SECCIÓN 3: Acceso restringido ── */}
+      {!managementEnabled && (
+        <Card className="border-amber-200 bg-amber-50/70 space-y-2">
+          <p className="ea-kicker text-amber-700">Acceso restringido</p>
+          <p className="text-sm text-amber-900">{lockedMessage}</p>
+          <p className="text-sm text-amber-800">
+            Activá claim y verificación desde el{" "}
+            <Link href={`/school/${activeSlug}`} className="font-semibold underline underline-offset-2">
+              perfil público del colegio
+            </Link>{" "}
+            para desbloquear estas funciones.
           </p>
         </Card>
+      )}
 
-        {availableSchools.length > 1 && !sessionSchoolSlug ? (
-          <Card className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Contexto</p>
-            <form className="flex flex-wrap items-end gap-3" action="/school-dashboard" method="get">
-              <FormField label="Colegio activo" className="min-w-[280px]">
-                <Select name="school" defaultValue={activeSlug}>
-                  {availableSchools.map((item) => (
-                    <option key={item.slug} value={item.slug}>
-                      {item.name} · {item.city}
-                    </option>
-                  ))}
-                </Select>
-              </FormField>
-              <Button type="submit" variant="ghost">
-                Cambiar
-              </Button>
-            </form>
-          </Card>
-        ) : null}
+      {/* Upgrade CTA — solo si no tiene premium */}
+      {!premiumEnabled && (
+        <PremiumUpgradeHighlight
+          schoolName={dashboard.school.name}
+          schoolSlug={dashboard.school.slug}
+          schoolId={dashboard.school.id}
+          canClaimProfile={canClaimProfile}
+          surface="school_dashboard"
+        />
+      )}
 
-        <div className="grid gap-4 md:grid-cols-4">
-          <MetricTile label="Leads totales" value={String(dashboard.stats.leadsTotal)} />
-          <MetricTile label="Tasa de cierre" value={`${dashboard.stats.conversionRate}%`} />
-          <MetricTile label="Rating promedio" value={formatRating(dashboard.stats.ratingAverage)} />
-          <MetricTile label="Perfil completo" value={`${dashboard.stats.profileCompleteness}%`} />
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-4">
-          <MetricTile label="Nuevos" value={String(dashboard.stats.leadsByStatus.NEW)} />
-          <MetricTile label="Contactados" value={String(dashboard.stats.leadsByStatus.CONTACTED)} />
-          <MetricTile label="Calificados" value={String(dashboard.stats.leadsByStatus.QUALIFIED)} />
-          <MetricTile label="Cerrados" value={String(dashboard.stats.leadsByStatus.CLOSED)} />
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-4">
-          <MetricTile label="Reseñas aprobadas" value={String(dashboard.stats.reviewsApproved)} />
-          <MetricTile label="Respondidas" value={String(dashboard.stats.reviewsResponded)} />
-          <MetricTile label="Cobertura de respuesta" value={`${dashboard.stats.reviewResponseRate}%`} />
-          <MetricTile label="Tiempo medio de respuesta" value={averageReviewResponseTimeLabel} />
-        </div>
-
-        <Card className="space-y-3">
-          <h3 className="text-lg font-semibold text-ink">Plan comercial</h3>
-          <div className="grid gap-3 md:grid-cols-4">
-            <MetricTile
-              label="Plan"
-              value={currentPlan ? currentPlan.planCode.toUpperCase() : "SIN PLAN"}
-            />
-            <MetricTile
-              label="Estado"
-              value={currentPlan ? currentPlan.status : dashboard.school.profile.status}
-            />
-            <MetricTile
-              label="Precio mensual"
-              value={currentPlan ? formatCurrency(currentPlan.priceMonthly) : "No informado"}
-            />
-            <MetricTile
-              label="Vigencia"
-              value={currentPlan?.endsAt ? currentPlan.endsAt.slice(0, 10) : "Sin vencimiento"}
-            />
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={`/api/schools/leads-export?schoolId=${encodeURIComponent(dashboard.school.id)}`}
-              className={`rounded-xl px-4 py-2 text-sm font-semibold ${
-                dashboard.school.billing.entitlements.canUsePremiumLeadExport
-                  ? "bg-brand-700 text-white hover:bg-brand-800"
-                  : "cursor-not-allowed bg-slate-200 text-slate-500"
-              }`}
-              aria-disabled={!dashboard.school.billing.entitlements.canUsePremiumLeadExport}
-            >
-              Exportar leads CSV
-            </a>
-            {!dashboard.school.billing.entitlements.canUsePremiumLeadExport ? (
-              <>
-                <p className="text-sm text-slate-600">{premiumMessage}</p>
-                <a
-                  href={`/api/schools/billing/checkout?schoolId=${encodeURIComponent(dashboard.school.id)}&school=${encodeURIComponent(dashboard.school.slug)}`}
-                  className="rounded-xl border border-brand-100 bg-white px-4 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50"
-                >
-                  Iniciar checkout premium
-                </a>
-              </>
-            ) : null}
-          </div>
-        </Card>
-
-        <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-          <Card className="space-y-2">
-            <h3 className="text-lg font-semibold text-ink">Resumen institucional</h3>
-            <ul className="space-y-1 text-sm text-slate-600">
-              <li>• Cuota estimada: {formatCurrency(dashboard.school.monthlyFeeEstimate)}</li>
-              <li>• Alumnos: {dashboard.school.studentsCount ?? "No informado"}</li>
-              <li>• Reseñas aprobadas: {dashboard.stats.reviewsApproved}</li>
-              <li>• Reseñas pendientes: {dashboard.stats.reviewsPending}</li>
-              <li>• SLA vencido (72h sin respuesta): {dashboard.stats.pendingReviewResponseSlaBreaches}</li>
-            </ul>
-          </Card>
-          <LeadTrendChart trend={dashboard.leadTrend} />
-        </div>
-
-        {!managementEnabled ? (
-          <Card className="space-y-2 border-amber-200 bg-amber-50/70">
-            <p className="text-xs uppercase tracking-[0.2em] text-amber-700">Acceso restringido</p>
-            <p className="text-sm text-amber-900">{lockedMessage}</p>
-            <p className="text-sm text-amber-800">
-              Activa claim y verificación desde el perfil público del colegio para desbloquear estas funciones.
-            </p>
-          </Card>
-        ) : null}
-
-        {!premiumEnabled ? (
-          <PremiumUpgradeHighlight
-            schoolName={dashboard.school.name}
-            schoolSlug={dashboard.school.slug}
-            schoolId={dashboard.school.id}
-            canClaimProfile={canClaimProfile}
-            surface="school_dashboard"
-          />
-        ) : null}
-
-        <SchoolProfileEditor school={dashboard.school} isEditable={managementEnabled} isPremium={premiumEnabled} />
-
+      {/* ── SECCIÓN 4: Leads ── */}
+      <section id="leads" className="scroll-mt-6 space-y-3">
+        <p className="ea-kicker">Pipeline de leads</p>
         <LeadPipelineBoard
           initialLeads={dashboard.recentLeads}
           schoolId={dashboard.school.id}
           canManageLeads={managementEnabled}
         />
+      </section>
 
-        <Card className="space-y-3">
-          <h3 className="text-lg font-semibold text-ink">Respuesta a reseñas</h3>
-          <p className="text-sm text-slate-600">
-            Gestioná respuestas públicas para reseñas aprobadas y fortalecé la confianza con familias.
-          </p>
-          <SchoolReviewResponseBoard
-            initialReviews={dashboard.recentReviews}
-            schoolId={dashboard.school.id}
-            canManageResponses={managementEnabled}
-            referenceTimeIso={referenceTimeIso}
+      {/* ── SECCIÓN 5: Tendencia + actividad ── */}
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="space-y-3">
+          <p className="ea-kicker">Tendencia de leads</p>
+          <LeadTrendChart trend={dashboard.leadTrend} />
+        </div>
+        <div className="space-y-3">
+          <p className="ea-kicker">Actividad reciente</p>
+          <RecentActivity
+            items={
+              activity.length > 0
+                ? activity
+                : [{ title: "Sin actividad", detail: "Aún no hay leads para mostrar.", time: "ahora" }]
+            }
           />
-        </Card>
-
-        <RecentActivity
-          items={
-            activity.length > 0
-              ? activity
-              : [{ title: "Sin actividad", detail: "Aún no hay leads para mostrar.", time: "ahora" }]
-          }
-        />
+        </div>
       </div>
+
+      {/* ── SECCIÓN 6: Reseñas ── */}
+      <section className="space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="ea-kicker">Reseñas de familias</p>
+          <div className="flex items-center gap-4 text-sm text-slate-600">
+            <span>{dashboard.stats.reviewsApproved} aprobadas</span>
+            <span>·</span>
+            <span className={dashboard.stats.pendingReviewResponseSlaBreaches > 0 ? "font-semibold text-red-600" : ""}>
+              {dashboard.stats.reviewsResponded} respondidas ({dashboard.stats.reviewResponseRate}%)
+            </span>
+            {dashboard.stats.averageReviewResponseHours !== null && (
+              <>
+                <span>·</span>
+                <span>Tiempo medio: {dashboard.stats.averageReviewResponseHours} h</span>
+              </>
+            )}
+          </div>
+        </div>
+        <SchoolReviewResponseBoard
+          initialReviews={dashboard.recentReviews}
+          schoolId={dashboard.school.id}
+          canManageResponses={managementEnabled}
+          referenceTimeIso={referenceTimeIso}
+        />
+      </section>
+
+      {/* ── SECCIÓN 7: Perfil institucional ── */}
+      <section className="space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="ea-kicker">Perfil institucional</p>
+          <div className="flex items-center gap-2 text-sm">
+            <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200">
+              <div
+                className="h-full rounded-full bg-brand-600 transition-all"
+                style={{ width: `${profileCompleteness}%` }}
+              />
+            </div>
+            <span className="font-semibold text-brand-700">{profileCompleteness}% completo</span>
+          </div>
+        </div>
+        <SchoolProfileEditor
+          school={dashboard.school}
+          isEditable={managementEnabled}
+          isPremium={premiumEnabled}
+        />
+      </section>
+
+      {/* Datos secundarios — al fondo */}
+      <section className="space-y-3">
+        <p className="ea-kicker">Datos institucionales</p>
+        <Card className="border-brand-100">
+          <ul className="grid gap-y-2 text-sm text-slate-600 sm:grid-cols-2">
+            <li className="flex justify-between gap-2 border-b border-brand-50 pb-2 sm:border-b-0">
+              <span className="text-slate-400">Cuota estimada</span>
+              <span className="font-semibold text-ink">{formatCurrency(dashboard.school.monthlyFeeEstimate) ?? "—"}</span>
+            </li>
+            <li className="flex justify-between gap-2 border-b border-brand-50 pb-2 sm:border-b-0">
+              <span className="text-slate-400">Alumnos</span>
+              <span className="font-semibold text-ink">{dashboard.school.studentsCount ?? "No informado"}</span>
+            </li>
+            <li className="flex justify-between gap-2 border-b border-brand-50 pb-2 sm:border-b-0">
+              <span className="text-slate-400">Rating promedio</span>
+              <span className="font-semibold text-ink">{formatRating(dashboard.stats.ratingAverage) ?? "—"}</span>
+            </li>
+            <li className="flex justify-between gap-2">
+              <span className="text-slate-400">SLA vencido (&gt;72 h sin respuesta)</span>
+              <span className={`font-semibold ${dashboard.stats.pendingReviewResponseSlaBreaches > 0 ? "text-red-600" : "text-ink"}`}>
+                {dashboard.stats.pendingReviewResponseSlaBreaches}
+              </span>
+            </li>
+          </ul>
+        </Card>
+      </section>
+
     </DashboardShell>
   );
 }

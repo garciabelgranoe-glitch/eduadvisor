@@ -53,9 +53,9 @@ export const featuredSchools: SchoolCardData[] = [
 export const compareCandidates = featuredSchools.slice(0, 2);
 
 export const rankingByCity = [
-  { city: "Longchamps", topScore: 91, schools: 34 },
-  { city: "Adrogue", topScore: 89, schools: 51 },
-  { city: "Lomas de Zamora", topScore: 88, schools: 73 }
+  { city: "Longchamps", topScore: 91, schools: 34, path: "/ar/buenos-aires/longchamps/rankings" },
+  { city: "Adrogue", topScore: 89, schools: 51, path: "/ar/buenos-aires/adrogue/rankings" },
+  { city: "Lomas de Zamora", topScore: 88, schools: 73, path: "/ar/buenos-aires/lomas-de-zamora/rankings" }
 ];
 
 export const parentDashboardData = {

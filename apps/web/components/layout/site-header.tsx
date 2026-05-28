@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Route } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 
@@ -15,12 +15,12 @@ interface SessionState {
   authenticated: boolean;
 }
 
-const navItems: Array<{ href: Route; desktopLabel: string; mobileLabel: string }> = [
-  { href: "/search", desktopLabel: "Buscar", mobileLabel: "Buscar colegios" },
-  { href: "/compare", desktopLabel: "Comparar", mobileLabel: "Comparar" },
-  { href: "/rankings", desktopLabel: "Rankings", mobileLabel: "Rankings" },
-  { href: "/matches", desktopLabel: "Matches", mobileLabel: "Recomendaciones" },
-  { href: "/market-insights", desktopLabel: "Insights", mobileLabel: "Insights" }
+const navItems: Array<{ href: Route; label: string; icon: string }> = [
+  { href: "/search",         label: "Buscar colegios",   icon: "🔍" },
+  { href: "/compare",        label: "Comparar",          icon: "⚖️" },
+  { href: "/rankings",       label: "Rankings",          icon: "🏆" },
+  { href: "/matches",        label: "Recomendaciones",   icon: "✨" },
+  { href: "/market-insights",label: "Insights",          icon: "📊" }
 ];
 
 export function SiteHeader() {
@@ -32,203 +32,218 @@ export function SiteHeader() {
     dashboardPath: null,
     authenticated: false
   });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let mounted = true;
-
-    const loadSession = async () => {
-      try {
-        const response = await fetch("/api/session/me", { cache: "no-store" });
-        if (!response.ok) {
-          return;
-        }
-
-        const data = (await response.json()) as SessionState;
-        if (!mounted) {
-          return;
-        }
-
-        setSession({
-          role: data.role,
-          appRole: data.appRole,
-          email: data.email,
-          schoolSlug: data.schoolSlug,
-          dashboardPath: data.dashboardPath,
-          authenticated: Boolean(data.authenticated)
-        });
-      } catch {
-        // Keep logged-out UI when session endpoint is unavailable.
-      }
-    };
-
-    loadSession();
-
-    return () => {
-      mounted = false;
-    };
+    fetch("/api/session/me", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: SessionState | null) => {
+        if (mounted && data) setSession({ ...data, authenticated: Boolean(data.authenticated) });
+      })
+      .catch(() => {});
+    return () => { mounted = false; };
   }, []);
 
-  const dashboardLabel = session.role === "PARENT" ? "Panel familia" : "Panel colegio";
-  const mobileNavItems = navItems.filter((item) => item.href !== "/market-insights");
+  // Close drawer on outside click
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (drawerRef.current && !drawerRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [menuOpen]);
+
+  // Prevent body scroll when drawer open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  const dashboardLabel = session.role === "PARENT" ? "Mi panel" : "Panel colegio";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-100/80 bg-white/80 backdrop-blur-md">
-      <div className="mx-auto max-w-6xl px-4 py-3">
-        <div className="flex items-center justify-between gap-6">
-          <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight text-ink">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-400" />
-            EDUADVISOR
+    <>
+      <header className="sticky top-0 z-50 border-b border-brand-100/80 bg-white/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex shrink-0 items-center gap-2"
+            onClick={() => trackEvent("nav_click", { href: "/", source: "header_logo" })}
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-700 shadow-[0_4px_12px_rgba(31,92,77,0.35)]">
+              <span className="h-2 w-2 rounded-full bg-amber-300" />
+            </span>
+            <span className="font-display text-lg font-bold tracking-tight text-ink">
+              Edu<span className="text-brand-700">Advisor</span>
+            </span>
           </Link>
-          <nav className="hidden flex-1 justify-center gap-4 text-sm text-ink md:flex">
+
+          {/* Desktop nav */}
+          <nav className="hidden flex-1 justify-center gap-1 text-sm text-ink md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => {
-                  trackEvent("nav_click", {
-                    href: item.href,
-                    source: "header_desktop"
-                  });
-                }}
-                className="rounded-full px-3 py-1.5 transition hover:bg-brand-50 hover:text-brand-700"
+                onClick={() => trackEvent("nav_click", { href: item.href, source: "header_desktop" })}
+                className="rounded-full px-3 py-1.5 font-medium transition hover:bg-brand-50 hover:text-brand-700"
               >
-                {item.desktopLabel}
+                {item.label.split(" ")[0]}
               </Link>
             ))}
           </nav>
-          <div className="md:hidden">
-            {session.dashboardPath ? (
-              <Button
-                asChild
-                variant="ghost"
-                className="px-3 py-1.5 text-xs"
-                onClick={() => {
-                  trackEvent("nav_click", {
-                    href: session.dashboardPath,
-                    source: "header_mobile_primary"
-                  });
-                }}
-              >
-                <Link href={session.dashboardPath}>Panel</Link>
-              </Button>
-            ) : (
-              <Button
-                asChild
-                variant="ghost"
-                className="px-3 py-1.5 text-xs"
-                onClick={() => {
-                  trackEvent("nav_click", {
-                    href: "/ingresar",
-                    source: "header_mobile_primary"
-                  });
-                }}
-              >
-                <Link href="/ingresar">Ingresar</Link>
-              </Button>
-            )}
-          </div>
+
+          {/* Desktop auth */}
           <div className="hidden items-center gap-2 md:flex">
             {session.dashboardPath ? (
               <>
-                <Button
-                  asChild
-                  variant="ghost"
-                  onClick={() => {
-                    trackEvent("nav_click", {
-                      href: session.dashboardPath,
-                      source: "header_desktop_dashboard"
-                    });
-                  }}
-                >
+                <Button asChild variant="ghost" size="sm"
+                  onClick={() => trackEvent("nav_click", { href: session.dashboardPath, source: "header_desktop_dashboard" })}>
                   <Link href={session.dashboardPath}>{dashboardLabel}</Link>
                 </Button>
-                <form
-                  action="/api/session/logout"
-                  method="post"
-                  onSubmit={() => {
-                    trackEvent("session_logout", { source: "header_desktop" });
-                  }}
-                >
-                  <Button variant="ghost" type="submit">
-                    Salir
-                  </Button>
+                <form action="/api/session/logout" method="post"
+                  onSubmit={() => trackEvent("session_logout", { source: "header_desktop" })}>
+                  <Button variant="ghost" size="sm" type="submit">Salir</Button>
                 </form>
               </>
             ) : (
               <>
-                <Button
-                  asChild
-                  variant="ghost"
-                  onClick={() => {
-                    trackEvent("nav_click", {
-                      href: "/ingresar",
-                      source: "header_desktop"
-                    });
-                  }}
-                >
+                <Button asChild variant="ghost" size="sm"
+                  onClick={() => trackEvent("nav_click", { href: "/ingresar", source: "header_desktop" })}>
                   <Link href="/ingresar">Ingresar</Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="secondary"
-                  onClick={() => {
-                    trackEvent("nav_click", {
-                      href: "/para-colegios",
-                      source: "header_desktop"
-                    });
-                  }}
-                >
-                  <Link href="/para-colegios">Publicar Colegio</Link>
+                <Button asChild variant="secondary" size="sm"
+                  onClick={() => trackEvent("nav_click", { href: "/para-colegios", source: "header_desktop" })}>
+                  <Link href="/para-colegios">Para colegios</Link>
                 </Button>
               </>
             )}
           </div>
-        </div>
-        <div className="mt-2 flex items-center gap-2 overflow-x-auto pb-1 md:hidden">
-          {mobileNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => {
-                trackEvent("nav_click", {
-                  href: item.href,
-                  source: "header_mobile_links"
-                });
-              }}
-              className="whitespace-nowrap rounded-full border border-brand-100 bg-white px-3 py-1.5 text-xs text-ink transition hover:bg-brand-50 hover:text-brand-700"
-            >
-              {item.mobileLabel}
-            </Link>
-          ))}
-          {session.dashboardPath ? (
-            <form
-              action="/api/session/logout"
-              method="post"
-              onSubmit={() => {
-                trackEvent("session_logout", { source: "header_mobile" });
-              }}
-            >
-              <Button variant="ghost" className="px-3 py-1.5 text-xs" type="submit">
-                Salir
+
+          {/* Mobile: CTA + hamburger */}
+          <div className="flex items-center gap-2 md:hidden">
+            {session.dashboardPath ? (
+              <Button asChild variant="ghost" size="sm"
+                onClick={() => trackEvent("nav_click", { href: session.dashboardPath, source: "header_mobile_primary" })}>
+                <Link href={session.dashboardPath}>Panel</Link>
               </Button>
-            </form>
-          ) : (
-            <Button
-              asChild
-              variant="secondary"
-              className="px-3 py-1.5 text-xs"
-              onClick={() => {
-                trackEvent("nav_click", {
-                  href: "/para-colegios",
-                  source: "header_mobile_links"
-                });
-              }}
+            ) : (
+              <Button asChild size="sm"
+                onClick={() => trackEvent("nav_click", { href: "/para-colegios", source: "header_mobile_cta" })}>
+                <Link href="/para-colegios">Para colegios</Link>
+              </Button>
+            )}
+
+            <button
+              aria-label="Menú"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((o) => !o)}
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-brand-100 bg-white text-ink transition hover:bg-brand-50"
             >
-              <Link href="/para-colegios">Publicar Colegio</Link>
-            </Button>
-          )}
+              {menuOpen ? (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              )}
+            </button>
+          </div>
+
+        </div>
+      </header>
+
+      {/* Mobile drawer overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm md:hidden"
+          aria-hidden="true" />
+      )}
+
+      {/* Mobile drawer */}
+      <div
+        ref={drawerRef}
+        className={`fixed inset-x-0 top-0 z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
+          menuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <div className="m-3 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-[0_20px_60px_rgba(13,27,31,0.2)]">
+
+          {/* Drawer header */}
+          <div className="flex items-center justify-between border-b border-brand-100 px-5 py-4">
+            <Link href="/" onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: "/", source: "drawer_logo" }); }}
+              className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-700">
+                <span className="h-2 w-2 rounded-full bg-amber-300" />
+              </span>
+              <span className="font-display text-lg font-bold tracking-tight text-ink">
+                Edu<span className="text-brand-700">Advisor</span>
+              </span>
+            </Link>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Cerrar menú"
+              className="flex h-8 w-8 items-center justify-center rounded-xl text-slate-400 hover:bg-slate-100"
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Nav links */}
+          <nav className="px-3 py-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: item.href, source: "drawer_nav" }); }}
+                className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-ink transition hover:bg-brand-50 hover:text-brand-700"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-50 text-base">
+                  {item.icon}
+                </span>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Auth section */}
+          <div className="border-t border-brand-100 px-4 py-4">
+            {session.dashboardPath ? (
+              <div className="flex items-center gap-2">
+                <Button asChild className="flex-1"
+                  onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: session.dashboardPath, source: "drawer_dashboard" }); }}>
+                  <Link href={session.dashboardPath}>{dashboardLabel}</Link>
+                </Button>
+                <form action="/api/session/logout" method="post"
+                  onSubmit={() => { setMenuOpen(false); trackEvent("session_logout", { source: "drawer" }); }}>
+                  <Button variant="ghost" size="sm" type="submit">Salir</Button>
+                </form>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2">
+                <Button asChild variant="ghost"
+                  onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: "/ingresar", source: "drawer_auth" }); }}>
+                  <Link href="/ingresar">Ingresar</Link>
+                </Button>
+                <Button asChild variant="secondary"
+                  onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: "/para-colegios", source: "drawer_auth" }); }}>
+                  <Link href="/para-colegios">Para colegios</Link>
+                </Button>
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
-    </header>
+    </>
   );
 }

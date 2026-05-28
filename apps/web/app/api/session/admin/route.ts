@@ -30,26 +30,26 @@ function sanitizeNextPath(value: string | undefined) {
 }
 
 function buildRedirectUrl(request: NextRequest, nextPath: string) {
-  const target = new URL(nextPath, request.nextUrl.origin);
-  const redirectUrl = request.nextUrl.clone();
-  redirectUrl.pathname = target.pathname;
-  redirectUrl.search = target.search;
-  return redirectUrl;
+  const host = request.headers.get("host") ?? request.nextUrl.host;
+  const protocol = request.nextUrl.protocol;
+  const origin = `${protocol}//${host}`;
+  const target = new URL(nextPath, origin);
+  return target;
 }
 
 function buildSignInRedirect(request: NextRequest, nextPath: string, errorCode: string) {
-  const redirectUrl = request.nextUrl.clone();
-  redirectUrl.pathname = "/ingresar";
-  redirectUrl.search = "";
+  const host = request.headers.get("host") ?? request.nextUrl.host;
+  const protocol = request.nextUrl.protocol;
+  const redirectUrl = new URL("/ingresar", `${protocol}//${host}`);
   redirectUrl.searchParams.set("next", nextPath);
   redirectUrl.searchParams.set("error", errorCode);
   return NextResponse.redirect(redirectUrl, { status: 303 });
 }
 
 function buildGoogleAdminStartRedirect(request: NextRequest, nextPath: string) {
-  const redirectUrl = request.nextUrl.clone();
-  redirectUrl.pathname = "/api/session/google/start";
-  redirectUrl.search = "";
+  const host = request.headers.get("host") ?? request.nextUrl.host;
+  const protocol = request.nextUrl.protocol;
+  const redirectUrl = new URL("/api/session/google/start", `${protocol}//${host}`);
   redirectUrl.searchParams.set("intent", "admin");
   redirectUrl.searchParams.set("next", nextPath);
   return NextResponse.redirect(redirectUrl, { status: 303 });
