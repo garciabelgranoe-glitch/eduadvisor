@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { SaveSchoolButton } from "@/components/parent/save-school-button";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +38,7 @@ export function SearchResultCard({
   const googleReviewCount = school.quality?.google?.reviewCount ?? 0;
   const parentRating = school.rating.average;
   const isPremiumProfile = school.profile.status === "PREMIUM";
+  const logoUrl = isPremiumProfile ? (school.media?.logoUrl ?? null) : null;
   const isRanking = variant === "ranking";
   const isSaved = variant === "saved";
 
@@ -97,15 +99,27 @@ export function SearchResultCard({
             </p>
           </div>
 
-          {/* EduAdvisor Score */}
-          {school.eduAdvisorScore !== null && (
-            <div
-              className={`shrink-0 rounded-xl px-3 py-2 text-center text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}
-            >
-              <p className="text-lg font-bold leading-none">{school.eduAdvisorScore}</p>
-              <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score</p>
-            </div>
-          )}
+          {/* Logo (premium) + Score */}
+          <div className="flex shrink-0 flex-col items-center gap-2">
+            {logoUrl && (
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-amber-200 bg-white p-1 shadow-[0_4px_12px_rgba(161,98,7,0.15)]">
+                <Image
+                  src={logoUrl}
+                  alt={`Logo ${school.name}`}
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-contain"
+                  unoptimized
+                />
+              </div>
+            )}
+            {school.eduAdvisorScore !== null && (
+              <div className={`rounded-xl px-3 py-2 text-center text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}>
+                <p className="text-lg font-bold leading-none">{school.eduAdvisorScore}</p>
+                <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score</p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Level pills */}
