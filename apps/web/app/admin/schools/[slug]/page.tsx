@@ -110,7 +110,11 @@ export default function AdminSchoolEditPage({ params }: { params: { slug: string
         setError(data?.message ?? "No se pudo guardar.");
         return;
       }
-      setSuccess("Perfil actualizado correctamente.");
+
+      // Reindexar Meilisearch automáticamente
+      await fetch("/api/admin/search-reindex", { method: "POST" }).catch(() => null);
+
+      setSuccess("Perfil actualizado y búsqueda reindexada. Los cambios ya son visibles.");
     } catch {
       setError("No se pudo conectar con el backend.");
     } finally {
