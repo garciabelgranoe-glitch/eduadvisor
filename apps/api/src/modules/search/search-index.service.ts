@@ -386,6 +386,11 @@ export class SearchIndexService {
           select: { score: true, calculatedAt: true },
           orderBy: { calculatedAt: "desc" },
           take: 1
+        },
+        photos: {
+          select: { url: true, isPrimary: true },
+          where: { isPrimary: true },
+          take: 1
         }
       }
     });
@@ -464,7 +469,7 @@ export class SearchIndexService {
       website: school.website,
       phone: school.phone,
       email: school.email,
-      logoUrl: school.logoUrl ?? null,
+      logoUrl: school.photos[0]?.url ?? null,
       createdAt: school.createdAt.toISOString(),
       createdAtTs: school.createdAt.getTime()
     }));
