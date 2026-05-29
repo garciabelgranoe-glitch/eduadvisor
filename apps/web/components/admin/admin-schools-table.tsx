@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { AdminSchoolItem } from "@/lib/api";
@@ -144,7 +145,11 @@ export function AdminSchoolsTable({ items }: AdminSchoolsTableProps) {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap gap-2">
+                    <Button asChild size="sm">
+                      <Link href={`/admin/schools/${row.slug}`}>✏️ Editar</Link>
+                    </Button>
                     <Button
+                      size="sm"
                       variant={row.active ? "ghost" : "secondary"}
                       disabled={loadingId === row.id}
                       onClick={() => toggleSchoolStatus(row.id, !row.active)}
@@ -152,11 +157,12 @@ export function AdminSchoolsTable({ items }: AdminSchoolsTableProps) {
                       {row.active ? "Desactivar" : "Activar"}
                     </Button>
                     <Button
+                      size="sm"
                       variant={row.subscription?.status === "ACTIVE" ? "ghost" : "secondary"}
                       disabled={loadingId === row.id}
                       onClick={() => togglePremium(row.id, row.subscription?.status === "ACTIVE")}
                     >
-                      {row.subscription?.status === "ACTIVE" ? "Quitar Premium" : "Activar Premium"}
+                      {row.subscription?.status === "ACTIVE" ? "Quitar Premium" : "→ Premium"}
                     </Button>
                   </div>
                 </td>
