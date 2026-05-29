@@ -79,7 +79,7 @@ export async function getStaticSitemapUrls(baseUrl: string): Promise<SitemapUrl[
 }
 
 export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
-  const seoCities = await getSeoCities({ country: "AR", limit: "5000" });
+  const seoCities = await getSeoCities({ country: "AR", limit: "500" });
   const todayIso = new Date().toISOString();
 
   const provinceSet = new Set<string>();
@@ -175,8 +175,8 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
 }
 
 export async function getSchoolSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
-  const schools = await getSchools({ country: "AR", limit: "5000", sortBy: "name", sortOrder: "asc" });
-  const seoSitemap = await getSeoSitemap({ limit: "5000" });
+  const schools = await getSchools({ country: "AR", limit: "500", sortBy: "name", sortOrder: "asc" });
+  const seoSitemap = await getSeoSitemap({ limit: "500" });
   const lastmodBySlug = new Map<string, string>();
 
   for (const school of seoSitemap?.schools ?? []) {

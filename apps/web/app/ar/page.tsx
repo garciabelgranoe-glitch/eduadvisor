@@ -14,7 +14,7 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function ArgentinaHomePage() {
-  const seoCities = await getSeoCities({ country: "AR", limit: "5000" });
+  const seoCities = await getSeoCities({ country: "AR", limit: "500" });
 
   const provinceMap = new Map<string, { slug: string; cities: number; schools: number }>();
 

@@ -21,7 +21,7 @@ interface ProvincePageProps {
 }
 
 export async function generateStaticParams() {
-  const cities = await getSeoCities({ country: "AR", limit: "5000" });
+  const cities = await getSeoCities({ country: "AR", limit: "500" });
   const provinces = new Set(cities.items.map((city) => city.provinceSlug));
 
   return Array.from(provinces).map((province) => ({ province }));
@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProvincePageProps): Promise<Metadata> {
   const canonicalProvince = canonicalizeSlug(params.province);
-  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "5000" });
+  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "500" });
   const provinceName = cities.items[0]?.province ?? "Provincia";
 
   return buildPageMetadata({
@@ -46,7 +46,7 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
     permanentRedirect(provincePath(canonicalProvince));
   }
 
-  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "5000" });
+  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "500" });
 
   if (cities.items.length === 0) {
     notFound();

@@ -21,8 +21,8 @@ export interface SeoHealthSnapshot {
 
 export async function getSeoHealthSnapshot(): Promise<SeoHealthSnapshot> {
   const [cities, schools] = await Promise.all([
-    getSeoCities({ country: "AR", limit: "5000" }),
-    getSchools({ country: "AR", limit: "5000", sortBy: "name", sortOrder: "asc" })
+    getSeoCities({ country: "AR", limit: "500" }),
+    getSchools({ country: "AR", limit: "500", sortBy: "name", sortOrder: "asc" })
   ]);
 
   const cityKeys = new Set<string>();

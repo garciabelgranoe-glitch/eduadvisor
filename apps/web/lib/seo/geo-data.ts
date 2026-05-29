@@ -4,7 +4,7 @@ import { canonicalizeSlug, cityPath } from "./routes";
 
 export async function getProvinceCities(provinceSlug: string) {
   const canonicalProvince = canonicalizeSlug(provinceSlug);
-  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "5000" });
+  const cities = await getSeoCities({ country: "AR", province: canonicalProvince, limit: "500" });
   return cities.items;
 }
 
