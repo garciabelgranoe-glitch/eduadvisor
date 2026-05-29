@@ -158,7 +158,7 @@ export function HeroSearch({ totalSchools, totalCities }: HeroSearchProps) {
 
         {/* Headline block */}
         <div className="mb-8 max-w-3xl space-y-4">
-          <h1 className="font-display text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl md:text-6xl">
+          <h1 className="font-display text-3xl leading-[1.1] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
             Encontrá el colegio
             <br />
             <span className="text-brand-700">que tu hijo merece.</span>

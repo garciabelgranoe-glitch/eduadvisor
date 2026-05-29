@@ -144,7 +144,7 @@ export function SiteHeader() {
               aria-label="Menú"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((o) => !o)}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-brand-100 bg-white text-ink transition hover:bg-brand-50"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-100 bg-white text-ink transition hover:bg-brand-50"
             >
               {menuOpen ? (
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -190,7 +190,7 @@ export function SiteHeader() {
             <button
               onClick={() => setMenuOpen(false)}
               aria-label="Cerrar menú"
-              className="flex h-8 w-8 items-center justify-center rounded-xl text-slate-400 hover:bg-slate-100"
+              className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-400 hover:bg-slate-100"
             >
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>

@@ -71,8 +71,8 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
       </div>
 
       <div className="premium-carousel relative overflow-hidden px-5 pb-5">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-white via-white/70 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-white via-white/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white via-white/70 to-transparent sm:w-16" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white via-white/70 to-transparent sm:w-16" />
 
         <div
           className="premium-carousel-track flex w-max items-stretch gap-3 py-1"

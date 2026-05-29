@@ -88,7 +88,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-300">
             Para colegios privados · Argentina
           </p>
-          <h1 className="font-display text-4xl leading-[1.1] tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="font-display text-3xl leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Las familias ya están
             <br />
             buscando.

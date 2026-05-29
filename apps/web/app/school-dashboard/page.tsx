@@ -149,7 +149,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
       {availableSchools.length > 1 && !sessionSchoolSlug && (
         <Card className="border-brand-100">
           <form className="flex flex-wrap items-end gap-3" action="/school-dashboard" method="get">
-            <FormField label="Colegio activo" className="min-w-[280px]">
+            <FormField label="Colegio activo" className="min-w-0 w-full sm:min-w-[280px]">
               <Select name="school" defaultValue={activeSlug}>
                 {availableSchools.map((item) => (
                   <option key={item.slug} value={item.slug}>
@@ -214,14 +214,14 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         </div>
 
         {/* Pipeline rápido — 4 estados en una fila más compacta */}
-        <div className="grid grid-cols-4 divide-x divide-brand-100 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-[0_4px_12px_rgba(13,27,31,0.05)]">
+        <div className="grid grid-cols-2 divide-x divide-y divide-brand-100 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-[0_4px_12px_rgba(13,27,31,0.05)] sm:grid-cols-4 sm:divide-y-0">
           {[
             { label: "Nuevos", value: dashboard.stats.leadsByStatus.NEW, urgent: true },
             { label: "Contactados", value: dashboard.stats.leadsByStatus.CONTACTED, urgent: false },
             { label: "Calificados", value: dashboard.stats.leadsByStatus.QUALIFIED, urgent: false },
             { label: "Cerrados", value: dashboard.stats.leadsByStatus.CLOSED, urgent: false }
           ].map((item) => (
-            <div key={item.label} className="px-4 py-4 text-center">
+            <div key={item.label} className="px-3 py-4 text-center sm:px-4">
               <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
                 {item.label}
               </p>

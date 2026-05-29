@@ -239,7 +239,7 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
                   ✦ Perfil Premium verificado
                 </span>
               )}
-              <h1 className="font-display text-3xl leading-tight text-ink sm:text-4xl md:text-5xl">
+              <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl md:text-4xl lg:text-5xl">
                 {school.name}
               </h1>
               <p className="text-sm text-slate-500">
@@ -271,7 +271,7 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
           )}
 
           {/* Key stats */}
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-4">
             {/* Score — protagonista */}
             <div className={`flex flex-col items-center justify-center rounded-2xl px-4 py-4 text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}>
               <p className="text-3xl font-bold leading-none">

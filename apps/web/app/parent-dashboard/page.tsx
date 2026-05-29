@@ -90,17 +90,17 @@ export default async function ParentDashboardPage() {
       {/* ── MÉTRICAS RÁPIDAS ── */}
       <section>
         <div className="grid grid-cols-3 divide-x divide-brand-100 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-[0_4px_12px_rgba(13,27,31,0.05)]">
-          <div className="px-4 py-4 text-center">
+          <div className="px-3 py-4 text-center sm:px-4">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Favoritos</p>
-            <p className="mt-1 text-3xl font-bold text-ink">{metrics.savedSchools}</p>
+            <p className="mt-1 text-2xl font-bold text-ink sm:text-3xl">{metrics.savedSchools}</p>
           </div>
-          <div className="px-4 py-4 text-center">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Comparaciones</p>
-            <p className="mt-1 text-3xl font-bold text-ink">{metrics.activeComparisons}</p>
+          <div className="px-3 py-4 text-center sm:px-4">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Comparac.</p>
+            <p className="mt-1 text-2xl font-bold text-ink sm:text-3xl">{metrics.activeComparisons}</p>
           </div>
-          <div className="px-4 py-4 text-center">
+          <div className="px-3 py-4 text-center sm:px-4">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Alertas</p>
-            <p className={`mt-1 text-3xl font-bold ${unreadAlerts > 0 ? "text-emerald-700" : "text-ink"}`}>
+            <p className={`mt-1 text-2xl font-bold sm:text-3xl ${unreadAlerts > 0 ? "text-emerald-700" : "text-ink"}`}>
               {unreadAlerts > 0 ? unreadAlerts : metrics.unreadAlerts}
             </p>
           </div>
@@ -170,8 +170,8 @@ export default async function ParentDashboardPage() {
                         </div>
                       </div>
 
-                      <div className="mt-3 flex gap-2">
-                        <Button asChild size="sm" className="flex-1">
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <Button asChild size="sm" className="flex-1 min-w-[100px]">
                           <Link href={profilePath as never}>Ver perfil</Link>
                         </Button>
                         <Button asChild size="sm" variant="ghost">
