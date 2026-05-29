@@ -83,6 +83,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
           </FormField>
           <FormField label="Nivel educativo">
             <Select id="educationLevel" name="educationLevel" defaultValue={query.educationLevel ?? "PRIMARIA"}>
+              <option value="MATERNAL">Maternal</option>
               <option value="INICIAL">Inicial</option>
               <option value="PRIMARIA">Primaria</option>
               <option value="SECUNDARIA">Secundaria</option>

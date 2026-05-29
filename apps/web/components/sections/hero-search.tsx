@@ -10,6 +10,7 @@ import { trackEvent } from "@/lib/analytics";
 
 const levelOptions = [
   { label: "Todos los niveles", value: "" },
+  { label: "Maternal", value: "MATERNAL" },
   { label: "Inicial", value: "INICIAL" },
   { label: "Primaria", value: "PRIMARIA" },
   { label: "Secundaria", value: "SECUNDARIA" }

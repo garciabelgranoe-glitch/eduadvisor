@@ -11,6 +11,7 @@ import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 const levels = [
+  { value: "MATERNAL", label: "Maternal" },
   { value: "INICIAL", label: "Inicial" },
   { value: "PRIMARIA", label: "Primaria" },
   { value: "SECUNDARIA", label: "Secundaria" }

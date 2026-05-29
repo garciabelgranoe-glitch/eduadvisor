@@ -77,7 +77,7 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
       });
     }
     if (level.trim()) {
-      const levelMap: Record<string, string> = { INICIAL: "Inicial", PRIMARIA: "Primaria", SECUNDARIA: "Secundaria" };
+      const levelMap: Record<string, string> = { MATERNAL: "Maternal", INICIAL: "Inicial", PRIMARIA: "Primaria", SECUNDARIA: "Secundaria" };
       chips.push({
         key: "level",
         label: `Nivel: ${levelMap[level] ?? level}`,
@@ -199,6 +199,7 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
         <FormField label="Nivel">
           <Select name="level" value={level} onChange={(event) => setLevel(event.target.value)}>
             <option value="">Todos los niveles</option>
+            <option value="MATERNAL">Maternal</option>
             <option value="INICIAL">Inicial</option>
             <option value="PRIMARIA">Primaria</option>
             <option value="SECUNDARIA">Secundaria</option>

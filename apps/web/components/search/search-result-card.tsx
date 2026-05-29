@@ -21,6 +21,7 @@ interface SearchResultCardProps {
 }
 
 const levelLabelMap: Record<string, string> = {
+  MATERNAL: "Maternal",
   INICIAL: "Inicial",
   PRIMARIA: "Primaria",
   SECUNDARIA: "Secundaria"

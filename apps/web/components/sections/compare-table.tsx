@@ -39,6 +39,7 @@ const rows: Array<{
 
 export function CompareTable({ schools }: CompareTableProps) {
   const levelMap: Record<string, string> = {
+    MATERNAL: "Maternal",
     INICIAL: "Inicial",
     PRIMARIA: "Primaria",
     SECUNDARIA: "Secundaria"

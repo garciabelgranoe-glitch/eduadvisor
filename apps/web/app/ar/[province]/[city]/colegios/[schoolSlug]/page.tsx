@@ -50,6 +50,7 @@ const categoryLabels: Record<SeoRankingCategory, string> = {
 };
 
 const levelLabelMap: Record<string, string> = {
+  MATERNAL: "Maternal",
   INICIAL: "Inicial",
   PRIMARIA: "Primaria",
   SECUNDARIA: "Secundaria"
