@@ -13,7 +13,7 @@ export default async function AdminHomePage() {
   if (!overview) {
     return (
       <Card className="text-sm text-slate-600">
-        No se pudo cargar el panel administrador. Verificá backend y `ADMIN_API_KEY`.
+        No se pudo cargar el panel. Verificá que el backend esté activo e intentá nuevamente.
       </Card>
     );
   }

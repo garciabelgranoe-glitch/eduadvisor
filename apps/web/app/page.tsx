@@ -137,7 +137,7 @@ export default async function HomePage() {
         {schools.items.length === 0 ? (
           <FeatureState
             title="No pudimos cargar colegios"
-            description="Verificá el backend y el índice de búsqueda, luego recargá la página."
+            description="No pudimos cargar los colegios en este momento. Intentá recargar la página."
             actionLabel="Ir a buscar colegios"
             actionHref="/search"
           />

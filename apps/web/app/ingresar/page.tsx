@@ -181,10 +181,8 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Acceso</p>
         <h1 className="font-display text-4xl text-ink">Ingresar a tu espacio</h1>
         <p className="max-w-2xl text-slate-600">
-          Acceso segmentado por rol para familias y colegios. El acceso admin permanece privado para el equipo
-          interno.
+          Seleccioná tu tipo de cuenta para continuar.
         </p>
-        <p className="text-xs text-slate-500">Modo de lanzamiento actual: {launchMode}</p>
         {errorMessage ? <p className="text-sm text-red-700">{errorMessage}</p> : null}
       </Card>
 
@@ -281,41 +279,22 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
       {showAdminAccess ? (
         <Card className="space-y-4 border-amber-200 bg-amber-50/60">
           <h2 className="text-xl font-semibold text-ink">Acceso Admin</h2>
-          <p className="text-sm text-slate-700">
-            Acceso interno para equipo de plataforma. En producción se valida identidad con Google y allowlist de
-            emails admin.
-          </p>
           {googleAuthEnabled ? (
             <Button asChild>
-              <Link href={adminGoogleStartPath as never}>Ingresar con Google (Admin)</Link>
+              <Link href={adminGoogleStartPath as never}>Ingresar con Google</Link>
             </Button>
-          ) : (
-            <Button disabled>Google no configurado para admin</Button>
-          )}
-          {!googleAuthEnabled ? (
-            <p className="text-xs text-slate-600">
-              Configura `GOOGLE_OAUTH_CLIENT_ID` y `GOOGLE_OAUTH_CLIENT_SECRET` para habilitar acceso admin por
-              identidad.
-            </p>
           ) : null}
           {adminSharedCodeEnabled ? (
-            <div className="space-y-3 rounded-xl border border-amber-200 bg-white/70 p-3">
-              <p className="text-xs uppercase tracking-[0.14em] text-amber-700">Fallback local (dev/test)</p>
-              <form action="/api/session/admin" method="post" className="grid gap-3 md:grid-cols-[1fr_auto]">
-                <input type="hidden" name="next" value={adminNextPath} />
-                <div className="space-y-3">
-                  <FormField label="Email admin">
-                    <Input type="email" name="email" required placeholder="admin@eduadvisor.com" />
-                  </FormField>
-                  <FormField label="Código de acceso admin">
-                    <Input type="password" name="accessCode" required placeholder="Solo local" />
-                  </FormField>
-                </div>
-                <div className="flex items-end md:pb-0.5">
-                  <Button type="submit" variant="ghost">Entrar con fallback local</Button>
-                </div>
-              </form>
-            </div>
+            <form action="/api/session/admin" method="post" className="space-y-3">
+              <input type="hidden" name="next" value={adminNextPath} />
+              <FormField label="Email">
+                <Input type="email" name="email" required placeholder="tu@email.com" />
+              </FormField>
+              <FormField label="Código de acceso">
+                <Input type="password" name="accessCode" required placeholder="••••••••" />
+              </FormField>
+              <Button type="submit" variant="ghost">Ingresar</Button>
+            </form>
           ) : null}
         </Card>
       ) : null}

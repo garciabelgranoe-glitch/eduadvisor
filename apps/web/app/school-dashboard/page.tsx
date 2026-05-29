@@ -71,7 +71,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         subtitle="Todavía no hay colegios cargados para visualizar el panel."
       >
         <Card className="text-sm text-slate-600">
-          Importá colegios desde Google o cargalos manualmente para habilitar esta vista.
+          Todavía no hay colegios disponibles. Contactá al equipo de EduAdvisor para comenzar.
         </Card>
       </DashboardShell>
     );
@@ -92,7 +92,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         subtitle="No se encontró el colegio solicitado."
       >
         <Card className="text-sm text-slate-600">
-          Revisá el slug en el query param <code>?school=slug</code> o seleccioná otro colegio.
+          No encontramos el colegio solicitado. Intentá nuevamente o contactá al equipo de EduAdvisor.
         </Card>
       </DashboardShell>
     );
@@ -107,7 +107,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         subtitle="No se pudo cargar el panel privado del colegio."
       >
         <Card className="text-sm text-slate-600">
-          Verificá <code>ADMIN_API_KEY</code> y que el backend esté activo.
+          No pudimos cargar tu panel. Por favor intentá nuevamente en unos minutos.
         </Card>
       </DashboardShell>
     );
