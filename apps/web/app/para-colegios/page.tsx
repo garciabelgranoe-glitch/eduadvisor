@@ -128,7 +128,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
             <Button
               asChild
               variant="ghost"
-              className="h-12 border-white/30 bg-white/10 px-7 text-white hover:bg-white/20"
+              className="h-12 border border-white/60 bg-transparent px-7 text-white hover:bg-white/15 hover:border-white"
             >
               <Link href="/ingresar?next=/school-dashboard">Ya tengo cuenta →</Link>
             </Button>
