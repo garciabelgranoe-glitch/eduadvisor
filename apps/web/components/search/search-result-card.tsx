@@ -54,8 +54,8 @@ export function SearchResultCard({
         : "bg-slate-600";
 
   const ratingDisplay = (() => {
-    if (parentRating !== null) return { value: formatRating(parentRating), source: `${school.rating.count} reseñas` };
-    if (googleRating !== null) return { value: formatRating(googleRating), source: `${googleReviewCount} en Google` };
+    if (parentRating !== null && school.rating.count > 0) return { value: formatRating(parentRating), source: `${school.rating.count} reseñas` };
+    if (googleRating !== null && googleReviewCount > 0) return { value: formatRating(googleRating), source: `${googleReviewCount} en Google` };
     return null;
   })();
 
