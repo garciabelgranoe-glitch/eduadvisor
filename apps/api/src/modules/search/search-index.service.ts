@@ -38,6 +38,7 @@ interface SearchSchoolDocument {
   website: string | null;
   phone: string | null;
   email: string | null;
+  logoUrl: string | null;
   createdAt: string;
   createdAtTs: number;
 }
@@ -95,6 +96,9 @@ export interface SearchResult {
       phone: string | null;
       email: string | null;
     };
+    media: {
+      logoUrl: string | null;
+    } | null;
   }>;
   meta: SearchMeta;
 }
@@ -230,7 +234,8 @@ export class SearchIndexService {
           website: item.website,
           phone: item.phone,
           email: item.email
-        }
+        },
+        media: item.logoUrl ? { logoUrl: item.logoUrl } : null
       })),
       meta: {
         total,
@@ -459,6 +464,7 @@ export class SearchIndexService {
       website: school.website,
       phone: school.phone,
       email: school.email,
+      logoUrl: school.logoUrl ?? null,
       createdAt: school.createdAt.toISOString(),
       createdAtTs: school.createdAt.getTime()
     }));
