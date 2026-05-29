@@ -1,12 +1,13 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CtaGroup } from "@/components/ui/cta-group";
 import { FeatureState } from "@/components/ui/feature-state";
 import { FormField } from "@/components/ui/form-field";
 import { FormShell } from "@/components/ui/form-shell";
 import { FormStatus } from "@/components/ui/form-status";
+import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { TurnstileChallenge } from "@/components/security/turnstile-challenge";
@@ -36,6 +37,13 @@ export function ReviewForm({ schools, initialSchoolSlug }: ReviewFormProps) {
   }, [initialSchoolSlug, schools]);
 
   const [schoolId, setSchoolId] = useState(defaultSchoolId);
+  const [schoolSearch, setSchoolSearch] = useState(() => {
+    if (!initialSchoolSlug) return "";
+    const found = schools.find((s) => s.slug === initialSchoolSlug);
+    return found ? `${found.name} · ${found.city}` : "";
+  });
+  const [showDropdown, setShowDropdown] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
   const [rating, setRating] = useState("5");
   const [comment, setComment] = useState("");
   const [challengeToken, setChallengeToken] = useState("");
@@ -121,17 +129,52 @@ export function ReviewForm({ schools, initialSchoolSlug }: ReviewFormProps) {
             </label>
           </div>
           <FormField label="Colegio">
-            <Select
-              value={schoolId}
-              onChange={(event) => setSchoolId(event.target.value)}
-              required
-            >
-              {schools.map((school) => (
-                <option key={school.id} value={school.id}>
-                  {school.name} · {school.city}
-                </option>
-              ))}
-            </Select>
+            <div className="relative" ref={searchRef}>
+              <Input
+                placeholder="Escribí el nombre del colegio para buscarlo..."
+                value={schoolSearch}
+                onChange={(e) => {
+                  setSchoolSearch(e.target.value);
+                  setSchoolId("");
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
+                autoComplete="off"
+              />
+              {showDropdown && schoolSearch.trim().length >= 2 && (
+                <div className="absolute z-50 mt-1 max-h-60 w-full overflow-y-auto rounded-xl border border-brand-100 bg-white shadow-[0_8px_24px_rgba(13,27,31,0.12)]">
+                  {schools
+                    .filter((s) =>
+                      `${s.name} ${s.city}`.toLowerCase().includes(schoolSearch.toLowerCase())
+                    )
+                    .slice(0, 20)
+                    .map((school) => (
+                      <button
+                        key={school.id}
+                        type="button"
+                        onMouseDown={() => {
+                          setSchoolId(school.id);
+                          setSchoolSearch(`${school.name} · ${school.city}`);
+                          setShowDropdown(false);
+                        }}
+                        className="flex w-full flex-col px-4 py-2.5 text-left hover:bg-brand-50"
+                      >
+                        <span className="text-sm font-semibold text-ink">{school.name}</span>
+                        <span className="text-xs text-slate-400">{school.city}</span>
+                      </button>
+                    ))}
+                  {schools.filter((s) =>
+                    `${s.name} ${s.city}`.toLowerCase().includes(schoolSearch.toLowerCase())
+                  ).length === 0 && (
+                    <p className="px-4 py-3 text-sm text-slate-500">No encontramos ese colegio.</p>
+                  )}
+                </div>
+              )}
+            </div>
+            {schoolId && (
+              <p className="mt-1 text-xs text-emerald-600">✓ Colegio seleccionado</p>
+            )}
           </FormField>
 
           <div className="grid gap-3 md:grid-cols-2">

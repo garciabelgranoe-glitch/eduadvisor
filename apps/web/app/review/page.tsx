@@ -17,7 +17,7 @@ interface ReviewPageProps {
 
 export default async function ReviewPage({ searchParams }: ReviewPageProps) {
   const schoolSlug = pickParam(searchParams?.school);
-  const schoolsResponse = await getSchools({ limit: "50", sortBy: "name", sortOrder: "asc" });
+  const schoolsResponse = await getSchools({ limit: "500", sortBy: "name", sortOrder: "asc" });
 
   const schools = schoolsResponse.items.map((school) => ({
     id: school.id,
