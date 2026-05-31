@@ -679,6 +679,49 @@ export class AdminService {
     return new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate()));
   }
 
+  async addSchoolRepresentative(
+    schoolId: string,
+    payload: { email: string; fullName: string; role?: string }
+  ) {
+    const school = await this.prisma.school.findUnique({ where: { id: schoolId } });
+    if (!school) throw new NotFoundException("School not found");
+
+    const email = payload.email.trim().toLowerCase();
+    const now = new Date();
+
+    // Upsert: si ya existe el representative con ese email + schoolId, actualiza verifiedAt
+    const existing = await this.prisma.schoolRepresentative.findFirst({
+      where: { schoolId, email: { equals: email, mode: "insensitive" } }
+    });
+
+    const representative = existing
+      ? await this.prisma.schoolRepresentative.update({
+          where: { id: existing.id },
+          data: { verifiedAt: now, fullName: payload.fullName, role: payload.role ?? existing.role }
+        })
+      : await this.prisma.schoolRepresentative.create({
+          data: {
+            schoolId,
+            email,
+            fullName: payload.fullName,
+            role: payload.role ?? "Representante",
+            verifiedAt: now
+          }
+        });
+
+    // Si el colegio no está verificado, lo marcamos como VERIFIED
+    if (school.profileStatus === "BASIC" || school.profileStatus === "CURATED") {
+      await this.prisma.school.update({
+        where: { id: schoolId },
+        data: { profileStatus: SchoolProfileStatus.VERIFIED, verifiedAt: now }
+      });
+    }
+
+    await this.cache.invalidateMany(["schools:list", "schools:detail"]);
+
+    return { representative, schoolId, email, verifiedAt: now };
+  }
+
   private buildMonthlyLeadTrend(dates: Date[]) {
     const trendMap = new Map<string, number>();
 

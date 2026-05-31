@@ -91,6 +91,16 @@ export class AdminController {
     return this.schoolsService.updateClaimRequestStatus(claimRequestId, payload);
   }
 
+  @Post("schools/:schoolId/representatives")
+  @UseGuards(AdminApiKeyGuard)
+  @AdminScopes("write")
+  async addRepresentative(
+    @Param("schoolId") schoolId: string,
+    @Body() payload: { email: string; fullName: string; role?: string }
+  ) {
+    return this.adminService.addSchoolRepresentative(schoolId, payload);
+  }
+
   @Post("import-runs")
   @UseGuards(AdminApiKeyGuard)
   @AdminScopes("write")
