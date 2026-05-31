@@ -18,7 +18,7 @@ export function CityLandingLinks({ cities }: CityLandingLinksProps) {
     <section className="space-y-4">
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Explorar por ciudad</p>
-        <h2 className="font-display text-3xl text-ink">Páginas SEO para descubrir colegios por zona</h2>
+        <h2 className="font-display text-3xl text-ink">Encontrá colegios en tu ciudad</h2>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
