@@ -681,7 +681,7 @@ export class AdminService {
 
   async addSchoolRepresentative(
     schoolId: string,
-    payload: { email: string; fullName: string; role?: string }
+    payload: { email: string; fullName: string; role?: string; phone?: string }
   ) {
     const school = await this.prisma.school.findUnique({ where: { id: schoolId } });
     if (!school) throw new NotFoundException("School not found");
