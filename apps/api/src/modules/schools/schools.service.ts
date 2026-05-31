@@ -399,6 +399,7 @@ export class SchoolsService {
       ]);
 
       const levelDistribution = {
+        MATERNAL: 0,
         INICIAL: 0,
         PRIMARIA: 0,
         SECUNDARIA: 0
