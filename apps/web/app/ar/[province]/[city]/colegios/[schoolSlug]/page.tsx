@@ -256,6 +256,9 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
                   ))}
                 </div>
               )}
+              {miniDescription && (
+                <p className="pt-1 max-w-2xl leading-relaxed text-slate-600">{miniDescription}</p>
+              )}
             </div>
             <SchoolProfileLogoBadge
               schoolName={school.name}
@@ -265,11 +268,6 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
               logoUrl={school.media?.logoUrl}
             />
           </div>
-
-          {/* Description */}
-          {miniDescription && (
-            <p className="mt-4 max-w-2xl leading-relaxed text-slate-600">{miniDescription}</p>
-          )}
 
           {/* Key stats */}
           <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-4">
