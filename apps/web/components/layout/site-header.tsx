@@ -77,11 +77,15 @@ export function SiteHeader() {
             className="flex shrink-0 items-center gap-2"
             onClick={() => trackEvent("nav_click", { href: "/", source: "header_logo" })}
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-700 shadow-[0_4px_12px_rgba(31,92,77,0.35)]">
-              <span className="h-2 w-2 rounded-full bg-amber-300" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-brand-700 shadow-[0_2px_10px_rgba(31,92,77,0.28)]">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1L10 7L7 6L4 7Z" fill="#fbbf24"/>
+                <path d="M7 13L4 7L7 8L10 7Z" fill="white" fillOpacity="0.4"/>
+                <circle cx="7" cy="7" r="1" fill="white" fillOpacity="0.7"/>
+              </svg>
             </span>
-            <span className="font-display text-lg font-bold tracking-tight text-ink">
-              Edu<span className="text-brand-700">Advisor</span>
+            <span className="font-display text-lg font-bold tracking-tight">
+              <span className="text-brand-500">Edu</span><span className="text-ink">Advisor</span>
             </span>
           </Link>
 
@@ -180,11 +184,15 @@ export function SiteHeader() {
           <div className="flex items-center justify-between border-b border-brand-100 px-5 py-4">
             <Link href="/" onClick={() => { setMenuOpen(false); trackEvent("nav_click", { href: "/", source: "drawer_logo" }); }}
               className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-700">
-                <span className="h-2 w-2 rounded-full bg-amber-300" />
+              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-brand-700 shadow-[0_2px_10px_rgba(31,92,77,0.28)]">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M7 1L10 7L7 6L4 7Z" fill="#fbbf24"/>
+                  <path d="M7 13L4 7L7 8L10 7Z" fill="white" fillOpacity="0.4"/>
+                  <circle cx="7" cy="7" r="1" fill="white" fillOpacity="0.7"/>
+                </svg>
               </span>
-              <span className="font-display text-lg font-bold tracking-tight text-ink">
-                Edu<span className="text-brand-700">Advisor</span>
+              <span className="font-display text-lg font-bold tracking-tight">
+                <span className="text-brand-500">Edu</span><span className="text-ink">Advisor</span>
               </span>
             </Link>
             <button
