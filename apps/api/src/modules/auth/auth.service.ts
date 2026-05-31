@@ -202,6 +202,18 @@ export class AuthService {
 
     const schoolLoginEnabled = AuthService.loginEnabledSchoolStatuses.has(school.profileStatus);
 
+    // Representante verificado manualmente por admin (sin claim): permitir acceso si el colegio está habilitado
+    if (!latestClaim && representative.verifiedAt && schoolLoginEnabled) {
+      return {
+        canLogin: true,
+        reasonCode: "ACCESS_GRANTED",
+        message: "Cuenta verificada para acceder al dashboard del colegio.",
+        school,
+        representative,
+        claim: { status: "NO_CLAIM", createdAt: null, reviewedAt: null }
+      };
+    }
+
     if (!latestClaim) {
       return {
         canLogin: false,
