@@ -705,6 +705,7 @@ export class AdminService {
             email,
             fullName: payload.fullName,
             role: payload.role ?? "Representante",
+            phone: payload.phone ?? "",
             verifiedAt: now
           }
         });

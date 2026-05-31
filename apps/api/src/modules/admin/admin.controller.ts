@@ -96,7 +96,7 @@ export class AdminController {
   @AdminScopes("write")
   async addRepresentative(
     @Param("schoolId") schoolId: string,
-    @Body() payload: { email: string; fullName: string; role?: string }
+    @Body() payload: { email: string; fullName: string; role?: string; phone?: string }
   ) {
     return this.adminService.addSchoolRepresentative(schoolId, payload);
   }
