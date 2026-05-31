@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="pointer-events-none absolute inset-0 grid-pattern opacity-50" />
             <div className="relative">
               <SiteHeader />
-              <main className="mx-auto max-w-6xl px-4 py-10">{children}</main>
+              <main className="mx-auto max-w-6xl px-4 pb-10 pt-3 md:pt-10">{children}</main>
               <footer className="mx-auto mt-16 max-w-6xl border-t border-brand-100 px-4 py-8 text-sm text-slate-500">
                 EDUADVISOR · Decisiones educativas con datos, contexto y transparencia.
               </footer>
