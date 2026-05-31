@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CtaGroup } from "@/components/ui/cta-group";
 import { FormField } from "@/components/ui/form-field";
@@ -22,6 +22,14 @@ interface PublishResponse {
   status: string;
 }
 
+interface SchoolOption {
+  id: string;
+  slug: string;
+  name: string;
+  city: string;
+  province: string;
+}
+
 function toTitleCase(value: string) {
   return value
     .split("-")
@@ -30,12 +38,143 @@ function toTitleCase(value: string) {
     .join(" ");
 }
 
+// ─── Autocomplete de colegios para el flow de claim ──────────────────────────
+function SchoolClaimAutocomplete({
+  initialSlug,
+  onSelect
+}: {
+  initialSlug?: string;
+  onSelect: (school: SchoolOption | null) => void;
+}) {
+  const [query, setQuery] = useState(initialSlug ? toTitleCase(initialSlug) : "");
+  const [selected, setSelected] = useState<SchoolOption | null>(null);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<SchoolOption[]>([]);
+  const controllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    const normalized = query.trim();
+    if (normalized.length < 2) {
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+
+    const id = setTimeout(async () => {
+      controllerRef.current?.abort();
+      const ctrl = new AbortController();
+      controllerRef.current = ctrl;
+      setLoading(true);
+
+      try {
+        const res = await fetch(`/api/schools/login-options?q=${encodeURIComponent(normalized)}`, {
+          cache: "no-store",
+          signal: ctrl.signal
+        });
+        const data = (await res.json().catch(() => null)) as { items?: SchoolOption[] } | null;
+        setResults((data?.items ?? []).slice(0, 12));
+      } catch {
+        // aborted o error — no hacer nada
+      } finally {
+        setLoading(false);
+      }
+    }, 250);
+
+    return () => {
+      clearTimeout(id);
+      controllerRef.current?.abort();
+    };
+  }, [query]);
+
+  function pick(school: SchoolOption) {
+    setSelected(school);
+    setQuery(`${school.name} · ${school.city}`);
+    setOpen(false);
+    onSelect(school);
+  }
+
+  function clear() {
+    setSelected(null);
+    setQuery("");
+    setOpen(false);
+    onSelect(null);
+  }
+
+  return (
+    <div className="relative">
+      <div className="flex items-center gap-2">
+        <input
+          type="text"
+          required
+          value={query}
+          placeholder="Escribí el nombre del colegio..."
+          autoComplete="off"
+          className="h-10 w-full rounded-xl border border-brand-100 bg-white px-3 text-sm text-ink placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300"
+          onFocus={() => { if (!selected) setOpen(true); }}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setSelected(null);
+            onSelect(null);
+            setOpen(true);
+          }}
+        />
+        {selected && (
+          <button
+            type="button"
+            onClick={clear}
+            className="shrink-0 text-xs text-slate-400 hover:text-slate-600"
+          >
+            ✕ cambiar
+          </button>
+        )}
+      </div>
+
+      {/* Dropdown */}
+      {open && !selected && (
+        <div className="absolute z-50 mt-1 max-h-64 w-full overflow-auto rounded-xl border border-brand-100 bg-white shadow-lg">
+          {loading && (
+            <p className="px-3 py-2 text-xs text-slate-500">Buscando colegios...</p>
+          )}
+          {!loading && results.length === 0 && query.trim().length >= 2 && (
+            <p className="px-3 py-2 text-xs text-slate-500">
+              No encontramos ese colegio. Si es nuevo, usá el modo <strong>Publicar colegio nuevo</strong>.
+            </p>
+          )}
+          {!loading && results.map((school) => (
+            <button
+              key={school.id}
+              type="button"
+              onMouseDown={(e) => { e.preventDefault(); pick(school); }}
+              className="flex w-full flex-col px-3 py-2 text-left hover:bg-brand-50"
+            >
+              <span className="text-sm font-medium text-ink">{school.name}</span>
+              <span className="text-xs text-slate-500">{school.city}, {school.province}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Estado visual */}
+      <p className="mt-1 text-xs text-slate-500">
+        {selected
+          ? <span className="font-medium text-brand-700">✓ {selected.name} — {selected.city}, {selected.province}</span>
+          : "Seleccioná el colegio de la lista para vincularlo correctamente."}
+      </p>
+    </div>
+  );
+}
+
+// ─── Formulario principal ────────────────────────────────────────────────────
 export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }: SchoolPublishFormProps) {
   const [startedAt] = useState(() => Date.now());
   const [hpWebsite, setHpWebsite] = useState("");
-  const schoolSlug = initialSchoolSlug?.trim().toLowerCase() || undefined;
   const [flow, setFlow] = useState<"publish" | "claim">(initialFlow);
+
+  // Campos del formulario
   const [schoolName, setSchoolName] = useState(initialSchoolSlug ? toTitleCase(initialSchoolSlug) : "");
+  const [schoolSlug, setSchoolSlug] = useState(initialSchoolSlug ?? "");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [contactName, setContactName] = useState("");
@@ -51,13 +190,26 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
 
   const helperText = useMemo(() => {
     if (flow === "claim") {
-      return "Solicita el claim de un perfil existente para tomar control institucional y habilitar funciones comerciales.";
+      return "Buscá y seleccioná tu colegio de la lista para iniciar el proceso de verificación institucional.";
     }
-
-    return "Envianos los datos iniciales para dar de alta el colegio y preparar su activacion comercial.";
+    return "Envianos los datos iniciales para dar de alta el colegio y preparar su activación comercial.";
   }, [flow]);
 
   const submitLabel = flow === "claim" ? "Iniciar claim institucional" : "Solicitar alta de colegio";
+
+  function handleSchoolSelect(school: SchoolOption | null) {
+    if (school) {
+      setSchoolName(school.name);
+      setSchoolSlug(school.slug);
+      setCity(school.city);
+      setProvince(school.province);
+    } else {
+      setSchoolSlug("");
+      setSchoolName("");
+      setCity("");
+      setProvince("");
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,12 +220,10 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
     try {
       const response = await fetch("/api/schools/publish", {
         method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
+        headers: { "content-type": "application/json" },
         body: JSON.stringify({
           flow,
-          schoolSlug,
+          schoolSlug: schoolSlug || undefined,
           schoolName,
           city,
           province,
@@ -90,32 +240,23 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
       });
 
       const payload = (await response.json().catch(() => null)) as
-        | {
-            message?: string;
-            request?: PublishResponse;
-          }
+        | { message?: string; request?: PublishResponse }
         | null;
 
       if (!response.ok || !payload?.request) {
-        trackEvent("school_request_failed", {
-          flow,
-          source: "for_schools",
-          statusCode: response.status
-        });
+        trackEvent("school_request_failed", { flow, source: "for_schools", statusCode: response.status });
         setErrorMessage(payload?.message ?? "No pudimos registrar tu solicitud en este momento.");
         return;
       }
 
-      trackEvent("school_request_submitted", {
-        flow,
-        source: "for_schools"
-      });
+      trackEvent("school_request_submitted", { flow, source: "for_schools" });
       setSuccessMessage(
         `Solicitud recibida (${payload.request.requestId}). Te contactaremos por email para validar y activar el acceso.`
       );
 
       if (flow === "publish") {
         setSchoolName("");
+        setSchoolSlug("");
         setCity("");
         setProvince("");
         setWebsite("");
@@ -123,11 +264,7 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
       setMessage("");
       setChallengeToken("");
     } catch {
-      trackEvent("school_request_failed", {
-        flow,
-        source: "for_schools",
-        statusCode: 0
-      });
+      trackEvent("school_request_failed", { flow, source: "for_schools", statusCode: 0 });
       setErrorMessage("No se pudo conectar con EduAdvisor. Intenta nuevamente.");
     } finally {
       setLoading(false);
@@ -137,6 +274,7 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
   return (
     <FormShell title="Publicar o reclamar colegio" description={helperText}>
       <form className="space-y-3" onSubmit={handleSubmit}>
+        {/* Honeypot */}
         <div className="hidden" aria-hidden="true">
           <label>
             Website
@@ -145,58 +283,66 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
               tabIndex={-1}
               autoComplete="off"
               value={hpWebsite}
-              onChange={(event) => setHpWebsite(event.target.value)}
+              onChange={(e) => setHpWebsite(e.target.value)}
             />
           </label>
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
-          <FormField label="Tipo de solicitud">
-            <Select
-              value={flow}
-              onChange={(event) => setFlow(event.target.value as "publish" | "claim")}
-            >
-              <option value="publish">Publicar colegio nuevo</option>
-              <option value="claim">Reclamar perfil existente</option>
-            </Select>
-          </FormField>
-          <FormField label="Nombre del colegio">
-            <Input
-              value={schoolName}
-              onChange={(event) => setSchoolName(event.target.value)}
-              required
-            />
-          </FormField>
-        </div>
 
-        <div className="grid gap-3 md:grid-cols-2">
-          <FormField label="Ciudad">
-            <Input
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-              required
-            />
-          </FormField>
-          <FormField label="Provincia">
-            <Input
-              value={province}
-              onChange={(event) => setProvince(event.target.value)}
-              required
-            />
-          </FormField>
-        </div>
+        {/* Tipo de solicitud */}
+        <FormField label="Tipo de solicitud">
+          <Select value={flow} onChange={(e) => setFlow(e.target.value as "publish" | "claim")}>
+            <option value="publish">Publicar colegio nuevo</option>
+            <option value="claim">Reclamar perfil existente</option>
+          </Select>
+        </FormField>
 
+        {/* Campo de colegio — autocomplete para claim, texto libre para publish */}
+        {flow === "claim" ? (
+          <FormField label="Colegio a reclamar">
+            <SchoolClaimAutocomplete
+              initialSlug={initialSchoolSlug}
+              onSelect={handleSchoolSelect}
+            />
+          </FormField>
+        ) : (
+          <div className="grid gap-3 md:grid-cols-3">
+            <FormField label="Nombre del colegio">
+              <Input
+                value={schoolName}
+                onChange={(e) => setSchoolName(e.target.value)}
+                required
+              />
+            </FormField>
+            <FormField label="Ciudad">
+              <Input
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
+            </FormField>
+            <FormField label="Provincia">
+              <Input
+                value={province}
+                onChange={(e) => setProvince(e.target.value)}
+                required
+              />
+            </FormField>
+          </div>
+        )}
+
+        {/* Datos de contacto */}
         <div className="grid gap-3 md:grid-cols-3">
           <FormField label="Nombre de contacto">
             <Input
               value={contactName}
-              onChange={(event) => setContactName(event.target.value)}
+              onChange={(e) => setContactName(e.target.value)}
               required
             />
           </FormField>
           <FormField label="Rol">
             <Input
               value={contactRole}
-              onChange={(event) => setContactRole(event.target.value)}
+              onChange={(e) => setContactRole(e.target.value)}
               placeholder="Director, marketing, admisiones..."
               required
             />
@@ -204,7 +350,7 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
           <FormField label="Teléfono">
             <Input
               value={phone}
-              onChange={(event) => setPhone(event.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               required
             />
           </FormField>
@@ -215,14 +361,14 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
             <Input
               type="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </FormField>
           <FormField label="Sitio web (opcional)">
             <Input
               value={website}
-              onChange={(event) => setWebsite(event.target.value)}
+              onChange={(e) => setWebsite(e.target.value)}
               placeholder="https://..."
             />
           </FormField>
@@ -231,7 +377,7 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
         <FormField label="Mensaje (opcional)">
           <Textarea
             value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Cuéntanos qué necesitas y en qué plazo."
           />
         </FormField>
