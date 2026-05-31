@@ -139,6 +139,7 @@ export class IntelligenceService {
     };
 
     const demandByLevel = {
+      MATERNAL: 0,
       INICIAL: 0,
       PRIMARIA: 0,
       SECUNDARIA: 0
