@@ -34,10 +34,6 @@ interface CitySchoolsPageProps {
   };
 }
 
-export async function generateStaticParams() {
-  return [];
-}
-
 async function resolvePageData(params: CitySchoolsPageProps["params"]) {
   const context = await getGeoContext(params.province, params.city);
 
