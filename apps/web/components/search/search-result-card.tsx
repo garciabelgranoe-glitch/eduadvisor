@@ -56,9 +56,16 @@ export function SearchResultCard({
         ? "bg-brand-800"
         : "bg-slate-600";
 
+  // Perfil con contenido mínimo: tiene niveles cargados, cuota estimada o logo premium
+  const profileHasContent = Boolean(school.levels?.length) || school.monthlyFeeEstimate !== null || isPremiumProfile;
+
   const ratingDisplay = (() => {
-    if (parentRating !== null && school.rating.count > 0) return { value: formatRating(parentRating), source: `${school.rating.count} reseñas` };
-    if (googleRating !== null && googleReviewCount > 0) return { value: formatRating(googleRating), source: `${googleReviewCount} en Google` };
+    // 1. Reseñas propias de EduAdvisor (cualquier cantidad)
+    if (parentRating !== null && school.rating.count > 0)
+      return { value: formatRating(parentRating), source: `${school.rating.count} reseña${school.rating.count !== 1 ? "s" : ""}` };
+    // 2. Google como fallback: mínimo 5 reseñas y perfil con algo de contenido
+    if (googleRating !== null && googleReviewCount !== null && googleReviewCount >= 5 && profileHasContent)
+      return { value: formatRating(googleRating), source: `${googleReviewCount} en Google` };
     return null;
   })();
 
