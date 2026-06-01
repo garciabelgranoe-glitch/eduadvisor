@@ -84,49 +84,128 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
         <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-emerald-400/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-16 left-0 h-60 w-60 rounded-full bg-amber-400/20 blur-3xl" />
 
-        <div className="relative max-w-3xl space-y-6">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-300">
-            Para colegios privados · Argentina
-          </p>
-          <h1 className="font-display text-3xl leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-            Las familias ya están
-            <br />buscando.
-            <br />
-            <span className="text-amber-300">¿Tu colegio aparece?</span>
-          </h1>
-          <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-            EduAdvisor conecta colegios privados con padres que ya tienen intención de consulta.
-            Publicá tu perfil, recibí leads calificados y gestioná todo desde un panel.
-          </p>
+        <div className="relative flex flex-col gap-12 lg:flex-row lg:items-center">
 
-          <div className="flex flex-wrap gap-6 pt-2">
-            <div>
-              <p className="text-2xl font-bold text-white">+688</p>
-              <p className="text-sm text-white/60">colegios en catálogo</p>
+          {/* Columna izquierda — copy */}
+          <div className="flex-1 space-y-6">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-300">
+              Para colegios privados · Argentina
+            </p>
+            <h1 className="font-display text-3xl leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              Las familias ya están
+              <br />buscando.
+              <br />
+              <span className="text-amber-300">¿Tu colegio aparece?</span>
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+              EduAdvisor conecta colegios privados con padres que ya tienen intención de consulta.
+              Publicá tu perfil, recibí leads calificados y gestioná todo desde un panel.
+            </p>
+
+            <div className="flex flex-wrap gap-6 pt-2">
+              <div>
+                <p className="text-2xl font-bold text-white">+688</p>
+                <p className="text-sm text-white/60">colegios en catálogo</p>
+              </div>
+              <div className="w-px bg-white/20" />
+              <div>
+                <p className="text-2xl font-bold text-white">20</p>
+                <p className="text-sm text-white/60">ciudades cubiertas</p>
+              </div>
+              <div className="w-px bg-white/20" />
+              <div>
+                <p className="text-2xl font-bold text-white">72 hs</p>
+                <p className="text-sm text-white/60">tiempo de activación</p>
+              </div>
             </div>
-            <div className="w-px bg-white/20" />
-            <div>
-              <p className="text-2xl font-bold text-white">20</p>
-              <p className="text-sm text-white/60">ciudades cubiertas</p>
-            </div>
-            <div className="w-px bg-white/20" />
-            <div>
-              <p className="text-2xl font-bold text-white">72 hs</p>
-              <p className="text-sm text-white/60">tiempo de activación</p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild className="h-12 bg-amber-400 px-7 text-amber-950 hover:bg-amber-300">
+                <a href="#solicitud-colegio">Publicar mi colegio gratis</a>
+              </Button>
+              <Link
+                href="/ingresar?next=/school-dashboard"
+                className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/40 px-7 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
+              >
+                Ya tengo cuenta →
+              </Link>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-2">
-            <Button asChild className="h-12 bg-amber-400 px-7 text-amber-950 hover:bg-amber-300">
-              <a href="#solicitud-colegio">Publicar mi colegio gratis</a>
-            </Button>
-            <Link
-              href="/ingresar?next=/school-dashboard"
-              className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/40 px-7 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
-            >
-              Ya tengo cuenta →
-            </Link>
+          {/* Columna derecha — mockup visual del producto */}
+          <div className="relative hidden lg:block lg:w-[340px] xl:w-[380px] shrink-0">
+
+            {/* Tarjeta de perfil premium */}
+            <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.3)] space-y-3">
+              {/* Header del perfil */}
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-lg font-bold text-amber-900">C</div>
+                <div className="flex-1 min-w-0">
+                  <p className="truncate text-sm font-bold text-white">Colegio San Marcos</p>
+                  <p className="text-xs text-white/60">Longchamps, Buenos Aires</p>
+                </div>
+                <span className="rounded-full bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">Premium</span>
+              </div>
+
+              {/* Galería simulada */}
+              <div className="grid grid-cols-3 gap-1.5">
+                <div className="col-span-2 h-20 rounded-lg bg-gradient-to-br from-brand-600/60 to-brand-500/40" />
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex-1 rounded-lg bg-gradient-to-br from-emerald-600/40 to-emerald-500/20" />
+                  <div className="flex-1 rounded-lg bg-gradient-to-br from-amber-500/40 to-amber-400/20" />
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-2 rounded-xl bg-white/10 p-2 text-center">
+                <div>
+                  <p className="text-base font-bold text-white">47</p>
+                  <p className="text-[10px] text-white/50">visitas</p>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-amber-300">12</p>
+                  <p className="text-[10px] text-white/50">leads</p>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-emerald-300">4.8 ⭐</p>
+                  <p className="text-[10px] text-white/50">rating</p>
+                </div>
+              </div>
+
+              {/* Leads recientes */}
+              <div className="space-y-1.5">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">Últimas consultas</p>
+                {[
+                  { name: "María G.", level: "Primaria", time: "hace 2h", dot: "bg-emerald-400" },
+                  { name: "Carlos R.", level: "Inicial", time: "hace 5h", dot: "bg-blue-400" },
+                  { name: "Laura M.", level: "Secundaria", time: "ayer", dot: "bg-slate-400" },
+                ].map((lead) => (
+                  <div key={lead.name} className="flex items-center gap-2 rounded-lg bg-white/10 px-2.5 py-1.5">
+                    <span className={`h-1.5 w-1.5 rounded-full ${lead.dot} shrink-0`} />
+                    <p className="flex-1 text-xs font-medium text-white">{lead.name}</p>
+                    <span className="text-[10px] text-white/50">{lead.level}</span>
+                    <span className="text-[10px] text-white/30">{lead.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Notificación flotante — nueva consulta */}
+            <div className="absolute -right-4 -top-4 flex items-center gap-2 rounded-2xl bg-amber-400 px-3 py-2 shadow-[0_8px_24px_rgba(161,98,7,0.4)]">
+              <span className="text-base">📥</span>
+              <div>
+                <p className="text-[11px] font-bold text-amber-900">Nueva consulta</p>
+                <p className="text-[10px] text-amber-800">Primaria · Zona norte</p>
+              </div>
+            </div>
+
+            {/* Badge de verificado */}
+            <div className="absolute -bottom-3 -left-4 flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3 py-1.5 shadow-lg">
+              <span className="text-xs">✓</span>
+              <p className="text-[11px] font-bold text-white">Perfil verificado</p>
+            </div>
           </div>
+
         </div>
       </section>
 
