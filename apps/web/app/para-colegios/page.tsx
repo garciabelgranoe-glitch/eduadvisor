@@ -141,7 +141,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-400 text-lg font-bold text-amber-900">C</div>
                 <div className="flex-1 min-w-0">
-                  <p className="truncate text-sm font-bold text-white">Colegio San Marcos</p>
+                  <p className="truncate text-sm font-bold text-white">Colegio Mariano Moreno</p>
                   <p className="text-xs text-white/60">Longchamps, Buenos Aires</p>
                 </div>
                 <span className="rounded-full bg-amber-400/20 border border-amber-400/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">Premium</span>
