@@ -42,7 +42,7 @@ function profileTrustLabel(profileStatus: SchoolProfileStatus) {
   }
 
   if (profileStatus === "CURATED") {
-    return "Perfil curado por EduAdvisor";
+    return "Perfil curado por Radar Educativo";
   }
 
   return "Perfil en consolidación";

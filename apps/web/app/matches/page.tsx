@@ -183,7 +183,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                     context="Desde tu zona elegida"
                   />
                   <DataEvidence
-                    label="Score EduAdvisor"
+                    label="Radar Score"
                     value={item.school.eduAdvisorScore ?? "-"}
                     context="Calidad global"
                   />

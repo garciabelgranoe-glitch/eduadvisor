@@ -1,9 +1,9 @@
-export const SEO_SITE_NAME = "EduAdvisor";
+export const SEO_SITE_NAME = "Radar Educativo";
 export const SEO_DEFAULT_LOCALE = "es_AR";
 export const SEO_DEFAULT_LANG = "es-AR";
 
 const rawSiteUrl = process.env.NEXT_PUBLIC_APP_URL?.trim();
-export const SEO_SITE_URL = (rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://eduadvisor.com").replace(
+export const SEO_SITE_URL = (rawSiteUrl && rawSiteUrl.length > 0 ? rawSiteUrl : "https://radareducativo.com").replace(
   /\/$/,
   ""
 );

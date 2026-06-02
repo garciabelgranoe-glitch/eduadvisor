@@ -14,7 +14,7 @@ import { buildNoIndexMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildNoIndexMetadata({
   title: "Ingresar",
-  description: "Selecciona el tipo de cuenta para continuar en EduAdvisor.",
+  description: "Selecciona el tipo de cuenta para continuar en Radar Educativo.",
   canonicalPath: "/ingresar"
 });
 
@@ -234,7 +234,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         <Card className="space-y-4">
           <h2 className="text-xl font-semibold text-ink">Colegios</h2>
           <p className="text-sm text-slate-600">
-            Acceso exclusivo para cuentas verificadas con claim aprobado por EduAdvisor.
+            Acceso exclusivo para cuentas verificadas con claim aprobado por Radar Educativo.
           </p>
           {launchMode !== "OPEN" ? (
             <p className="text-xs text-amber-700">

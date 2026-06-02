@@ -24,7 +24,7 @@ const rows: Array<{
     | "website";
 }> = [
   { label: "Estado del perfil", key: "profile" },
-  { label: "EduAdvisor Score", key: "score" },
+  { label: "Radar Score", key: "score" },
   { label: "Rating en Google", key: "googleRating" },
   { label: "Valoración de familias", key: "rating" },
   { label: "Cuota estimada", key: "fee" },
@@ -46,7 +46,7 @@ export function CompareTable({ schools }: CompareTableProps) {
   };
   const profileStatusLabel: Record<string, string> = {
     BASIC: "No verificado",
-    CURATED: "Curado por EduAdvisor",
+    CURATED: "Curado por Radar Educativo",
     VERIFIED: "Verificado",
     PREMIUM: "Premium"
   };

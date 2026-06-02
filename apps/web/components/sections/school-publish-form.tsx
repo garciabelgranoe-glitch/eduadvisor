@@ -265,7 +265,7 @@ export function SchoolPublishForm({ initialFlow = "publish", initialSchoolSlug }
       setChallengeToken("");
     } catch {
       trackEvent("school_request_failed", { flow, source: "for_schools", statusCode: 0 });
-      setErrorMessage("No se pudo conectar con EduAdvisor. Intenta nuevamente.");
+      setErrorMessage("No se pudo conectar con Radar Educativo. Intenta nuevamente.");
     } finally {
       setLoading(false);
     }

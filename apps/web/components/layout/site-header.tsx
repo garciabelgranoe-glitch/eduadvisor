@@ -85,7 +85,7 @@ export function SiteHeader() {
               </svg>
             </span>
             <span className="font-display text-lg font-bold tracking-tight">
-              <span className="text-brand-500">Edu</span><span className="text-ink">Advisor</span>
+              <span className="text-brand-500">Radar</span><span className="text-ink"> Educativo</span>
             </span>
           </Link>
 
@@ -192,7 +192,7 @@ export function SiteHeader() {
                 </svg>
               </span>
               <span className="font-display text-lg font-bold tracking-tight">
-                <span className="text-brand-500">Edu</span><span className="text-ink">Advisor</span>
+                <span className="text-brand-500">Radar</span><span className="text-ink"> Educativo</span>
               </span>
             </Link>
             <button

@@ -8,7 +8,7 @@ export function buildGeoIntro(params: {
 }) {
   const { city, province, schoolCount, averageMonthlyFee } = params;
 
-  return `Elegir colegio en ${city}, ${province}, requiere comparar más que una cuota mensual. En EduAdvisor analizamos oferta educativa real, niveles disponibles, reputación familiar y señales de demanda para ayudarte a filtrar opciones con criterio. Hoy ves ${schoolCount} colegios activos en esta zona, con una cuota promedio de ${formatCurrency(averageMonthlyFee)}. Este listado prioriza instituciones con información verificable, reviews recientes y datos útiles para tomar decisiones concretas.
+  return `Elegir colegio en ${city}, ${province}, requiere comparar más que una cuota mensual. En Radar Educativo analizamos oferta educativa real, niveles disponibles, reputación familiar y señales de demanda para ayudarte a filtrar opciones con criterio. Hoy ves ${schoolCount} colegios activos en esta zona, con una cuota promedio de ${formatCurrency(averageMonthlyFee)}. Este listado prioriza instituciones con información verificable, reviews recientes y datos útiles para tomar decisiones concretas.
 
 Además del ranking general, te mostramos destacados con contexto, preguntas frecuentes locales y una guía práctica para evaluar ajuste pedagógico, logística diaria y presupuesto. Si recién empezás la búsqueda, usá esta página como mapa base; si ya tenés colegios en mente, compará perfiles y revisá fortalezas por nivel (inicial, primaria y secundaria). El objetivo es reducir ruido, evitar sesgos por marketing y darte una vista clara de qué alternativas encajan mejor con tu familia.`;
 }
@@ -29,10 +29,10 @@ export function buildGeoFaq(params: { city: string; province: string }) {
     {
       question: `¿Cómo comparo colegios en ${city}, ${province}, sin perder contexto?`,
       answer:
-        "Usá el comparador de EduAdvisor para revisar score, cuota, ratings y ubicación en una sola vista, y luego validá detalles en cada perfil."
+        "Usá el comparador de Radar Educativo para revisar score, cuota, ratings y ubicación en una sola vista, y luego validá detalles en cada perfil."
     },
     {
-      question: "¿Los reviews de EduAdvisor están moderados?",
+      question: "¿Las reseñas de Radar Educativo están moderadas?",
       answer:
         "Sí. Las reseñas pasan por moderación editorial para reducir spam y priorizar experiencias concretas y útiles para otras familias."
     },

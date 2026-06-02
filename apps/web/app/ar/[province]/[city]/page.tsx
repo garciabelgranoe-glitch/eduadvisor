@@ -116,7 +116,7 @@ export default async function CityPage({ params }: CityPageProps) {
         <Link href={cityRankingsPath(context.landing.city.provinceSlug, context.landing.city.slug) as never}>
           <Card className="h-full space-y-2 transition hover:border-brand-300">
             <h2 className="text-2xl font-semibold text-ink">Rankings por ciudad</h2>
-            <p className="text-sm text-slate-600">Revisá metodología EduAdvisor Score y ranking local transparente.</p>
+            <p className="text-sm text-slate-600">Revisá metodología Radar Score y ranking local transparente.</p>
           </Card>
         </Link>
       </div>

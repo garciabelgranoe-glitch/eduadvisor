@@ -60,7 +60,7 @@ export function SearchResultCard({
   const profileHasContent = Boolean(school.levels?.length) || school.monthlyFeeEstimate !== null || isPremiumProfile;
 
   const ratingDisplay = (() => {
-    // 1. Reseñas propias de EduAdvisor (cualquier cantidad)
+    // 1. Reseñas propias de Radar Educativo (cualquier cantidad)
     if (parentRating !== null && school.rating.count > 0)
       return { value: formatRating(parentRating), source: `${school.rating.count} reseña${school.rating.count !== 1 ? "s" : ""}` };
     // 2. Google como fallback: mínimo 5 reseñas y perfil con algo de contenido
@@ -174,9 +174,9 @@ export function SearchResultCard({
         {/* Trust line — minimal */}
         <p className="text-[11px] text-slate-400">
           {school.profile.status === "PREMIUM"
-            ? "✓ Perfil premium · datos verificados por EduAdvisor"
+            ? "✓ Perfil premium · datos verificados por Radar Educativo"
             : school.profile.status === "VERIFIED"
-              ? "✓ Perfil verificado por EduAdvisor"
+              ? "✓ Perfil verificado por Radar Educativo"
               : "Perfil en consolidación · datos de fuentes públicas"}
         </p>
 

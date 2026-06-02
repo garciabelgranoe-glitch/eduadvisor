@@ -7,7 +7,7 @@ import { pickParam, type RawSearchParams } from "@/lib/query-params";
 
 export const metadata: Metadata = buildNoIndexMetadata({
   title: "Acceso beta",
-  description: "Acceso restringido para participantes de beta privada en EduAdvisor.",
+  description: "Acceso restringido para participantes de beta privada en Radar Educativo.",
   canonicalPath: "/beta-acceso"
 });
 
@@ -61,7 +61,7 @@ export default function BetaAccessPage({ searchParams }: BetaAccessPageProps) {
         <Card className="space-y-3">
           <h2 className="text-xl font-semibold text-ink">Si eres familia</h2>
           <p className="text-sm text-slate-600">
-            Mantén tu registro en EduAdvisor y te avisaremos cuando abramos más cupos para la beta.
+            Mantén tu registro en Radar Educativo y te avisaremos cuando abramos más cupos para la beta.
           </p>
           <Button asChild>
             <Link href="/ingresar">Volver a ingresar</Link>

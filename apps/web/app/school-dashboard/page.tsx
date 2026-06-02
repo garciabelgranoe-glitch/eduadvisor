@@ -71,7 +71,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         subtitle="Todavía no hay colegios cargados para visualizar el panel."
       >
         <Card className="text-sm text-slate-600">
-          Todavía no hay colegios disponibles. Contactá al equipo de EduAdvisor para comenzar.
+          Todavía no hay colegios disponibles. Contactá al equipo de Radar Educativo para comenzar.
         </Card>
       </DashboardShell>
     );
@@ -92,7 +92,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
         subtitle="No se encontró el colegio solicitado."
       >
         <Card className="text-sm text-slate-600">
-          No encontramos el colegio solicitado. Intentá nuevamente o contactá al equipo de EduAdvisor.
+          No encontramos el colegio solicitado. Intentá nuevamente o contactá al equipo de Radar Educativo.
         </Card>
       </DashboardShell>
     );

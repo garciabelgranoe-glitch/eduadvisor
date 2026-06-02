@@ -117,7 +117,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <Card className="space-y-2 border-brand-100 bg-white/95">
           <p className="text-xs uppercase tracking-[0.16em] text-brand-700">Confianza y metodología</p>
           <p className="text-sm text-slate-700">
-            Los resultados combinan datos institucionales, señales de Google y moderación editorial de EduAdvisor.
+            Los resultados combinan datos institucionales, señales de Google y moderación editorial de Radar Educativo.
           </p>
           <div className="flex flex-wrap gap-3 text-xs text-slate-500">
             <span>Fuente: Google + fichas institucionales</span>

@@ -63,7 +63,7 @@ function buildImportedSummary(school: ApiSchoolDetail) {
   if (googleRating !== null) {
     return `${base} Rating Google ${googleRating.toFixed(1)}/5 (${googleReviewCount} reseñas).`;
   }
-  return `${base} Datos institucionales en proceso de curación por EduAdvisor.`;
+  return `${base} Datos institucionales en proceso de curación por Radar Educativo.`;
 }
 
 function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
@@ -309,7 +309,7 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
               profileLabel={school.profile.label}
               verifiedAt={school.profile.verifiedAt}
               updatedAt={school.quality?.dataFreshnessAt ?? school.profile.curatedAt}
-              sourceLabel={googleRating !== null ? "Google + EduAdvisor" : "EduAdvisor + institución"}
+              sourceLabel={googleRating !== null ? "Google + Radar Educativo" : "Radar Educativo + institución"}
             />
             <SchoolProfileCtas schoolId={school.id} schoolSlug={school.slug} canClaimProfile={canClaimProfile} />
           </div>

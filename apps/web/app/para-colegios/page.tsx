@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Para colegios — Recibí consultas de familias con intención real",
   description:
-    "Publicá o reclamá el perfil de tu colegio en EduAdvisor. Accedé a leads de matrícula, analytics y herramientas para convertir más familias.",
+    "Publicá o reclamá el perfil de tu colegio en Radar Educativo. Accedé a leads de matrícula, analytics y herramientas para convertir más familias.",
   canonicalPath: "/para-colegios"
 });
 
@@ -58,7 +58,7 @@ const faqs = [
     a: "El precio varía según el tamaño del colegio y el mercado. Contactanos al enviar el formulario y te enviamos una propuesta personalizada."
   },
   {
-    q: "¿Ya tengo un perfil creado en EduAdvisor?",
+    q: "¿Ya tengo un perfil creado en Radar Educativo?",
     a: "Probablemente sí — importamos datos de fuentes públicas. Reclamá el perfil para tomar el control y activar las funciones comerciales."
   },
   {
@@ -98,7 +98,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
               <span className="text-amber-300">¿Tu colegio aparece?</span>
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              EduAdvisor conecta colegios privados con padres que ya tienen intención de consulta.
+              Radar Educativo conecta colegios privados con padres que ya tienen intención de consulta.
               Publicá tu perfil, recibí leads calificados y gestioná todo desde un panel.
             </p>
 
@@ -212,7 +212,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
       {/* ── LEADS — sección central ── */}
       <section className="space-y-10">
         <div className="text-center">
-          <p className="ea-kicker mb-2">Por qué EduAdvisor</p>
+          <p className="ea-kicker mb-2">Por qué Radar Educativo</p>
           <h2 className="font-display text-4xl text-ink">
             Leads con intención real,<br className="hidden sm:block" /> no clicks sin contexto
           </h2>

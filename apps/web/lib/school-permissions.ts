@@ -25,7 +25,7 @@ export function managementUnlockMessage(status: SchoolProfileStatus | null | und
   }
 
   if (status === "CURATED") {
-    return "Tu perfil está curado por EduAdvisor. Para editar datos institucionales y gestionar leads debes verificar el colegio.";
+    return "Tu perfil está curado por Radar Educativo. Para editar datos institucionales y gestionar leads debes verificar el colegio.";
   }
 
   return "Tu perfil todavía no está verificado. Verifica el colegio para habilitar edición de perfil y gestión de leads.";

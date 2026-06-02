@@ -1,0 +1,10 @@
+{
+  "name": "salidas-educativas",
+  "private": true,
+  "packageManager": "pnpm@10.8.0",
+  "scripts": {
+    "dev:familias": "pnpm --filter familias-web dev",
+    "build:familias": "pnpm --filter familias-web build",
+    "start:familias": "pnpm --filter familias-web start"
+  }
+}

@@ -74,8 +74,8 @@ export default async function HomePage() {
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "EduAdvisor",
-    url: "https://eduadvisor.com",
+    name: "Radar Educativo",
+    url: "https://radareducativo.com",
     description: "Plataforma para descubrir, comparar y elegir colegios privados en Latinoamérica"
   };
 
@@ -164,7 +164,7 @@ export default async function HomePage() {
       <section className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-brand-50 p-8 text-center shadow-[0_8px_24px_rgba(13,27,31,0.06)]">
         <p className="ea-kicker mb-3 text-amber-700">Para colegios</p>
         <h2 className="font-display mb-3 text-3xl text-ink">
-          ¿Tu colegio ya está en EduAdvisor?
+          ¿Tu colegio ya está en Radar Educativo?
         </h2>
         <p className="mx-auto mb-6 max-w-md text-sm leading-relaxed text-slate-600">
           Recibí consultas de familias que ya están buscando. Completá tu perfil y accedé a un

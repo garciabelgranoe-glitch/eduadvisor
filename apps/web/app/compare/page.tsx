@@ -61,7 +61,7 @@ function buildDifferenceInsights(schools: ApiSchoolDetail[]) {
   if (validScores.length >= 2) {
     const minScore = Math.min(...validScores);
     const maxScore = Math.max(...validScores);
-    insights.push(`Hay una brecha de ${maxScore - minScore} puntos en EduAdvisor Score entre opciones.`);
+    insights.push(`Hay una brecha de ${maxScore - minScore} puntos en Radar Educativo Score entre opciones.`);
   }
 
   const validRatings = schools.map((school) => school.rating.average).filter((value): value is number => value !== null);

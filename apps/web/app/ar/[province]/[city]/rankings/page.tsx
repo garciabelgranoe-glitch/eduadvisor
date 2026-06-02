@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: RankingsCityPageProps): Promi
 
   return buildPageMetadata({
     title: `Ranking de colegios en ${context.landing.city.name}`,
-    description: `Ranking de colegios en ${context.landing.city.name} con metodología transparente de EduAdvisor Score.`,
+    description: `Ranking de colegios en ${context.landing.city.name} con metodología transparente de Radar Score.`,
     canonicalPath: cityRankingsPath(context.landing.city.provinceSlug, context.landing.city.slug)
   });
 }
@@ -100,7 +100,7 @@ export default async function RankingsCityPage({ params }: RankingsCityPageProps
       <JsonLd data={itemListSchema} />
 
       <Card className="space-y-2 bg-gradient-to-r from-brand-50 to-white">
-        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">EduAdvisor Score</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Radar Score</p>
         <h1 className="font-display text-4xl text-ink">Ranking en {context.landing.city.name}</h1>
         <p className="max-w-2xl text-sm text-slate-600">
           Metodología: combinamos satisfacción familiar, consistencia de ratings, tracción de leads calificados y

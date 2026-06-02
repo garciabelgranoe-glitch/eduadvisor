@@ -6,7 +6,7 @@ import { buildPageMetadata, cityRankingsPath } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Rankings de colegios",
-  description: "Ranking por ciudad con metodología EduAdvisor Score y transparencia de datos.",
+  description: "Ranking por ciudad con metodología Radar Score y transparencia de datos.",
   canonicalPath: "/rankings"
 });
 
@@ -23,7 +23,7 @@ export default async function RankingsPage() {
   return (
     <section className="space-y-5">
       <Card className="space-y-2 bg-gradient-to-r from-brand-50 to-white">
-        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">EduAdvisor Score</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Radar Score</p>
         <h1 className="font-display text-4xl text-ink">Ranking por ciudad</h1>
         <p className="max-w-2xl text-sm text-slate-600">
           Combinamos satisfacción familiar, consistencia de ratings, engagement, calidad institucional y capacidad de

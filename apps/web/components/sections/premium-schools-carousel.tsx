@@ -60,7 +60,7 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
       <div className="flex flex-wrap items-center justify-between gap-3 p-5 pb-0">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-amber-800">Colegios destacados</p>
-          <h2 className="font-display text-3xl text-ink">Instituciones premium en EduAdvisor</h2>
+          <h2 className="font-display text-3xl text-ink">Instituciones premium en Radar Educativo</h2>
           <p className="mt-1 text-sm text-slate-600">
             Mayor visibilidad para colegios que activaron su presencia premium.
           </p>
