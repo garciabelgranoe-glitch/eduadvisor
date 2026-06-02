@@ -1,5 +1,6 @@
 import { ConflictException, ForbiddenException, NotFoundException } from "@nestjs/common";
 import { LeadStatus, SchoolLevel, SchoolProfileStatus } from "@prisma/client";
+import { EmailService } from "../../common/email/email.service";
 import { CacheService } from "../../common/cache/cache.service";
 import { PrismaService } from "../../prisma/prisma.service";
 import { LeadsService } from "./leads.service";
@@ -21,11 +22,15 @@ describe("LeadsService", () => {
     invalidateNamespace: jest.fn()
   } as unknown as CacheService;
 
+  const emailMock = {
+    sendNewLeadNotification: jest.fn().mockResolvedValue({ ok: true })
+  } as unknown as EmailService;
+
   let service: LeadsService;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    service = new LeadsService(prismaMock, cacheMock);
+    service = new LeadsService(prismaMock, cacheMock, emailMock);
   });
 
   it("creates a lead with normalized fields and invalidates insights cache", async () => {

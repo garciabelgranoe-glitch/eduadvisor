@@ -1,5 +1,6 @@
 import { ConflictException, ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
 import { LeadStatus, SchoolProfileStatus } from "@prisma/client";
+import { EmailService } from "../../common/email/email.service";
 import { CacheService } from "../../common/cache/cache.service";
 import { PrismaService } from "../../prisma/prisma.service";
 import { CreateLeadDto } from "./dto/create-lead.dto";
@@ -10,7 +11,8 @@ import { UpdateLeadStatusDto } from "./dto/update-lead-status.dto";
 export class LeadsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly cache: CacheService
+    private readonly cache: CacheService,
+    private readonly email: EmailService
   ) {}
 
   async createLead(payload: CreateLeadDto) {
@@ -72,6 +74,17 @@ export class LeadsService {
     });
 
     await this.cache.invalidateNamespace("insights");
+
+    // Notificar al colegio si tiene email registrado (fire-and-forget)
+    if (school.email) {
+      this.email.sendNewLeadNotification({
+        schoolEmail: school.email,
+        schoolName: school.name,
+        parentName: normalizedParentName,
+        parentEmail: normalizedEmail,
+        parentPhone: normalizedPhone || null
+      }).catch(() => undefined);
+    }
 
     return {
       id: lead.id,

@@ -13,6 +13,7 @@ import {
   VerificationMethod
 } from "@prisma/client";
 import { CacheService } from "../../common/cache/cache.service";
+import { EmailService } from "../../common/email/email.service";
 import { PrismaService } from "../../prisma/prisma.service";
 import { SearchIndexService } from "../search/search-index.service";
 import { ProductEventsService } from "../product-events/product-events.service";
@@ -207,7 +208,8 @@ export class SchoolsService {
     private readonly prisma: PrismaService,
     private readonly cache: CacheService,
     private readonly productEvents: ProductEventsService,
-    private readonly searchIndex: SearchIndexService
+    private readonly searchIndex: SearchIndexService,
+    private readonly email: EmailService
   ) {}
 
   async listSchools(query: ListSchoolsDto) {
@@ -1323,6 +1325,22 @@ export class SchoolsService {
       };
     });
 
+    // Emails (fire-and-forget)
+    const schoolName = school?.name ?? normalizedName;
+    const schoolSlug = payload.schoolSlug ?? result.request.id;
+    this.email.sendClaimReceivedConfirmation({
+      representativeEmail: normalizedEmail,
+      representativeName: normalizedContactName,
+      schoolName
+    }).catch(() => undefined);
+    this.email.sendNewClaimNotification({
+      schoolName,
+      schoolSlug,
+      representativeName: normalizedContactName,
+      representativeEmail: normalizedEmail,
+      representativePhone: normalizedPhone || null
+    }).catch(() => undefined);
+
     return {
       requestId: result.request.id,
       status: result.request.status,
@@ -1420,7 +1438,15 @@ export class SchoolsService {
         school: {
           select: {
             id: true,
-            profileStatus: true
+            profileStatus: true,
+            name: true,
+            slug: true
+          }
+        },
+        representative: {
+          select: {
+            fullName: true,
+            email: true
           }
         }
       }
@@ -1494,6 +1520,16 @@ export class SchoolsService {
     });
 
     await this.cache.invalidateMany(["schools:list", "schools:search", "schools:detail", "search", "rankings"]);
+
+    // Email al representante si el claim fue aprobado (fire-and-forget)
+    if (payload.status === ClaimStatus.APPROVED && existing.representative?.email) {
+      this.email.sendClaimApprovedNotification({
+        representativeEmail: existing.representative.email,
+        representativeName: existing.representative.fullName,
+        schoolName: existing.school?.name ?? existing.requestedSchoolName,
+        schoolSlug: existing.school?.slug ?? ""
+      }).catch(() => undefined);
+    }
 
     return updated;
   }

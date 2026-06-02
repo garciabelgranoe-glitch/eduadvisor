@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
 import { CacheModule } from "./common/cache/cache.module";
+import { EmailModule } from "./common/email/email.module";
 import { RequestLoggingInterceptor } from "./common/interceptors/request-logging.interceptor";
 import { ObservabilityModule } from "./common/observability/observability.module";
 import { RateLimitGuard } from "./common/rate-limit/rate-limit.guard";
@@ -23,6 +24,7 @@ import { SearchModule } from "./modules/search/search.module";
 @Module({
   imports: [
     CacheModule,
+    EmailModule,
     ObservabilityModule,
     PrismaModule,
     HealthModule,
