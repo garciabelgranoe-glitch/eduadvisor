@@ -50,6 +50,8 @@ export interface ApiSchoolListItem {
     phone: string | null;
     email: string | null;
   };
+  scholarshipsAvailable: boolean;
+  acceptsVoucher: boolean;
 }
 
 export interface ApiMeta {
@@ -80,6 +82,7 @@ export interface ApiSchoolDetail {
   monthlyFeeEstimate: number | null;
   enrollmentFee: number | null;
   scholarshipsAvailable: boolean;
+  acceptsVoucher: boolean;
   studentsCount: number | null;
   location: {
     city: string;
@@ -198,6 +201,7 @@ export interface SchoolDashboardResponse {
     monthlyFeeEstimate: number | null;
     enrollmentFee: number | null;
     scholarshipsAvailable: boolean;
+    acceptsVoucher: boolean;
     studentsCount: number | null;
     levels: string[];
     location: {

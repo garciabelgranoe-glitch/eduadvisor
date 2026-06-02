@@ -171,6 +171,22 @@ export function SearchResultCard({
           </div>
         </div>
 
+        {/* Beneficios */}
+        {(school.acceptsVoucher || school.scholarshipsAvailable) && (
+          <div className="flex flex-wrap gap-1.5">
+            {school.acceptsVoucher && (
+              <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-800">
+                ✓ Voucher Educativo
+              </span>
+            )}
+            {school.scholarshipsAvailable && (
+              <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[10px] font-semibold text-blue-800">
+                ✓ Becas disponibles
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Trust line — minimal */}
         <p className="text-[11px] text-slate-400">
           {school.profile.status === "PREMIUM"

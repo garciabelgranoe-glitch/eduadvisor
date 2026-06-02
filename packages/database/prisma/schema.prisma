@@ -246,6 +246,7 @@ model School {
   monthlyFeeEstimate    Int?
   enrollmentFee         Int?
   scholarshipsAvailable Boolean                @default(false)
+  acceptsVoucher        Boolean                @default(false)
   studentsCount         Int?
   profileCompleteness   Int                    @default(0)
   dataFreshnessAt       DateTime?

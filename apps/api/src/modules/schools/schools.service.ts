@@ -558,6 +558,7 @@ export class SchoolsService {
         monthlyFeeEstimate: school.monthlyFeeEstimate,
         enrollmentFee: school.enrollmentFee,
         scholarshipsAvailable: school.scholarshipsAvailable,
+        acceptsVoucher: school.acceptsVoucher,
         studentsCount: school.studentsCount,
         location: {
           city: school.city.name,
@@ -816,6 +817,7 @@ export class SchoolsService {
         monthlyFeeEstimate: school.monthlyFeeEstimate,
         enrollmentFee: school.enrollmentFee,
         scholarshipsAvailable: school.scholarshipsAvailable,
+        acceptsVoucher: school.acceptsVoucher,
         studentsCount: school.studentsCount,
         levels: school.levels.map((item) => item.level),
         location: {
@@ -1110,6 +1112,8 @@ export class SchoolsService {
           email: normalizedEmail,
           monthlyFeeEstimate: payload.monthlyFeeEstimate,
           studentsCount: payload.studentsCount,
+          scholarshipsAvailable: payload.scholarshipsAvailable,
+          acceptsVoucher: payload.acceptsVoucher,
           latitude: payload.latitude,
           longitude: payload.longitude,
           profileStatus: {

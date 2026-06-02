@@ -395,6 +395,25 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
             </div>
           )}
 
+          {/* Beneficios */}
+          {(school.scholarshipsAvailable || school.acceptsVoucher) && (
+            <Card className="space-y-3 border-brand-100">
+              <p className="ea-kicker">Beneficios</p>
+              <div className="flex flex-wrap gap-2">
+                {school.acceptsVoucher && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
+                    ✓ Acepta Voucher Educativo
+                  </span>
+                )}
+                {school.scholarshipsAvailable && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
+                    ✓ Otorga becas
+                  </span>
+                )}
+              </div>
+            </Card>
+          )}
+
           {/* Datos institucionales */}
           <Card className="space-y-4 border-brand-100">
             <p className="ea-kicker">Datos institucionales</p>

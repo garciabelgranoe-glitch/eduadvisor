@@ -39,6 +39,8 @@ export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolPro
   );
   const [logoUrl, setLogoUrl] = useState(school.media?.logoUrl ?? "");
   const [galleryText, setGalleryText] = useState((school.media?.galleryUrls ?? []).join("\n"));
+  const [scholarshipsAvailable, setScholarshipsAvailable] = useState(school.scholarshipsAvailable ?? false);
+  const [acceptsVoucher, setAcceptsVoucher] = useState(school.acceptsVoucher ?? false);
   const logoInputRef = useRef<HTMLInputElement>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
 
@@ -160,6 +162,8 @@ export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolPro
           monthlyFeeEstimate: monthlyFeeEstimate.trim() ? Number(monthlyFeeEstimate) : null,
           studentsCount: studentsCount.trim() ? Number(studentsCount) : null,
           levels: selectedLevels,
+          scholarshipsAvailable,
+          acceptsVoucher,
           ...(isPremium
             ? {
                 logoUrl: logoUrl.trim() ? logoUrl.trim() : null,
@@ -279,6 +283,38 @@ export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolPro
                   {level.label}
                 </button>
               ))}
+            </div>
+          </div>
+
+          <div className="space-y-3 rounded-2xl border border-brand-100 bg-brand-50/40 p-4">
+            <p className="text-xs uppercase tracking-[0.16em] text-brand-700">Beneficios y financiamiento</p>
+            <div className="space-y-3">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 rounded border-brand-300 text-brand-700 accent-brand-700"
+                  checked={scholarshipsAvailable}
+                  onChange={(e) => setScholarshipsAvailable(e.target.checked)}
+                  disabled={!isEditable}
+                />
+                <span className="space-y-0.5">
+                  <span className="block text-sm font-medium text-ink">Otorga becas</span>
+                  <span className="block text-xs text-slate-500">El colegio ofrece becas totales o parciales a familias que lo soliciten.</span>
+                </span>
+              </label>
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  className="mt-0.5 h-4 w-4 rounded border-brand-300 text-brand-700 accent-brand-700"
+                  checked={acceptsVoucher}
+                  onChange={(e) => setAcceptsVoucher(e.target.checked)}
+                  disabled={!isEditable}
+                />
+                <span className="space-y-0.5">
+                  <span className="block text-sm font-medium text-ink">Acepta Voucher Educativo</span>
+                  <span className="block text-xs text-slate-500">Está habilitado para recibir el beneficio del gobierno nacional para el pago de cuotas.</span>
+                </span>
+              </label>
             </div>
           </div>
 

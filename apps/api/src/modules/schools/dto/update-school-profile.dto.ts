@@ -3,6 +3,7 @@ import { SchoolLevel } from "@prisma/client";
 import {
   ArrayUnique,
   IsArray,
+  IsBoolean,
   IsEmail,
   IsEnum,
   IsInt,
@@ -88,4 +89,12 @@ export class UpdateSchoolProfileDto {
   @ArrayUnique()
   @IsUrl({ require_tld: false }, { each: true })
   galleryUrls?: string[];
+
+  @IsOptional()
+  @IsBoolean()
+  scholarshipsAvailable?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  acceptsVoucher?: boolean;
 }

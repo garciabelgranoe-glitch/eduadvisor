@@ -39,6 +39,8 @@ interface SearchSchoolDocument {
   phone: string | null;
   email: string | null;
   logoUrl: string | null;
+  scholarshipsAvailable: boolean;
+  acceptsVoucher: boolean;
   createdAt: string;
   createdAtTs: number;
 }
@@ -99,6 +101,8 @@ export interface SearchResult {
     media: {
       logoUrl: string | null;
     } | null;
+    scholarshipsAvailable: boolean;
+    acceptsVoucher: boolean;
   }>;
   meta: SearchMeta;
 }
@@ -234,6 +238,8 @@ export class SearchIndexService {
         phone: school.phone,
         email: school.email,
         logoUrl: school.photos[0]?.url ?? null,
+        scholarshipsAvailable: school.scholarshipsAvailable,
+        acceptsVoucher: school.acceptsVoucher,
         createdAt: school.createdAt.toISOString(),
         createdAtTs: school.createdAt.getTime()
       };
@@ -328,7 +334,9 @@ export class SearchIndexService {
           phone: item.phone,
           email: item.email
         },
-        media: item.logoUrl ? { logoUrl: item.logoUrl } : null
+        media: item.logoUrl ? { logoUrl: item.logoUrl } : null,
+        scholarshipsAvailable: item.scholarshipsAvailable ?? false,
+        acceptsVoucher: item.acceptsVoucher ?? false
       })),
       meta: {
         total,
@@ -366,7 +374,9 @@ export class SearchIndexService {
         "profileStatus",
         "monthlyFeeEstimate",
         "ratingAverage",
-        "eduAdvisorScore"
+        "eduAdvisorScore",
+        "scholarshipsAvailable",
+        "acceptsVoucher"
       ],
       sortableAttributes: [
         "name",
@@ -563,6 +573,8 @@ export class SearchIndexService {
       phone: school.phone,
       email: school.email,
       logoUrl: school.photos[0]?.url ?? null,
+      scholarshipsAvailable: school.scholarshipsAvailable,
+      acceptsVoucher: school.acceptsVoucher,
       createdAt: school.createdAt.toISOString(),
       createdAtTs: school.createdAt.getTime()
     }));
