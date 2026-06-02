@@ -152,6 +152,99 @@ export class SearchIndexService {
     }
   }
 
+  async syncSchool(schoolId: string): Promise<void> {
+    if (!this.client) {
+      return;
+    }
+
+    try {
+      const school = await this.prisma.school.findUnique({
+        where: { id: schoolId },
+        include: {
+          city: { select: { name: true, slug: true } },
+          province: { select: { name: true, slug: true } },
+          country: { select: { name: true, isoCode: true } },
+          levels: { select: { level: true } },
+          scores: {
+            select: { score: true, calculatedAt: true },
+            orderBy: { calculatedAt: "desc" },
+            take: 1
+          },
+          photos: {
+            select: { url: true, isPrimary: true },
+            where: { isPrimary: true },
+            take: 1
+          }
+        }
+      });
+
+      if (!school || !school.active) {
+        return;
+      }
+
+      const ratingData = await this.prisma.review.groupBy({
+        by: ["schoolId"],
+        where: { schoolId, status: ReviewStatus.APPROVED },
+        _avg: { rating: true },
+        _count: { _all: true }
+      });
+
+      const rating = ratingData[0] ?? null;
+
+      const document: SearchSchoolDocument = {
+        id: school.id,
+        slug: school.slug,
+        name: school.name,
+        description: school.description,
+        countryName: school.country.name,
+        countryCode: school.country.isoCode,
+        countryKey: this.normalizeKey(school.country.name),
+        provinceName: school.province.name,
+        provinceSlug: school.province.slug,
+        provinceKey: this.normalizeKey(school.province.name),
+        cityName: school.city.name,
+        citySlug: school.city.slug,
+        cityKey: this.normalizeKey(school.city.name),
+        levels: school.levels.map((entry) => entry.level),
+        profileStatus: school.profileStatus,
+        monthlyFeeEstimate: school.monthlyFeeEstimate,
+        studentsCount: school.studentsCount,
+        ratingAverage: Number((rating?._avg.rating ?? 0).toFixed(2)),
+        ratingCount: rating?._count._all ?? 0,
+        googleRating: school.googleRating,
+        googleReviewCount: school.googleReviewCount,
+        eduAdvisorScore: school.scores[0]?.score ?? 0,
+        leadIntentScore: this.calculateLeadIntentScore({
+          profileStatus: school.profileStatus,
+          phone: school.phone,
+          website: school.website,
+          email: school.email,
+          description: school.description,
+          monthlyFeeEstimate: school.monthlyFeeEstimate,
+          levelsCount: school.levels.length,
+          googleRating: school.googleRating,
+          googleReviewCount: school.googleReviewCount,
+          eduAdvisorScore: school.scores[0]?.score ?? 0
+        }),
+        rankingBoost: this.profileRankingBoost(school.profileStatus),
+        latitude: school.latitude,
+        longitude: school.longitude,
+        _geo: { lat: school.latitude, lng: school.longitude },
+        website: school.website,
+        phone: school.phone,
+        email: school.email,
+        logoUrl: school.photos[0]?.url ?? null,
+        createdAt: school.createdAt.toISOString(),
+        createdAtTs: school.createdAt.getTime()
+      };
+
+      const index = this.client.index<SearchSchoolDocument>(this.indexUid);
+      await index.updateDocuments([document], { primaryKey: "id" });
+    } catch (error) {
+      this.logger.warn(`syncSchool failed for ${schoolId}: ${this.getErrorMessage(error)}`);
+    }
+  }
+
   async reindexSchools() {
     const index = this.getIndexOrThrow();
     await this.configureIndex(index);

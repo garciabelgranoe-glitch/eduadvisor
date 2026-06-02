@@ -14,6 +14,7 @@ import {
 } from "@prisma/client";
 import { CacheService } from "../../common/cache/cache.service";
 import { PrismaService } from "../../prisma/prisma.service";
+import { SearchIndexService } from "../search/search-index.service";
 import { ProductEventsService } from "../product-events/product-events.service";
 import { CreateClaimRequestDto } from "./dto/create-claim-request.dto";
 import { ListClaimRequestsDto } from "./dto/list-claim-requests.dto";
@@ -205,7 +206,8 @@ export class SchoolsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheService,
-    private readonly productEvents: ProductEventsService
+    private readonly productEvents: ProductEventsService,
+    private readonly searchIndex: SearchIndexService
   ) {}
 
   async listSchools(query: ListSchoolsDto) {
@@ -1199,6 +1201,12 @@ export class SchoolsService {
       "rankings",
       "insights"
     ]);
+
+    // Sync search index in background — don't await to keep the response fast
+    this.searchIndex.syncSchool(schoolId).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.warn("search-index-sync-failed", { schoolId, error });
+    });
 
     if (changedFields.length > 0) {
       try {
