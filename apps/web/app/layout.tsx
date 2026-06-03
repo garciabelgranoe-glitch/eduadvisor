@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import { ScrollDepthTracker } from "@/components/analytics/scroll-depth-tracker";
 import { WebVitalsTracker } from "@/components/analytics/web-vitals-tracker";
 import { ChunkLoadRecovery } from "@/components/runtime/chunk-load-recovery";
@@ -40,9 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="relative">
               <SiteHeader />
               <main className="mx-auto max-w-6xl px-4 pb-10 pt-3 md:pt-10">{children}</main>
-              <footer className="mx-auto mt-16 max-w-6xl border-t border-brand-100 px-4 py-8 text-sm text-slate-500">
-                RADAR EDUCATIVO · Decisiones educativas con datos, contexto y transparencia.
-              </footer>
+              <SiteFooter />
             </div>
           </div>
         </QueryProvider>
