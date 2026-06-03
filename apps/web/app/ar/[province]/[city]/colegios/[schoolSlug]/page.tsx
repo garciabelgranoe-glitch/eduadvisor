@@ -276,7 +276,7 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
               <p className="text-3xl font-bold leading-none">
                 {school.eduAdvisorScore ?? "—"}
               </p>
-              <p className="mt-1 text-[10px] uppercase tracking-widest text-white/70">Score EA</p>
+              <p className="mt-1 text-[10px] uppercase tracking-widest text-white/70">Score R.E.</p>
             </div>
 
             <div className="flex flex-col justify-center rounded-2xl border border-brand-100 bg-white/80 px-4 py-4">

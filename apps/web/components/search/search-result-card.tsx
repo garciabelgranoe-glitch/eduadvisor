@@ -124,7 +124,7 @@ export function SearchResultCard({
             {school.eduAdvisorScore !== null && (
               <div className={`rounded-xl px-3 py-2 text-center text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}>
                 <p className="text-lg font-bold leading-none">{school.eduAdvisorScore}</p>
-                <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score</p>
+                <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score R.E.</p>
               </div>
             )}
           </div>
