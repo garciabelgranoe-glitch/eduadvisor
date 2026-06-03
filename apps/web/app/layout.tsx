@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <div className="pointer-events-none absolute inset-0 grid-pattern opacity-50" />
             <div className="relative">
               <SiteHeader />
-              <main className="mx-auto max-w-6xl px-4 pb-10 pt-3 md:pt-10">{children}</main>
+              <main className="mx-auto max-w-6xl px-4 pb-10 pt-2 md:pt-4">{children}</main>
               <SiteFooter />
             </div>
           </div>
