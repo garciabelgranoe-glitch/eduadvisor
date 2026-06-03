@@ -36,7 +36,7 @@ const CITY_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-brand-100 bg-brand-950 text-white">
+    <footer className="mt-16 border-t border-brand-100 bg-brand-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-3">
 
@@ -103,7 +103,7 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-brand-800 pt-6 md:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-brand-700 pt-6 md:flex-row">
           <div className="flex items-center gap-2">
             <span className="font-display text-lg font-semibold text-white">Radar Educativo</span>
             <span className="text-brand-400">·</span>
