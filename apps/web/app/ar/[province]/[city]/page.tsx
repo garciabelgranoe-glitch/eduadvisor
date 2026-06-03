@@ -97,11 +97,10 @@ export default async function CityPage({ params }: CityPageProps) {
       <JsonLd data={breadcrumbSchema} />
 
       <Card className="space-y-3 bg-gradient-to-r from-brand-50 to-white">
-        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Landing ciudad</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">{context.landing.city.province}</p>
         <h1 className="font-display text-4xl text-ink">Colegios privados en {context.landing.city.name}</h1>
         <p className="max-w-3xl text-sm text-slate-600">
-          Accedé al listado principal, rankings y perfiles de colegios de {context.landing.city.name}. Esta landing
-          consolida la intención geográfica para evitar duplicación por variaciones de términos.
+          Encontrá, comparás y elegís el mejor colegio privado en {context.landing.city.name}. Listados actualizados, rankings locales y perfiles con datos reales de cuota, niveles y reseñas.
         </p>
       </Card>
 

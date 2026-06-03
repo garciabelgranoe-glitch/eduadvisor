@@ -12,8 +12,8 @@ interface LegacyRankingCategoryPageProps {
 
 export async function generateMetadata({ params }: LegacyRankingCategoryPageProps): Promise<Metadata> {
   return buildNoIndexMetadata({
-    title: "Ruta consolidada",
-    description: "La categoría fue consolidada al listado canónico de colegios por intención.",
+    title: "Redireccionando...",
+    description: "Esta página redirige al listado de colegios correspondiente.",
     canonicalPath: citySchoolsCategoryPath(params.province, params.city, params.category)
   });
 }

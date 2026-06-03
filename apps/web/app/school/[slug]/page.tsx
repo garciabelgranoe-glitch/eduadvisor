@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: LegacySchoolPageProps): Promi
 
   return buildNoIndexMetadata({
     title: `Redirección de ${school.name}`,
-    description: "Perfil legado consolidado al path geográfico canónico.",
+    description: "Esta página redirige al perfil actualizado del colegio.",
     canonicalPath: citySchoolProfilePath(school.location.province, school.location.city, school.slug)
   });
 }

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: LegacyCityLandingPageProps): 
 
   return buildNoIndexMetadata({
     title: `Migrado a ${cityLanding.city.name}`,
-    description: "Ruta legacy consolidada a arquitectura geo canónica.",
+    description: "Esta página redirige al listado de colegios de la ciudad.",
     canonicalPath: citySchoolsPath(cityLanding.city.provinceSlug, cityLanding.city.slug)
   });
 }
