@@ -48,7 +48,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href as never}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                    className="text-sm text-slate-100 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -65,7 +65,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href as never}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                    className="text-sm text-slate-100 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -75,7 +75,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href as never}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                    className="text-sm text-slate-100 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -92,7 +92,7 @@ export function SiteFooter() {
                 <li key={city.city}>
                   <Link
                     href={citySchoolsPath(city.province, city.city) as never}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                    className="text-sm text-slate-100 hover:text-white transition-colors"
                   >
                     {city.label}
                   </Link>
