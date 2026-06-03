@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 import { SchoolProfileStatus } from "@prisma/client";
-import { IsEnum, IsIn, IsInt, IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
+import { IsBoolean, IsEnum, IsIn, IsInt, IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
 import { PaginationQueryDto } from "../../../common/dto/pagination-query.dto";
 
 export class ListSchoolsDto extends PaginationQueryDto {
@@ -46,4 +46,14 @@ export class ListSchoolsDto extends PaginationQueryDto {
   @IsOptional()
   @IsEnum(SchoolProfileStatus)
   profileStatus?: SchoolProfileStatus;
+
+  @IsOptional()
+  @IsBoolean()
+  @Type(() => Boolean)
+  acceptsVoucher?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  @Type(() => Boolean)
+  scholarshipsAvailable?: boolean;
 }

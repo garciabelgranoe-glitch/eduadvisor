@@ -435,6 +435,14 @@ export class SearchIndexService {
       filters.push(`profileStatus = "${query.profileStatus}"`);
     }
 
+    if (query.acceptsVoucher) {
+      filters.push(`acceptsVoucher = true`);
+    }
+
+    if (query.scholarshipsAvailable) {
+      filters.push(`scholarshipsAvailable = true`);
+    }
+
     if (query.feeMin !== undefined) {
       filters.push(`monthlyFeeEstimate >= ${query.feeMin}`);
     }

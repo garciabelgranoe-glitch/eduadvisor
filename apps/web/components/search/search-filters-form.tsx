@@ -53,6 +53,8 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
   const [ratingMin, setRatingMin] = useState(current.ratingMin ?? "");
   const [sortBy, setSortBy] = useState<NonNullable<SchoolSearchParams["sortBy"]>>(current.sortBy ?? "relevance");
   const [sortOrder, setSortOrder] = useState<NonNullable<SchoolSearchParams["sortOrder"]>>(current.sortOrder ?? "desc");
+  const [acceptsVoucher, setAcceptsVoucher] = useState(current.acceptsVoucher === "true");
+  const [scholarshipsAvailable, setScholarshipsAvailable] = useState(current.scholarshipsAvailable === "true");
 
   const activeChips = useMemo(() => {
     const chips: Array<{ key: string; label: string; clear: () => void }> = [];
@@ -107,8 +109,22 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
         }
       });
     }
+    if (acceptsVoucher) {
+      chips.push({
+        key: "acceptsVoucher",
+        label: "✓ Voucher Educativo",
+        clear: () => setAcceptsVoucher(false)
+      });
+    }
+    if (scholarshipsAvailable) {
+      chips.push({
+        key: "scholarshipsAvailable",
+        label: "✓ Becas disponibles",
+        clear: () => setScholarshipsAvailable(false)
+      });
+    }
     return chips;
-  }, [city, feeMax, level, q, ratingMin]);
+  }, [city, feeMax, level, q, ratingMin, acceptsVoucher, scholarshipsAvailable]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     const formData = new FormData(event.currentTarget);
@@ -217,6 +233,32 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
             onChange={(event) => setRatingMin(event.target.value)}
           />
         </FormField>
+        <div className="space-y-2">
+          <p className="text-sm font-medium text-slate-700">Beneficios</p>
+          <label className="flex cursor-pointer items-center gap-2">
+            <input
+              type="checkbox"
+              name="acceptsVoucher"
+              value="true"
+              checked={acceptsVoucher}
+              onChange={(e) => setAcceptsVoucher(e.target.checked)}
+              className="h-4 w-4 rounded border-brand-300 accent-brand-700"
+            />
+            <span className="text-sm text-slate-700">Acepta Voucher Educativo</span>
+          </label>
+          <label className="flex cursor-pointer items-center gap-2">
+            <input
+              type="checkbox"
+              name="scholarshipsAvailable"
+              value="true"
+              checked={scholarshipsAvailable}
+              onChange={(e) => setScholarshipsAvailable(e.target.checked)}
+              className="h-4 w-4 rounded border-brand-300 accent-brand-700"
+            />
+            <span className="text-sm text-slate-700">Otorga becas</span>
+          </label>
+        </div>
+
         <div className="grid grid-cols-2 gap-2">
           <FormField label="Ordenar por">
             <Select

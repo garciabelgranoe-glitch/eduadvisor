@@ -142,6 +142,8 @@ export interface SchoolSearchParams {
   limit?: string;
   sortBy?: "relevance" | "leadIntentScore" | "name" | "monthlyFeeEstimate" | "createdAt";
   sortOrder?: "asc" | "desc";
+  acceptsVoucher?: "true";
+  scholarshipsAvailable?: "true";
 }
 
 export interface CreateLeadPayload {
