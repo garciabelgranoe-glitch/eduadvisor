@@ -146,6 +146,7 @@ function resolveErrorMessage(code: string | undefined) {
 export default async function SignInPage({ searchParams }: SignInPageProps) {
   const requestedNext = sanitizeNextPath(pickParam(searchParams?.next));
   const adminModeParam = pickParam(searchParams?.admin);
+  const preselectedSchoolSlug = pickParam(searchParams?.school)?.trim().toLowerCase() || null;
   const errorCode = pickParam(searchParams?.error);
   const errorMessage = resolveErrorMessage(errorCode);
   const showAdminAccess = requestedNext?.startsWith("/admin") || adminModeParam === "1";
@@ -160,20 +161,39 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
   const adminGoogleStartPath = `/api/session/google/start?intent=admin&next=${encodeURIComponent(adminNextPath)}`;
   const adminSharedCodeEnabled = Boolean(process.env.ADMIN_CONSOLE_TOKEN?.trim());
 
-  const schoolsResponse = await getAdminSchools({
-    status: "active",
-    page: "1",
-    limit: "100",
-    sortBy: "name",
-    sortOrder: "asc"
-  });
-  const schoolOptions = schoolsResponse.items.map((school) => ({
+  const [schoolsResponse, preselectedResponse] = await Promise.all([
+    getAdminSchools({
+      status: "active",
+      page: "1",
+      limit: "100",
+      sortBy: "name",
+      sortOrder: "asc"
+    }),
+    preselectedSchoolSlug
+      ? getAdminSchools({ status: "active", q: preselectedSchoolSlug, limit: "5" })
+      : Promise.resolve(null)
+  ]);
+
+  const baseOptions = schoolsResponse.items.map((school) => ({
     id: school.id,
     slug: school.slug,
     name: school.name,
     city: school.city,
     province: school.province
   }));
+
+  // Aseguramos que el colegio pre-seleccionado esté en la lista aunque no esté en los primeros 100
+  const preselectedItems = preselectedResponse?.items.map((school) => ({
+    id: school.id,
+    slug: school.slug,
+    name: school.name,
+    city: school.city,
+    province: school.province
+  })) ?? [];
+
+  const slugsInBase = new Set(baseOptions.map((s) => s.slug));
+  const extraOptions = preselectedItems.filter((s) => !slugsInBase.has(s.slug));
+  const schoolOptions = [...extraOptions, ...baseOptions];
 
   return (
     <section className="space-y-5">
@@ -253,7 +273,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
               <Input type="email" name="email" required placeholder="direccion@colegio.edu.ar" />
             </FormField>
 
-            <SchoolLoginSelector schools={schoolOptions} />
+            <SchoolLoginSelector schools={schoolOptions} preselectedSlug={preselectedSchoolSlug} />
 
             <FormField label="Código de acceso">
               <Input type="password" name="accessCode" placeholder="Opcional según configuración" />

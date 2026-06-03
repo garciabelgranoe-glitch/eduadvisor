@@ -154,6 +154,10 @@ export class EmailService {
     schoolName: string;
     schoolSlug: string;
   }) {
+    const loginUrl = input.schoolSlug
+      ? `https://radareducativo.com/ingresar?school=${encodeURIComponent(input.schoolSlug)}`
+      : `https://radareducativo.com/ingresar`;
+
     return this.send({
       to: input.representativeEmail,
       subject: `¡Tu perfil de ${input.schoolName} fue aprobado!`,
@@ -164,14 +168,22 @@ export class EmailService {
           </div>
           <div style="background: #f9fafb; padding: 32px; border-radius: 0 0 8px 8px; border: 1px solid #e5e7eb; border-top: none;">
             <p>Hola ${input.representativeName},</p>
-            <p>El perfil de <strong>${input.schoolName}</strong> en Radar Educativo fue aprobado. Ya podés acceder al panel del colegio y completar la información.</p>
+            <p>El perfil de <strong>${input.schoolName}</strong> en Radar Educativo fue aprobado. Ya podés acceder al panel del colegio para completar la información y gestionar contactos.</p>
             <div style="margin: 24px 0;">
-              <a href="https://radareducativo.com/ingresar"
+              <a href="${loginUrl}"
                  style="background: #0f4c3a; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; display: inline-block;">
-                Acceder al panel →
+                Ir al panel del colegio →
               </a>
             </div>
-            <p style="font-size: 13px; color: #9ca3af;">
+            <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-top: 8px;">
+              <p style="margin: 0 0 8px; font-size: 13px; font-weight: 600; color: #374151;">Para ingresar necesitás:</p>
+              <ol style="margin: 0; padding-left: 20px; font-size: 13px; color: #6b7280; line-height: 1.8;">
+                <li>Tu email institucional: <strong style="color: #1a1a1a;">${input.representativeEmail}</strong></li>
+                <li>Seleccionar <strong style="color: #1a1a1a;">${input.schoolName}</strong> en el selector</li>
+                <li>Hacer click en <strong style="color: #1a1a1a;">Entrar como colegio</strong></li>
+              </ol>
+            </div>
+            <p style="margin-top: 24px; font-size: 13px; color: #9ca3af;">
               El equipo de <a href="https://radareducativo.com" style="color: #0f4c3a;">Radar Educativo</a>
             </p>
           </div>

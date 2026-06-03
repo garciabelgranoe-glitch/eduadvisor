@@ -12,15 +12,17 @@ interface SchoolOption {
 
 interface SchoolLoginSelectorProps {
   schools: SchoolOption[];
+  preselectedSlug?: string | null;
 }
 
 function formatLabel(school: SchoolOption) {
   return `${school.name} · ${school.city}${school.province ? `, ${school.province}` : ""}`;
 }
 
-export function SchoolLoginSelector({ schools }: SchoolLoginSelectorProps) {
-  const [query, setQuery] = useState("");
-  const [selectedSchool, setSelectedSchool] = useState<SchoolOption | null>(null);
+export function SchoolLoginSelector({ schools, preselectedSlug }: SchoolLoginSelectorProps) {
+  const preselected = preselectedSlug ? (schools.find((s) => s.slug === preselectedSlug) ?? null) : null;
+  const [query, setQuery] = useState(preselected ? formatLabel(preselected) : "");
+  const [selectedSchool, setSelectedSchool] = useState<SchoolOption | null>(preselected);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<SchoolOption[]>(schools.slice(0, 10));
