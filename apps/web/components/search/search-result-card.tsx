@@ -56,6 +56,12 @@ export function SearchResultCard({
         ? "bg-brand-800"
         : "bg-slate-600";
 
+  // Fallback al rating de Google si no hay Score R.E.
+  const googleScoreFallback =
+    school.eduAdvisorScore === null && googleRating !== null && googleReviewCount >= 3
+      ? { value: formatRating(googleRating), count: googleReviewCount }
+      : null;
+
   // Perfil con contenido mínimo: tiene niveles cargados, cuota estimada o logo premium
   const profileHasContent = Boolean(school.levels?.length) || school.monthlyFeeEstimate !== null || isPremiumProfile;
 
@@ -121,12 +127,17 @@ export function SearchResultCard({
                 />
               </div>
             )}
-            {school.eduAdvisorScore !== null && (
+            {school.eduAdvisorScore !== null ? (
               <div className={`rounded-xl px-3 py-2 text-center text-white ${scoreColor} shadow-[0_8px_20px_rgba(0,0,0,0.2)]`}>
                 <p className="text-lg font-bold leading-none">{school.eduAdvisorScore}</p>
                 <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Score R.E.</p>
               </div>
-            )}
+            ) : googleScoreFallback ? (
+              <div className="rounded-xl bg-slate-500 px-3 py-2 text-center text-white shadow-[0_8px_20px_rgba(0,0,0,0.15)]">
+                <p className="text-lg font-bold leading-none">⭐ {googleScoreFallback.value}</p>
+                <p className="mt-0.5 text-[9px] uppercase tracking-widest text-white/75">Google</p>
+              </div>
+            ) : null}
           </div>
         </div>
 
