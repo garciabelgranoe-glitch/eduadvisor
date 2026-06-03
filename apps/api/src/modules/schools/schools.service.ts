@@ -406,7 +406,8 @@ export class SchoolsService {
         MATERNAL: 0,
         INICIAL: 0,
         PRIMARIA: 0,
-        SECUNDARIA: 0
+        SECUNDARIA: 0,
+        SUPERIOR: 0
       };
 
       for (const aggregate of levelAggregate) {

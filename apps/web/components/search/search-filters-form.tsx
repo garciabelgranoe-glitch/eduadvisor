@@ -77,7 +77,7 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
       });
     }
     if (level.trim()) {
-      const levelMap: Record<string, string> = { MATERNAL: "Maternal", INICIAL: "Inicial", PRIMARIA: "Primaria", SECUNDARIA: "Secundaria" };
+      const levelMap: Record<string, string> = { MATERNAL: "Maternal", INICIAL: "Inicial", PRIMARIA: "Primaria", SECUNDARIA: "Secundaria", SUPERIOR: "Superior" };
       chips.push({
         key: "level",
         label: `Nivel: ${levelMap[level] ?? level}`,
@@ -203,6 +203,7 @@ export function SearchFiltersForm({ current }: SearchFiltersFormProps) {
             <option value="INICIAL">Inicial</option>
             <option value="PRIMARIA">Primaria</option>
             <option value="SECUNDARIA">Secundaria</option>
+            <option value="SUPERIOR">Superior</option>
           </Select>
         </FormField>
         <FormField label="Cuota máxima">

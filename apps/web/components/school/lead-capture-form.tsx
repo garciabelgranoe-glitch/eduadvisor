@@ -27,7 +27,7 @@ export function LeadCaptureForm({
   const [hpWebsite, setHpWebsite] = useState("");
   const [parentName, setParentName] = useState("");
   const [childAge, setChildAge] = useState("8");
-  const [educationLevel, setEducationLevel] = useState<"MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA">("PRIMARIA");
+  const [educationLevel, setEducationLevel] = useState<"MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" | "SUPERIOR">("PRIMARIA");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [challengeToken, setChallengeToken] = useState("");
@@ -161,13 +161,14 @@ export function LeadCaptureForm({
             <FormField label="Nivel educativo">
               <Select
                 value={educationLevel}
-                onChange={(event) => setEducationLevel(event.target.value as "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA")}
+                onChange={(event) => setEducationLevel(event.target.value as "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" | "SUPERIOR")}
                 required
               >
                 <option value="MATERNAL">Maternal</option>
                 <option value="INICIAL">Inicial</option>
                 <option value="PRIMARIA">Primaria</option>
                 <option value="SECUNDARIA">Secundaria</option>
+                <option value="SUPERIOR">Superior</option>
               </Select>
             </FormField>
             <FormField label="Teléfono">

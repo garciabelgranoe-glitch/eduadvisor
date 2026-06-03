@@ -73,7 +73,7 @@ export class IntelligenceService {
         metrics: {
           avgMonthlyFee: null,
           monthlyFeeRange: { min: null, max: null },
-          demandByLevel: { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0 },
+          demandByLevel: { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0, SUPERIOR: 0 },
           satisfactionAverage: null,
           totalSchools: 0,
           totalLeadsWindow: 0
@@ -142,7 +142,8 @@ export class IntelligenceService {
       MATERNAL: 0,
       INICIAL: 0,
       PRIMARIA: 0,
-      SECUNDARIA: 0
+      SECUNDARIA: 0,
+      SUPERIOR: 0
     };
     for (const lead of leadRows) {
       demandByLevel[lead.educationLevel] += 1;
@@ -506,9 +507,9 @@ export class IntelligenceService {
   }): Prisma.MarketMetricDailyCreateManyInput[] {
     const schoolById = new Map(input.schools.map((school) => [school.id, school]));
     const leadsBySchool = this.countByKey(input.leads30.map((lead) => lead.schoolId));
-    const leadsBySchoolLevel = new Map<string, { MATERNAL: number; INICIAL: number; PRIMARIA: number; SECUNDARIA: number }>();
+    const leadsBySchoolLevel = new Map<string, { MATERNAL: number; INICIAL: number; PRIMARIA: number; SECUNDARIA: number; SUPERIOR: number }>();
     for (const lead of input.leads30) {
-      const row = leadsBySchoolLevel.get(lead.schoolId) ?? { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0 };
+      const row = leadsBySchoolLevel.get(lead.schoolId) ?? { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0, SUPERIOR: 0 };
       row[lead.educationLevel] += 1;
       leadsBySchoolLevel.set(lead.schoolId, row);
     }
@@ -532,7 +533,7 @@ export class IntelligenceService {
       const ratingValues: number[] = [];
 
       for (const schoolId of group.schoolIds) {
-        const levelDemand = leadsBySchoolLevel.get(schoolId) ?? { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0 };
+        const levelDemand = leadsBySchoolLevel.get(schoolId) ?? { MATERNAL: 0, INICIAL: 0, PRIMARIA: 0, SECUNDARIA: 0, SUPERIOR: 0 };
         demandInicial += levelDemand.INICIAL;
         demandPrimaria += levelDemand.PRIMARIA;
         demandSecundaria += levelDemand.SECUNDARIA;

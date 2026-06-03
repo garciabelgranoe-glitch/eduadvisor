@@ -14,7 +14,8 @@ const levels = [
   { value: "MATERNAL", label: "Maternal" },
   { value: "INICIAL", label: "Inicial" },
   { value: "PRIMARIA", label: "Primaria" },
-  { value: "SECUNDARIA", label: "Secundaria" }
+  { value: "SECUNDARIA", label: "Secundaria" },
+  { value: "SUPERIOR", label: "Superior" }
 ] as const;
 
 interface SchoolData {

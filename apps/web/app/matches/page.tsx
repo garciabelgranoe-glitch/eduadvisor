@@ -87,6 +87,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
               <option value="INICIAL">Inicial</option>
               <option value="PRIMARIA">Primaria</option>
               <option value="SECUNDARIA">Secundaria</option>
+              <option value="SUPERIOR">Superior</option>
             </Select>
           </FormField>
           <FormField label="Distancia máxima">

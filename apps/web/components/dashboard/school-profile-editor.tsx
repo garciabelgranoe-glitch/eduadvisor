@@ -19,7 +19,8 @@ const levels = [
   { value: "MATERNAL", label: "Maternal" },
   { value: "INICIAL", label: "Inicial" },
   { value: "PRIMARIA", label: "Primaria" },
-  { value: "SECUNDARIA", label: "Secundaria" }
+  { value: "SECUNDARIA", label: "Secundaria" },
+  { value: "SUPERIOR", label: "Superior" }
 ] as const;
 
 export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolProfileEditorProps) {
@@ -32,9 +33,9 @@ export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolPro
     school.monthlyFeeEstimate ? String(school.monthlyFeeEstimate) : ""
   );
   const [studentsCount, setStudentsCount] = useState(school.studentsCount ? String(school.studentsCount) : "");
-  const [selectedLevels, setSelectedLevels] = useState<Array<"MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA">>(
-    school.levels.filter((level): level is "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" =>
-      ["INICIAL", "PRIMARIA", "SECUNDARIA"].includes(level)
+  const [selectedLevels, setSelectedLevels] = useState<Array<"MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" | "SUPERIOR">>(
+    school.levels.filter((level): level is "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" | "SUPERIOR" =>
+      ["MATERNAL", "INICIAL", "PRIMARIA", "SECUNDARIA", "SUPERIOR"].includes(level)
     )
   );
   const [logoUrl, setLogoUrl] = useState(school.media?.logoUrl ?? "");
@@ -54,7 +55,7 @@ export function SchoolProfileEditor({ school, isEditable, isPremium }: SchoolPro
     return name.trim().length >= 2;
   }, [name]);
 
-  function toggleLevel(level: "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA") {
+  function toggleLevel(level: "MATERNAL" | "INICIAL" | "PRIMARIA" | "SECUNDARIA" | "SUPERIOR") {
     setSelectedLevels((current) =>
       current.includes(level) ? current.filter((item) => item !== level) : [...current, level]
     );
