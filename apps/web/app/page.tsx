@@ -14,6 +14,39 @@ import { cityRankingsPath } from "@/lib/seo";
 
 export const revalidate = 120;
 
+const faqs = [
+  {
+    question: "¿Cómo elijo el mejor colegio privado para mi hijo?",
+    answer:
+      "Lo más importante es definir tus prioridades: zona geográfica, nivel educativo, presupuesto y propuesta pedagógica. En Radar Educativo podés filtrar por todos estos criterios, comparar colegios lado a lado y consultar el Score R.E. que resume la calidad de cada institución. También podés leer reseñas de otras familias para tener una visión más completa antes de visitar el colegio."
+  },
+  {
+    question: "¿Qué es el Score Radar Educativo?",
+    answer:
+      "El Score R.E. es un indicador propio de Radar Educativo que resume la calidad de cada institución en un número del 0 al 100. Se calcula combinando múltiples factores: calidad de la información del perfil, reseñas de familias, rating de Google Maps, completitud de los datos institucionales y más. Es una herramienta orientativa para comparar colegios de forma rápida."
+  },
+  {
+    question: "¿Es gratuito usar Radar Educativo para las familias?",
+    answer:
+      "Sí, completamente. Buscar, comparar y contactar colegios en Radar Educativo es gratis para las familias. No necesitás crear una cuenta para explorar perfiles, ver cuotas estimadas ni consultar rankings por ciudad."
+  },
+  {
+    question: "¿Qué significa que un colegio tenga perfil Premium?",
+    answer:
+      "Los colegios con perfil Premium han verificado su información y acceden a funcionalidades avanzadas: aparecen primero en los resultados de búsqueda, pueden subir fotos institucionales, reciben consultas de familias directamente y acceden a estadísticas de visitas. Para las familias, un perfil Premium es una señal de que la institución está activa y comprometida con su presencia digital."
+  },
+  {
+    question: "¿Cómo sé si la información de los colegios está actualizada?",
+    answer:
+      "Los perfiles de Radar Educativo combinan datos de fuentes públicas (Google Maps, sitios oficiales) con información provista por las propias instituciones. Los colegios que han reclamado su perfil pueden actualizar su información en tiempo real. Siempre recomendamos verificar cuotas y vacantes directamente con el colegio antes de tomar una decisión final."
+  },
+  {
+    question: "¿Cómo contacto a un colegio desde Radar Educativo?",
+    answer:
+      "En el perfil de cada colegio Premium encontrás un formulario de contacto directo. Completás tus datos y la consulta llega al equipo de admisiones del colegio, que te contactará por email o teléfono. También podés encontrar el teléfono y web del colegio en la sección de datos institucionales de cada perfil."
+  }
+];
+
 const highlights = [
   {
     icon: "🔍",
@@ -179,6 +212,46 @@ export default async function HomePage() {
           </Button>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section className="space-y-6">
+        <SectionHeader
+          kicker="Preguntas frecuentes"
+          title="Todo lo que querés saber antes de elegir"
+          description="Respondemos las dudas más comunes de las familias argentinas."
+        />
+        <div className="space-y-3">
+          {faqs.map((faq) => (
+            <details
+              key={faq.question}
+              className="group rounded-2xl border border-brand-100 bg-white px-6 py-4 open:shadow-sm transition-all"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 list-none font-semibold text-ink">
+                {faq.question}
+                <span className="shrink-0 text-brand-600 transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer
+              }
+            }))
+          })
+        }}
+      />
 
       <CityLandingLinks cities={seoCities.items} />
     </div>
