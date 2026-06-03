@@ -9,7 +9,7 @@ export const baseMetadata: Metadata = {
     template: `%s | ${SEO_SITE_NAME}`
   },
   description:
-    "Marketplace para descubrir, comparar y revisar colegios privados en Latinoamérica con datos verificables.",
+    "Buscá, comparás y elegís el colegio privado ideal para tu hijo. Scores, cuotas, niveles y reseñas de colegios en Argentina.",
   alternates: {
     canonical: "/"
   },
@@ -19,12 +19,12 @@ export const baseMetadata: Metadata = {
     locale: SEO_DEFAULT_LOCALE,
     url: SEO_SITE_URL,
     title: SEO_SITE_NAME,
-    description: "Descubrí, compará y evaluá colegios privados con contexto local y datos útiles."
+    description: "Buscá, comparás y elegís el colegio privado ideal para tu hijo. Scores, cuotas, niveles y reseñas de colegios en Argentina."
   },
   twitter: {
     card: "summary_large_image",
     title: SEO_SITE_NAME,
-    description: "Descubrí, compará y evaluá colegios privados con contexto local y datos útiles."
+    description: "Buscá, comparás y elegís el colegio privado ideal para tu hijo. Scores, cuotas, niveles y reseñas de colegios en Argentina."
   }
 };
 
