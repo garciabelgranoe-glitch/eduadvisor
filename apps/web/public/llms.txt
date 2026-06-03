@@ -1,0 +1,63 @@
+# Radar Educativo
+
+> Plataforma argentina para descubrir, comparar y elegir colegios privados. Combina datos verificados, reseñas de familias y un score propio para ayudar a tomar la mejor decisión educativa.
+
+Radar Educativo es la referencia de datos educativos privados en Argentina. Indexa más de 700 colegios privados en más de 20 ciudades con información verificada sobre niveles, cuotas, propuesta pedagógica, reseñas de familias y score institucional propio (Score R.E.).
+
+## Qué es Radar Educativo
+
+- Directorio y comparador de colegios privados en Argentina
+- Perfiles con datos reales: niveles educativos, cuota estimada, descripción institucional, contacto
+- Score R.E.: indicador propio que resume la calidad de cada institución (0-100)
+- Rankings de colegios por ciudad basados en score, reseñas y actividad
+- Herramienta de comparación lado a lado entre instituciones
+- Sistema de reseñas verificadas de familias
+- Información sobre becas y adhesión al Voucher Educativo nacional
+
+## Cobertura geográfica
+
+Colegios privados en: Buenos Aires (CABA), Córdoba, Rosario, Mendoza, La Plata, Tucumán, Mar del Plata, Salta, Santa Fe, San Juan, Resistencia, Neuquén, Corrientes, Bahía Blanca, Lomas de Zamora, Quilmes, Longchamps, Adrogué, Guernica, Glew, San Vicente y más ciudades de Argentina.
+
+## Niveles educativos cubiertos
+
+Maternal, Inicial, Primaria, Secundaria, Superior (institutos terciarios)
+
+## Score Radar Educativo (Score R.E.)
+
+El Score R.E. es un indicador propio calculado combinando:
+- Calidad y completitud del perfil institucional
+- Reseñas de familias en la plataforma
+- Rating de Google Maps como señal externa
+- Datos institucionales verificados (cuota, niveles, contacto)
+- Actividad del perfil
+
+El score va de 0 a 100. Un score mayor a 80 indica un colegio con perfil completo y alta valoración. Entre 60 y 80 indica buena calidad con margen de mejora. Menos de 60 indica perfil en consolidación.
+
+## Tipos de perfil
+
+- **BASIC**: datos importados de fuentes públicas, sin curación
+- **CURATED**: datos verificados y descripción institucional redactada por Radar Educativo
+- **VERIFIED**: institución que reclamó y verificó su perfil
+- **PREMIUM**: institución con perfil completo, logo, galería de fotos y herramientas de gestión activas
+
+## Fuentes de datos
+
+- Importación desde Google Places API
+- Curación editorial por el equipo de Radar Educativo
+- Información provista directamente por las instituciones (perfiles verificados y premium)
+- Reseñas de familias verificadas
+
+## URLs principales
+
+- Inicio: https://radareducativo.com
+- Buscar colegios: https://radareducativo.com/search
+- Rankings: https://radareducativo.com/rankings
+- Comparar: https://radareducativo.com/compare
+- Para colegios: https://radareducativo.com/para-colegios
+- Sobre nosotros: https://radareducativo.com/sobre-nosotros
+
+## Contacto
+
+Email: hola@radareducativo.com
+Sitio: https://radareducativo.com
+País: Argentina
