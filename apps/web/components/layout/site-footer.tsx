@@ -106,10 +106,10 @@ export function SiteFooter() {
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-brand-800 pt-6 md:flex-row">
           <div className="flex items-center gap-2">
             <span className="font-display text-lg font-semibold text-white">Radar Educativo</span>
-            <span className="text-slate-500">·</span>
-            <span className="text-sm text-slate-400">Argentina</span>
+            <span className="text-brand-400">·</span>
+            <span className="text-sm text-brand-300">Argentina</span>
           </div>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-brand-300">
             © {new Date().getFullYear()} Radar Educativo. Todos los derechos reservados.
           </p>
         </div>
