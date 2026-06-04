@@ -2,6 +2,7 @@ import { SEO_SITE_URL } from "@/lib/seo";
 import { buildSitemapIndexXml, buildUrlSetXml, chunkSitemapUrls, getRankingsSitemapUrls } from "@/lib/seo/sitemap";
 
 export const revalidate = 86400;
+export const maxDuration = 30;
 
 export async function GET() {
   const items = await getRankingsSitemapUrls(SEO_SITE_URL);

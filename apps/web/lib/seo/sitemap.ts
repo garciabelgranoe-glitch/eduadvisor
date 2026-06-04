@@ -180,19 +180,22 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
 }
 
 export async function getSchoolSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
-  const schools = await getSchools({ country: "AR", limit: "500", sortBy: "name", sortOrder: "asc" });
-  const seoSitemap = await getSeoSitemap({ limit: "500" });
-  const lastmodBySlug = new Map<string, string>();
+  const [schools, seoSitemap] = await Promise.all([
+    getSchools({ country: "AR", limit: "500", sortBy: "name", sortOrder: "asc" }),
+    getSeoSitemap({ limit: "500" }).catch(() => null)
+  ]);
 
+  const lastmodBySlug = new Map<string, string>();
   for (const school of seoSitemap?.schools ?? []) {
     lastmodBySlug.set(school.slug, school.lastModified);
   }
 
+  const now = new Date().toISOString();
   return schools.items.map((school) => ({
     loc: `${baseUrl}${citySchoolProfilePath(school.location.province, school.location.city, school.slug)}`,
-    lastmod: lastmodBySlug.get(school.slug) ?? new Date().toISOString(),
+    lastmod: lastmodBySlug.get(school.slug) ?? now,
     changefreq: "weekly",
-    priority: 0.7
+    priority: school.profile.status === "PREMIUM" ? 0.9 : 0.7
   }));
 }
 
