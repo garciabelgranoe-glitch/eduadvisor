@@ -71,8 +71,8 @@ export default function SobreNosotrosPage() {
         <h2 className="font-display text-2xl text-ink">¿Preguntas?</h2>
         <p className="text-slate-600">
           Escribinos a{" "}
-          <a href="mailto:hola@radareducativo.com" className="text-brand-700 underline underline-offset-2 font-medium">
-            hola@radareducativo.com
+          <a href="mailto:soporte@radareducativo.com" className="text-brand-700 underline underline-offset-2 font-medium">
+            soporte@radareducativo.com
           </a>{" "}
           — respondemos todas las consultas.
         </p>

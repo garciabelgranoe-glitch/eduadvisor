@@ -88,8 +88,8 @@ export default function TerminosPage() {
           <h2 className="font-semibold text-xl text-ink">10. Contacto</h2>
           <p>
             Para consultas sobre estos términos escribinos a{" "}
-            <a href="mailto:hola@radareducativo.com" className="text-brand-700 underline underline-offset-2">
-              hola@radareducativo.com
+            <a href="mailto:soporte@radareducativo.com" className="text-brand-700 underline underline-offset-2">
+              soporte@radareducativo.com
             </a>
           </p>
         </section>

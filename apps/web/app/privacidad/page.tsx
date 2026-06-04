@@ -74,7 +74,7 @@ export default function PrivacidadPage() {
             <li><strong>Rectificación:</strong> corregir datos incorrectos</li>
             <li><strong>Eliminación:</strong> solicitar que borremos tu información</li>
           </ul>
-          <p>Para ejercer estos derechos escribinos a <a href="mailto:hola@radareducativo.com" className="text-brand-700 underline underline-offset-2">hola@radareducativo.com</a>.</p>
+          <p>Para ejercer estos derechos escribinos a <a href="mailto:soporte@radareducativo.com" className="text-brand-700 underline underline-offset-2">soporte@radareducativo.com</a>.</p>
         </section>
 
         <section className="space-y-3">
@@ -88,8 +88,8 @@ export default function PrivacidadPage() {
           <h2 className="font-semibold text-xl text-ink">9. Contacto</h2>
           <p>
             Para cualquier consulta sobre esta política escribinos a{" "}
-            <a href="mailto:hola@radareducativo.com" className="text-brand-700 underline underline-offset-2">
-              hola@radareducativo.com
+            <a href="mailto:soporte@radareducativo.com" className="text-brand-700 underline underline-offset-2">
+              soporte@radareducativo.com
             </a>
           </p>
         </section>

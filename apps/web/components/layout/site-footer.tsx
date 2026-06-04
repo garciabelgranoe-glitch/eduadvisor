@@ -10,7 +10,7 @@ const NAV_LINKS = [
 
 const INSTITUCIONAL_LINKS = [
   { label: "Sobre Radar Educativo", href: "/sobre-nosotros" },
-  { label: "Contacto", href: "mailto:hola@radareducativo.com" }
+  { label: "Contacto", href: "mailto:soporte@radareducativo.com" }
 ];
 
 const LEGAL_LINKS = [
