@@ -18,7 +18,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio bilingüe privado de Lomas de Zamora con impronta británica. Ofrece los niveles inicial, primario y secundario con una propuesta de inmersión en inglés que prepara a los alumnos para un contexto globalizado. Su nombre evoca la tradición escocesa del castillo de Balmoral y su propuesta educativa combina rigor académico anglosajón con los valores de la educación argentina."
+        "Colegio bilingüe privado de Lomas de Zamora con los niveles inicial, primario y secundario. Balmoral College ofrece una propuesta de inmersión en inglés con estándares internacionales, formando alumnos con fluidez lingüística y competencias para desenvolverse en entornos globales. Una opción consolidada en el sur del Gran Buenos Aires para familias que valoran la educación bilingüe de calidad."
     }
   },
   {
@@ -27,7 +27,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio bilingüe de Lomas de Zamora con tradición anglófona. Ofrece los niveles inicial, primario y secundario con enseñanza intensiva del inglés y una propuesta pedagógica que integra lo mejor de la tradición educativa británica con el currículo argentino. Valorado por las familias del sur del conurbano por su exigencia académica y el clima institucional ordenado y afectuoso."
+        "Colegio bilingüe privado de Lomas de Zamora con los niveles inicial, primario y secundario. Barker College propone una educación en inglés con sólida formación académica y valores humanistas, preparando a sus alumnos para los desafíos de un mundo interconectado. Con reconocimiento en el sur del GBA, es una institución de referencia para las familias que priorizan el bilingüismo y la excelencia."
     }
   },
   {
@@ -36,7 +36,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio privado laico de Lomas de Zamora que lleva el nombre del filósofo y matemático Bertrand Russell. Ofrece los niveles inicial, primario y secundario con una propuesta orientada al pensamiento crítico, la ciencia y la formación ciudadana. Su perfil laico y racional se traduce en una educación que privilegia la razón, la curiosidad intelectual y el respeto por la diversidad de ideas."
+        "Colegio privado de Lomas de Zamora que lleva el nombre del filósofo y matemático británico Bertrand Russell, Nobel de Literatura y símbolo del pensamiento crítico y el pacifismo. Ofrece los niveles inicial, primario y secundario con una propuesta que privilegia el razonamiento lógico, la filosofía y la ciencia como herramientas de comprensión del mundo. Una institución con identidad intelectual marcada en el sur del GBA."
     }
   },
   {
@@ -45,7 +45,7 @@ const updates = [
     payload: {
       levels: ["SECUNDARIA"],
       description:
-        "Nivel secundario del Colegio Colinas Verdes de Lomas de Zamora, parte de un complejo educativo que abarca desde el nivel inicial. Ofrece el bachillerato con una propuesta que combina formación académica sólida con actividades extracurriculares y orientación vocacional. La continuidad institucional con los niveles inferiores del mismo complejo facilita el desarrollo integral del alumno a lo largo de toda su escolaridad."
+        "Institución de educación secundaria privada de Lomas de Zamora. El Colegio Colinas Verdes ofrece el bachillerato con una propuesta orientada al ingreso universitario y la formación integral del adolescente. Su nombre evoca el entorno verde del sur bonaerense, y su propuesta combina rigor académico con el desarrollo de las habilidades sociales y emocionales de los jóvenes."
     }
   },
   {
@@ -54,7 +54,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución educativa de la congregación de los Misioneros del Sagrado Corazón en Lomas de Zamora. Ofrece los niveles inicial, primario y secundario con una espiritualidad centrada en el amor al Sagrado Corazón de Jesús. Su propuesta pedagógica integra la excelencia académica con la formación en valores evangélicos, el servicio comunitario y el desarrollo de la dimensión espiritual de cada alumno."
+        "Institución privada católica de Lomas de Zamora dirigida por los Corazonistas, congregación religiosa española con fuerte presencia en la Argentina. Ofrece los niveles inicial, primario y secundario con la espiritualidad del Sagrado Corazón de Jesús como eje formativo. Con décadas de tradición en el sur del GBA, es una institución reconocida por su clima espiritual, su excelencia académica y su comunidad educativa comprometida."
     }
   },
   {
@@ -63,7 +63,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución educativa evangélica de Lomas de Zamora bajo la advocación del Príncipe de Paz. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la fe cristiana evangélica con una sólida formación académica. Su proyecto educativo promueve valores bíblicos como el respeto, la tolerancia y el servicio, formando alumnos comprometidos con su comunidad y con una visión de paz y reconciliación."
+        "Institución educativa evangélica de Lomas de Zamora bajo el nombre de Príncipe de Paz, título bíblico de Jesucristo. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la fe evangélica, el estudio de las Escrituras y los valores del evangelio con una formación académica actualizada. Una alternativa educativa cristiana consolidada en el sur del Gran Buenos Aires."
     }
   },
   {
@@ -72,7 +72,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución privada católica de Lomas de Zamora bajo la advocación de la Inmaculada Concepción de María. Ofrece los niveles inicial, primario y secundario con una propuesta que combina rigor académico y formación en valores marianos. Con décadas de historia en el distrito, es una de las instituciones más reconocidas de Lomas de Zamora por su comunidad activa y su compromiso con la educación integral."
+        "Institución privada católica de Lomas de Zamora bajo la advocación de la Inmaculada Concepción de la Virgen María. Ofrece los niveles inicial, primario y secundario con una propuesta que combina la devoción mariana con una sólida formación académica y en valores. Con historia en el sur del GBA, es una referencia de la educación católica en Lomas de Zamora y sus alrededores."
     }
   },
   {
@@ -81,7 +81,7 @@ const updates = [
     payload: {
       levels: ["SUPERIOR"],
       description:
-        "Instituto de educación superior del Colegio Modelo Lomas en Lomas de Zamora. Ofrece carreras terciarias que articulan con el proyecto educativo del complejo Modelo, garantizando continuidad formativa para los egresados del nivel secundario. Una opción conveniente para las familias del distrito que priorizan la formación de nivel superior dentro de una institución de confianza con historia en la zona."
+        "Instituto de educación superior privado de Lomas de Zamora perteneciente a la red del Colegio Modelo Lomas. Ofrece carreras terciarias con orientación pedagógica y profesional, formando docentes y técnicos para el mercado laboral del sur del GBA. Su pertenencia a la red Modelo Lomas garantiza continuidad de calidad educativa desde el nivel inicial hasta el superior en la misma institución."
     }
   },
   {
@@ -90,7 +90,7 @@ const updates = [
     payload: {
       levels: ["INICIAL"],
       description:
-        "Jardín maternal del Colegio Modelo Lomas, parte del complejo educativo más importante de Lomas de Zamora. Atiende niños desde los primeros meses hasta los 3 años con una propuesta de estimulación temprana que prioriza el vínculo afectivo, el juego y el desarrollo integral. El ingreso al jardín maternal del Modelo garantiza la continuidad educativa dentro del mismo complejo hasta el nivel superior."
+        "Jardín maternal privado de Lomas de Zamora perteneciente a la red del Colegio Modelo Lomas. Atiende niños desde los primeros meses hasta los 2 años con una propuesta de estimulación temprana, vínculo afectivo seguro y desarrollo integral. Su pertenencia a la red Modelo Lomas ofrece a las familias la tranquilidad de una trayectoria educativa continua y coherente desde la primera infancia."
     }
   },
   {
@@ -99,7 +99,7 @@ const updates = [
     payload: {
       levels: ["INICIAL"],
       description:
-        "Nivel inicial del Colegio Modelo Lomas en Lomas de Zamora. Ofrece jardín de infantes para niños de 3 a 5 años dentro del proyecto educativo integral del complejo Modelo. Su propuesta pedagógica estimula el desarrollo cognitivo, emocional y social desde los primeros años, preparando a los niños para una transición exitosa al nivel primario dentro de la misma institución."
+        "Jardín de infantes privado de Lomas de Zamora perteneciente a la red del Colegio Modelo Lomas. Atiende niños de 2 a 5 años con una propuesta de nivel inicial que combina el juego, la exploración y el desarrollo de la autonomía como ejes del aprendizaje en la primera infancia. Forma parte de un sistema educativo integrado que acompaña a los alumnos hasta el nivel superior."
     }
   },
   {
@@ -108,7 +108,7 @@ const updates = [
     payload: {
       levels: ["PRIMARIA"],
       description:
-        "Nivel primario del Colegio Modelo Lomas, referente educativo de Lomas de Zamora. Ofrece educación primaria dentro del complejo Modelo con una propuesta sólida que combina formación académica, valores y actividades extracurriculares. La continuidad con los demás niveles del complejo —desde maternal hasta superior— es uno de los aspectos más valorados por las familias que eligen este recorrido educativo completo."
+        "Institución de educación primaria privada de Lomas de Zamora perteneciente a la red del Colegio Modelo Lomas. Ofrece la educación primaria completa con un currículo actualizado y articulado con los demás niveles de la red. Su propuesta privilegia el aprendizaje significativo, la formación en valores y la preparación sólida para la continuidad educativa en el nivel secundario."
     }
   },
   {
@@ -117,7 +117,7 @@ const updates = [
     payload: {
       levels: ["SECUNDARIA"],
       description:
-        "Nivel secundario del Colegio Modelo Lomas, la institución educativa privada más reconocida de Lomas de Zamora. Ofrece el bachillerato con una propuesta académica exigente que prepara a los egresados para el ingreso a la universidad. Con décadas de historia en el distrito, el Modelo Lomas es sinónimo de calidad educativa en el sur del conurbano bonaerense."
+        "Institución de educación secundaria privada de Lomas de Zamora perteneciente a la red del Colegio Modelo Lomas. Ofrece el bachillerato con una propuesta orientada al ingreso universitario y la formación integral del joven. La articulación con el instituto superior de la red ofrece a los egresados una transición natural hacia la educación terciaria dentro del mismo sistema institucional."
     }
   },
   {
@@ -126,7 +126,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Sede del Colegio Modelo ubicada en el barrio Parque Barón de Lomas de Zamora. Parte del reconocido complejo educativo Modelo, ofrece los niveles inicial, primario y secundario con la misma propuesta de calidad que caracteriza a la institución. Su ubicación en Parque Barón lo convierte en la opción natural para familias de esa zona que buscan la trayectoria completa dentro del proyecto Modelo."
+        "Institución privada de Lomas de Zamora con los niveles inicial, primario y secundario, ubicada en el barrio Parque Barón. Pertenece a la red del Colegio Modelo Lomas y ofrece la misma propuesta pedagógica de calidad en un entorno residencial del sur del GBA. Una opción de proximidad para las familias del barrio que buscan excelencia educativa cerca de su hogar."
     }
   },
   {
@@ -135,7 +135,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución privada católica de Lomas de Zamora consagrada al Sagrado Corazón de Jesús. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la tradición católica con una educación académica actualizada. Su comunidad de familias y egresados valora el clima institucional cálido, el acompañamiento espiritual y la formación en valores que distingue a esta institución en el partido."
+        "Institución privada católica de Lomas de Zamora bajo la advocación del Sagrado Corazón de Jesús. Ofrece los niveles inicial, primario y secundario con una espiritualidad centrada en el amor de Cristo como motor de la vida escolar. Con larga presencia en la comunidad, es una referencia de la educación católica en el sur del Gran Buenos Aires, valorada por su clima espiritual y su compromiso con la formación integral."
     }
   },
   {
@@ -144,7 +144,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio bilingüe de tradición anglicana en Lomas de Zamora, fundado bajo el patronazgo de San Albano, primer mártir de Gran Bretaña. Ofrece los niveles inicial, primario y secundario con una propuesta que combina el rigor académico británico con valores humanistas y una sólida enseñanza del inglés. Reconocido en el sur del conurbano por su excelencia académica y su ambiente formativo ordenado."
+        "Colegio bilingüe privado de Lomas de Zamora con los niveles inicial, primario y secundario. San Albano - St. Alban's College ofrece una propuesta de educación en inglés con estándares internacionales, preparando alumnos para certificaciones reconocidas globalmente. Una de las instituciones bilingües más consolidadas del sur del GBA, con tradición y comunidad educativa comprometida con la excelencia."
     }
   },
   {
@@ -153,7 +153,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio privado de Lomas de Zamora con los niveles inicial, primario y secundario. Su propuesta pedagógica combina formación académica sólida con el desarrollo de valores humanos y habilidades para la vida. Reconocido por las familias del partido por el trato personalizado y el compromiso del equipo docente con el crecimiento integral de cada alumno a lo largo de su trayectoria escolar."
+        "Institución privada de Lomas de Zamora con los niveles inicial, primario y secundario. El Colegio San Andrés ofrece una propuesta educativa integral en un clima institucional cálido y cercano. Con el apóstol Andrés como patrono, símbolo de la llamada a seguir sin vacilar, la institución forma alumnos con convicción, compromiso y capacidad para asumir desafíos en su vida personal y académica."
     }
   },
   {
@@ -162,7 +162,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución jesuita de Lomas de Zamora bajo el patronazgo de San Francisco Javier, uno de los fundadores de la Compañía de Jesús. Ofrece los niveles inicial, primario y secundario con la pedagogía ignaciana que combina excelencia académica, desarrollo de la conciencia social y búsqueda espiritual. La tradición jesuita de más de cuatro siglos se traduce en un proyecto educativo que forma personas íntegras y comprometidas."
+        "Institución privada jesuita de Lomas de Zamora bajo el patronazgo de San Francisco Javier, el gran misionero de la Compañía de Jesús. Ofrece los niveles inicial, primario y secundario con la pedagogía ignaciana que forma personas para los demás, con excelencia académica, libertad de pensamiento y compromiso con la justicia social. Una referencia de la educación jesuita en el sur del Gran Buenos Aires."
     }
   },
   {
@@ -171,7 +171,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio privado laico de Lomas de Zamora con una propuesta pedagógica contemporánea. Ofrece los niveles inicial, primario y secundario con metodologías activas, tecnología educativa y un enfoque orientado a las competencias del siglo XXI. Su nombre refleja una visión educativa actualizada que prepara a los alumnos para los desafíos del mundo contemporáneo con herramientas prácticas y pensamiento crítico."
+        "Institución privada de Lomas de Zamora con los niveles inicial, primario y secundario. Su nombre, Tiempos Modernos, refleja una propuesta pedagógica actualizada y orientada a las demandas del mundo contemporáneo. Con énfasis en la tecnología, la creatividad y el pensamiento crítico, el colegio prepara a sus alumnos para los desafíos de una sociedad en permanente transformación."
     }
   },
   {
@@ -180,16 +180,16 @@ const updates = [
     payload: {
       levels: ["SECUNDARIA"],
       description:
-        "Nivel secundario del Colegio Westminster de Lomas de Zamora, institución con tradición británica en el distrito. Ofrece el bachillerato con una propuesta que combina la exigencia académica anglosajona con una sólida enseñanza del inglés. Su nombre evoca el icónico palacio londinense y su proyecto educativo apunta a formar egresados con perfil internacional y capacidad para acceder a las mejores universidades."
+        "Institución de educación secundaria bilingüe privada de Lomas de Zamora. Westminster, nombre que evoca la tradición educativa británica, ofrece el bachillerato con fuerte componente en inglés y estándares internacionales. Prepara a sus egresados para el ingreso a universidades nacionales y extranjeras con una formación académica rigurosa y competencias comunicativas en inglés de alto nivel."
     }
   },
   {
     id: "cmpq36vrv04zyrn5q2956ryha",
-    name: "Colinas Verdes Nivel Inicial",
+    name: "Colinas Verdes - Nivel Inicial",
     payload: {
       levels: ["INICIAL"],
       description:
-        "Nivel inicial del Colegio Colinas Verdes en Lomas de Zamora. Ofrece jardín de infantes para niños de 3 a 5 años dentro del proyecto educativo del complejo Colinas Verdes, que abarca hasta el nivel secundario. Un ambiente cálido y estimulante que facilita la transición al nivel primario dentro de la misma institución, garantizando continuidad pedagógica y vínculos afectivos estables."
+        "Jardín de infantes privado de Lomas de Zamora perteneciente a la institución Colinas Verdes. Atiende niños de 2 a 5 años con una propuesta de nivel inicial centrada en el juego, la naturaleza y el desarrollo integral en la primera infancia. Su nombre evoca el entorno verde del sur bonaerense, y su propuesta conecta a los más pequeños con el medio natural como primer espacio de aprendizaje."
     }
   },
   {
@@ -198,7 +198,7 @@ const updates = [
     payload: {
       levels: ["SECUNDARIA"],
       description:
-        "Instituto de educación secundaria a distancia de Lomas de Zamora que permite terminar el bachillerato con flexibilidad horaria. Una opción para adultos y jóvenes que no pudieron completar sus estudios secundarios en el sistema presencial. Su propuesta combina la educación a distancia con instancias presenciales de seguimiento, adaptando el ritmo de aprendizaje a las necesidades de cada alumno."
+        "Institución de educación secundaria a distancia de Lomas de Zamora bajo el nombre del prócer Mariano Moreno. Ofrece el bachillerato en modalidad flexible para adultos y jóvenes que por razones laborales o personales no pudieron completar sus estudios secundarios en tiempo y forma. Una propuesta inclusiva que democratiza el acceso al título secundario en el sur del Gran Buenos Aires."
     }
   },
   {
@@ -207,7 +207,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA"],
       description:
-        "Institución educativa con vocación social en Lomas de Zamora que combina la función de escuela hogar con la propuesta del Instituto San José. Atiende niños en situación de vulnerabilidad ofreciendo no solo educación formal sino también contención, alimentación y acompañamiento integral. Su trabajo con las familias más necesitadas del partido la convierte en una institución de profundo arraigo comunitario."
+        "Institución educativa privada de Lomas de Zamora con los niveles inicial y primario. La Escuela Hogar Amor Maternal / Instituto San José combina la función educativa con el acompañamiento social, ofreciendo un espacio de contención y formación para los niños de la comunidad. Su vocación de servicio y su carisma de amor maternal y josefino se traducen en una propuesta educativa comprometida con los más vulnerables."
     }
   },
   {
@@ -216,7 +216,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado de Lomas de Zamora con los niveles inicial, primario y secundario. Con una trayectoria consolidada en el distrito, el Instituto Mentruyt ofrece una propuesta educativa integral que combina formación académica sólida con el desarrollo de valores y habilidades sociales. Reconocido por su comunidad activa y por el compromiso de sus docentes con el aprendizaje significativo de cada alumno."
+        "Institución privada de Lomas de Zamora con los niveles inicial, primario y secundario. El Instituto A. Mentruyt lleva el nombre de su fundador y ofrece una propuesta educativa con historia y arraigo en la comunidad del sur del GBA. Con décadas de trayectoria, es una institución reconocida por las familias de la zona por su compromiso con la calidad educativa y el acompañamiento personalizado."
     }
   },
   {
@@ -225,7 +225,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución educativa católica de Lomas de Zamora consagrada al Corazón Inmaculado de María. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la devoción mariana con una formación académica actualizada. Su espiritualidad se traduce en un ambiente educativo cálido, familiar y comprometido con el desarrollo integral de cada alumno en la fe y en el conocimiento."
+        "Institución privada católica de Lomas de Zamora bajo la advocación del Corazón Inmaculado de María. Ofrece los niveles inicial, primario y secundario con una espiritualidad mariana centrada en la pureza, la entrega y el amor de la Virgen como modelo de vida. Su propuesta integra la devoción al Corazón Inmaculado con una formación académica actualizada y valores del humanismo cristiano."
     }
   },
   {
@@ -234,16 +234,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado de Lomas de Zamora que lleva el nombre del autor del Martín Fierro, símbolo de la identidad nacional argentina. Ofrece los niveles inicial, primario y secundario con una propuesta que reivindica los valores de la cultura y la identidad argentina. Su proyecto educativo combina la tradición humanista con las demandas pedagógicas contemporáneas, formando alumnos con raíces culturales sólidas."
-    }
-  },
-  {
-    id: "cmpq36w370567rn5qjoke8ajz",
-    name: "Instituto Lomas de Zamora Cooperativa Limitada de Enseñanza",
-    payload: {
-      levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Instituto educativo organizado bajo el modelo de cooperativa de enseñanza en Temperley, partido de Lomas de Zamora. Ofrece los niveles inicial, primario y secundario con un modelo de gestión participativa donde la comunidad educativa tiene voz activa en las decisiones institucionales. La solidaridad, la democracia y el trabajo colectivo son los valores que distinguen a esta propuesta educativa única en la zona."
+        "Institución privada de Lomas de Zamora que lleva el nombre de José Hernández, autor del Martín Fierro, poema épico nacional y obra cumbre de la literatura gauchesca argentina. Ofrece los niveles inicial, primario y secundario con una propuesta que reivindica la identidad cultural argentina, la literatura y los valores del trabajo y la libertad que inspiran la obra de Hernández."
     }
   },
   {
@@ -252,7 +243,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado de Lomas de Zamora que lleva el nombre del ex presidente argentino Manuel Quintana. Ofrece los niveles inicial, primario y secundario con una propuesta educativa que combina tradición y modernidad. Su nombre rinde homenaje a un referente de la historia política argentina y su proyecto institucional busca formar ciudadanos comprometidos con los valores democráticos y la cultura del esfuerzo."
+        "Institución privada de Lomas de Zamora que lleva el nombre del presidente argentino Manuel Quintana, nacido en Buenos Aires y mandatario entre 1904 y 1906. Ofrece los niveles inicial, primario y secundario con una propuesta que combina la educación cívica y la historia argentina con una formación académica integral. Una institución con identidad histórica en el corazón del sur bonaerense."
     }
   },
   {
@@ -261,7 +252,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución privada católica de Lomas de Zamora bajo la advocación de Nuestra Señora del Carmen, patrona de los navegantes. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la espiritualidad carmelita con una formación académica sólida. Su comunidad educativa valora el clima de fe, el acompañamiento personal y la tradición institucional que caracteriza a esta escuela en el partido."
+        "Institución privada católica de Lomas de Zamora bajo la advocación de Nuestra Señora del Carmen, patrona de la Marina Argentina. Ofrece los niveles inicial, primario y secundario con una propuesta que combina la devoción carmelitana con una formación académica de calidad. Su comunidad educativa valora el clima espiritual, el acompañamiento familiar y los valores del humanismo cristiano."
     }
   },
   {
@@ -270,7 +261,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado de Lomas de Zamora con los niveles inicial, primario y secundario. Su nombre evoca el comienzo y la renovación permanente, valores que se traducen en una propuesta pedagógica orientada al crecimiento personal, la superación y el aprendizaje continuo. Valorado por las familias de la zona por su ambiente inclusivo y el compromiso del equipo docente con el desarrollo integral de cada alumno."
+        "Institución privada de Lomas de Zamora con los niveles inicial, primario y secundario. Su nombre, Nuevo Día, refleja una propuesta educativa orientada a la renovación, la esperanza y el crecimiento permanente. Una institución que invita a cada alumno a comenzar cada jornada con energía y motivación, formando personas con optimismo, resiliencia y compromiso con su propio desarrollo."
     }
   },
   {
@@ -279,7 +270,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado católico de Lomas de Zamora que lleva el nombre del Pbro. Dr. Antonio Sáenz, primer rector de la Universidad de Buenos Aires. Ofrece los niveles inicial, primario y secundario rindiendo homenaje a uno de los educadores más importantes de la historia argentina. Su propuesta combina la tradición católica con una formación académica de calidad orientada a la excelencia y al servicio."
+        "Institución privada católica de Lomas de Zamora que lleva el nombre del Presbítero Doctor Antonio Martín Sáenz, sacerdote y jurista rioplatense del siglo XIX vinculado a la gesta independentista. Ofrece los niveles inicial, primario y secundario con una propuesta que honra la figura de su patrono a través de una educación comprometida con la fe, el saber y el servicio a la patria."
     }
   },
   {
@@ -288,7 +279,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Instituto privado de Lomas de Zamora con los tres niveles educativos. Su nombre rinde homenaje a la provincia argentina de San Juan, cuna de Domingo Faustino Sarmiento. Con una propuesta pedagógica que valora la educación como herramienta de progreso social, el instituto ofrece una formación integral que prepara a sus alumnos para los desafíos académicos y laborales del mundo contemporáneo."
+        "Institución privada de Lomas de Zamora que lleva el nombre de la provincia de San Juan, cuna del prócer Domingo Faustino Sarmiento. Ofrece los niveles inicial, primario y secundario con una propuesta que reivindica los valores sarmientinos del esfuerzo, la educación y el progreso. Una institución con identidad histórica y arraigo en la comunidad del sur del Gran Buenos Aires."
     }
   },
   {
@@ -297,7 +288,7 @@ const updates = [
     payload: {
       levels: ["SECUNDARIA"],
       description:
-        "Instituto de educación secundaria técnica de Lomas de Zamora que lleva el nombre del jurista y político argentino Emilio Lamarca. Ofrece la modalidad técnica con formación especializada que habilita a los egresados tanto para el ingreso a la universidad como para el mercado laboral. Su perfil técnico responde a las necesidades productivas del distrito y del sur del conurbano bonaerense."
+        "Instituto de educación secundaria técnica de Lomas de Zamora que lleva el nombre del jurista y político argentino Emilio Lamarca. Ofrece formación técnica especializada que habilita a los egresados tanto para el ingreso a la universidad como para el mercado laboral del sur del GBA. Su perfil técnico responde a las necesidades productivas e industriales de la región metropolitana bonaerense."
     }
   },
   {
@@ -306,7 +297,7 @@ const updates = [
     payload: {
       levels: ["INICIAL"],
       description:
-        "Jardín de infantes privado católico de Lomas de Zamora bajo la advocación de Nuestra Señora del Carmen. Atiende niños de 2 a 5 años con una propuesta de nivel inicial que combina estimulación temprana, juego y formación en valores marianos. Su ambiente cálido y familiar, conducido por docentes comprometidas con la primera infancia, lo convierte en una opción querida por las familias del partido."
+        "Jardín de infantes privado católico de Lomas de Zamora bajo la advocación de Nuestra Señora del Carmen. Atiende niños de 2 a 5 años con una propuesta de nivel inicial que integra la devoción mariana carmelitana con el juego, el afecto y el desarrollo integral en la primera infancia. Un espacio cálido y de fe donde los más pequeños dan sus primeros pasos escolares acompañados por la Virgen del Carmen."
     }
   },
   {
@@ -315,7 +306,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Institución bilingüe privada de Lomas de Zamora con fuerte impronta anglosajona. Ofrece los niveles inicial, primario y secundario con enseñanza intensiva del inglés y una propuesta pedagógica que integra metodologías internacionales con el currículo argentino. Una de las referencias educativas más reconocidas del partido para familias que priorizan el bilingüismo y la preparación para un entorno globalizado."
+        "Colegio bilingüe privado de Lomas de Zamora con los niveles inicial, primario y secundario. Lomas High School ofrece una propuesta de educación en inglés con estándares internacionales, formando alumnos con alta competencia lingüística y preparación para el mundo globalizado. Una institución de referencia en bilingüismo en el sur del GBA, con comunidad educativa exigente y comprometida con la excelencia."
     }
   },
   {
@@ -324,7 +315,7 @@ const updates = [
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
       description:
-        "Colegio bilingüe privado de Lomas de Zamora con enfoque moderno e internacional. Ofrece los niveles inicial, primario y secundario con un modelo educativo que incorpora tecnología, inglés intensivo y metodologías activas. Su nombre refleja una propuesta orientada a la innovación pedagógica y a la preparación de alumnos capaces de desenvolverse con competencia en el mundo contemporáneo."
+        "Colegio bilingüe privado de Lomas de Zamora con los niveles inicial, primario y secundario. Modern School propone una educación contemporánea con fuerte componente en inglés, tecnología y pensamiento creativo. Su nombre refleja una visión pedagógica actualizada y orientada a formar alumnos preparados para los desafíos del siglo XXI en un entorno de aprendizaje dinámico y estimulante."
     }
   }
 ];
