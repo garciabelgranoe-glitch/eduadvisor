@@ -79,7 +79,8 @@ export async function getStaticSitemapUrls(baseUrl: string): Promise<SitemapUrl[
     { loc: `${baseUrl}/sobre-nosotros`, changefreq: "monthly", priority: 0.6, lastmod: now },
     { loc: `${baseUrl}/privacidad`, changefreq: "monthly", priority: 0.4, lastmod: now },
     { loc: `${baseUrl}/terminos`, changefreq: "monthly", priority: 0.4, lastmod: now },
-    { loc: `${baseUrl}/para-colegios`, changefreq: "monthly", priority: 0.7, lastmod: now }
+    { loc: `${baseUrl}/para-colegios`, changefreq: "monthly", priority: 0.7, lastmod: now },
+    { loc: `${baseUrl}/score-re`, changefreq: "monthly", priority: 0.6, lastmod: now }
   ];
 }
 
