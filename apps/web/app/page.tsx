@@ -101,7 +101,12 @@ export default async function HomePage() {
       slug: school.slug,
       logoUrl: school.media?.logoUrl ?? "",
       city: school.location.city,
-      province: school.location.province
+      province: school.location.province,
+      score: school.eduAdvisorScore ?? null,
+      levels: school.levels ?? [],
+      rating: school.rating.average !== null && school.rating.count > 0
+        ? { average: school.rating.average, count: school.rating.count }
+        : null
     }));
 
   const orgSchema = {

@@ -8,6 +8,14 @@ import { Card } from "@/components/ui/card";
 import { trackEvent } from "@/lib/analytics";
 import { citySchoolProfilePath } from "@/lib/seo";
 
+const levelLabelMap: Record<string, string> = {
+  MATERNAL: "Maternal",
+  INICIAL: "Inicial",
+  PRIMARIA: "Primaria",
+  SECUNDARIA: "Secundaria",
+  SUPERIOR: "Superior"
+};
+
 interface PremiumCarouselItem {
   id: string;
   name: string;
@@ -15,6 +23,9 @@ interface PremiumCarouselItem {
   logoUrl: string;
   city: string;
   province: string;
+  score: number | null;
+  levels: string[];
+  rating: { average: number; count: number } | null;
 }
 
 interface PremiumSchoolsCarouselProps {
@@ -89,9 +100,10 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
                   schoolName: item.name
                 })
               }
-              className="group block w-[210px] shrink-0 rounded-2xl border border-brand-100 bg-white px-4 py-3 shadow-[0_8px_20px_rgba(13,27,31,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-[0_16px_28px_rgba(13,27,31,0.12)]"
+              className="group block w-[260px] shrink-0 space-y-3 rounded-2xl border border-brand-100 bg-white px-4 py-3 shadow-[0_8px_20px_rgba(13,27,31,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-[0_16px_28px_rgba(13,27,31,0.12)]"
             >
-              <div className="flex items-center gap-3">
+              {/* Header: logo + nombre + score */}
+              <div className="flex items-start gap-3">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-100 bg-white p-1">
                   <Image
                     src={item.logoUrl}
@@ -103,14 +115,44 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
                     unoptimized
                   />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-ink">{item.name}</p>
-                  <p className="truncate text-xs text-slate-500">
-                    {item.city}, {item.province}
-                  </p>
+                  <p className="truncate text-xs text-slate-500">{item.city}, {item.province}</p>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-700">Premium</p>
                 </div>
+                {item.score !== null && (
+                  <div className="shrink-0 rounded-lg bg-brand-700 px-2 py-1 text-center text-white">
+                    <p className="text-sm font-bold leading-none">{item.score}</p>
+                    <p className="text-[8px] uppercase tracking-wide text-white/70">Score</p>
+                  </div>
+                )}
               </div>
+
+              {/* Niveles */}
+              {item.levels.length > 0 && (
+                <div className="flex flex-wrap gap-1">
+                  {item.levels.slice(0, 3).map((level) => (
+                    <span
+                      key={level}
+                      className="rounded-full border border-brand-100 bg-brand-50 px-2 py-0.5 text-[10px] font-medium text-brand-700"
+                    >
+                      {levelLabelMap[level] ?? level}
+                    </span>
+                  ))}
+                  {item.levels.length > 3 && (
+                    <span className="rounded-full border border-brand-100 bg-brand-50 px-2 py-0.5 text-[10px] text-slate-400">
+                      +{item.levels.length - 3}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Rating */}
+              {item.rating && (
+                <p className="text-xs text-slate-500">
+                  ⭐ {item.rating.average.toFixed(1)} · {item.rating.count} reseña{item.rating.count !== 1 ? "s" : ""}
+                </p>
+              )}
             </Link>
           ))}
         </div>
