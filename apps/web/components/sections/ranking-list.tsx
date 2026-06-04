@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
+const MINOR_WORDS = new Set(["de", "del", "la", "las", "los", "el", "y", "e", "o", "u"]);
+
+function toTitleCase(str: string) {
+  return str
+    .split(" ")
+    .map((word, i) =>
+      i === 0 || !MINOR_WORDS.has(word.toLowerCase())
+        ? word.charAt(0).toUpperCase() + word.slice(1)
+        : word.toLowerCase()
+    )
+    .join(" ");
+}
+
 interface RankingItem {
   city: string;
   topScore: number;
@@ -21,18 +34,18 @@ export function RankingList({ items }: RankingListProps) {
             <Link href={item.path as never}>
               <Card className="group space-y-2 border-brand-200 transition hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(13,27,31,0.12)]">
                 <p className="text-xs uppercase tracking-[0.16em] text-slate-500">#{index + 1} ciudad destacada</p>
-                <p className="text-2xl font-semibold text-ink">{item.city}</p>
+                <p className="text-2xl font-semibold text-ink">{toTitleCase(item.city)}</p>
                 <p className="text-sm text-slate-600">Score lider: {item.topScore}</p>
                 <p className="text-sm text-slate-600">Colegios evaluados: {item.schools}</p>
                 <p className="pt-1 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
-                  Ver ranking de {item.city} →
+                  Ver ranking de {toTitleCase(item.city)} →
                 </p>
               </Card>
             </Link>
           ) : (
             <Card className="space-y-2 border-brand-200">
               <p className="text-xs uppercase tracking-[0.16em] text-slate-500">#{index + 1} ciudad destacada</p>
-              <p className="text-2xl font-semibold text-ink">{item.city}</p>
+              <p className="text-2xl font-semibold text-ink">{toTitleCase(item.city)}</p>
               <p className="text-sm text-slate-600">Score lider: {item.topScore}</p>
               <p className="text-sm text-slate-600">Colegios evaluados: {item.schools}</p>
             </Card>
