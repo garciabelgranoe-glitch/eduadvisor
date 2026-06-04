@@ -71,10 +71,15 @@ export async function getStaticSitemapUrls(baseUrl: string): Promise<SitemapUrl[
   return [
     { loc: `${baseUrl}/`, changefreq: "daily", priority: 1, lastmod: now },
     { loc: `${baseUrl}/ar`, changefreq: "daily", priority: 0.95, lastmod: now },
+    { loc: `${baseUrl}/search`, changefreq: "weekly", priority: 0.9, lastmod: now },
     { loc: `${baseUrl}/compare`, changefreq: "weekly", priority: 0.8, lastmod: now },
     { loc: `${baseUrl}/rankings`, changefreq: "weekly", priority: 0.8, lastmod: now },
     { loc: `${baseUrl}/matches`, changefreq: "weekly", priority: 0.7, lastmod: now },
-    { loc: `${baseUrl}/market-insights`, changefreq: "weekly", priority: 0.7, lastmod: now }
+    { loc: `${baseUrl}/market-insights`, changefreq: "weekly", priority: 0.7, lastmod: now },
+    { loc: `${baseUrl}/sobre-nosotros`, changefreq: "monthly", priority: 0.6, lastmod: now },
+    { loc: `${baseUrl}/privacidad`, changefreq: "monthly", priority: 0.4, lastmod: now },
+    { loc: `${baseUrl}/terminos`, changefreq: "monthly", priority: 0.4, lastmod: now },
+    { loc: `${baseUrl}/para-colegios`, changefreq: "monthly", priority: 0.7, lastmod: now }
   ];
 }
 
