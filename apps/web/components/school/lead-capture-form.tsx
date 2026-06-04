@@ -88,7 +88,7 @@ export function LeadCaptureForm({
         educationLevel
       });
       setSuccessMessage(
-        `Consulta enviada con éxito (Lead ${payload?.id ?? "n/a"}). El colegio te contactará pronto.`
+        `¡Consulta enviada! El equipo de admisiones de ${school.name} te contactará a la brevedad.`
       );
       setParentName("");
       setPhone("");
@@ -108,8 +108,8 @@ export function LeadCaptureForm({
 
   return (
     <FormShell
-      title="Solicitar contacto del colegio"
-      description={`Enviá tus datos y el equipo de admisiones de ${school.name} se comunicará con vos.`}
+      title="Consultar inscripción y vacantes"
+      description={`Completá tus datos y el equipo de admisiones de ${school.name} se comunicará con vos a la brevedad.`}
     >
       {locked ? (
         <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
@@ -196,7 +196,7 @@ export function LeadCaptureForm({
           <CtaGroup
             primary={
               <Button type="submit" disabled={loading}>
-                {loading ? "Enviando..." : "Enviar consulta"}
+                {loading ? "Enviando..." : "Consultar ahora"}
               </Button>
             }
             helperText="Tus datos se comparten únicamente con el colegio seleccionado."
