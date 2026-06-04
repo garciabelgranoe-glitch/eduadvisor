@@ -180,18 +180,26 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
 }
 
 export async function getSchoolSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
-  const [schools, seoSitemap] = await Promise.all([
-    getSchools({ country: "AR", limit: "500", sortBy: "name", sortOrder: "asc" }),
-    getSeoSitemap({ limit: "500" }).catch(() => null)
-  ]);
+  const now = new Date().toISOString();
+  const allSchools: Awaited<ReturnType<typeof getSchools>>["items"] = [];
 
+  // Paginate through all schools (API max limit is 50)
+  let page = 1;
+  while (true) {
+    const batch = await getSchools({ country: "AR", limit: "50", page: String(page), sortBy: "name", sortOrder: "asc" });
+    if (!batch.items.length) break;
+    allSchools.push(...batch.items);
+    if (allSchools.length >= (batch.meta?.total ?? 0)) break;
+    page++;
+  }
+
+  const seoSitemap = await getSeoSitemap({ limit: "1000" }).catch(() => null);
   const lastmodBySlug = new Map<string, string>();
   for (const school of seoSitemap?.schools ?? []) {
     lastmodBySlug.set(school.slug, school.lastModified);
   }
 
-  const now = new Date().toISOString();
-  return schools.items.map((school) => ({
+  return allSchools.map((school) => ({
     loc: `${baseUrl}${citySchoolProfilePath(school.location.province, school.location.city, school.slug)}`,
     lastmod: lastmodBySlug.get(school.slug) ?? now,
     changefreq: "weekly",
@@ -200,7 +208,7 @@ export async function getSchoolSitemapUrls(baseUrl: string): Promise<SitemapUrl[
 }
 
 export async function getRankingsSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
-  const rankings = await getRankings({ country: "AR", limit: "200" });
+  const rankings = await getRankings({ country: "AR", limit: "100" });
   const todayIso = rankings?.generatedAt ?? new Date().toISOString();
 
   if (!rankings) {
