@@ -63,7 +63,7 @@ export default function SobreNosotrosPage() {
           Radar Educativo también es una herramienta para los colegios. Las instituciones pueden reclamar su perfil, actualizar su información, cargar fotos y gestionar contactos desde su panel propio.
         </p>
         <p>
-          Los colegios con perfil Premium aparecen con mayor visibilidad en los resultados y acceden a herramientas de análisis para entender cómo las familias los encuentran.
+          Los colegios con perfil Destacado aparecen con mayor visibilidad en los resultados y acceden a herramientas de análisis para entender cómo las familias los encuentran.
         </p>
       </div>
 

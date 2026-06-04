@@ -118,7 +118,7 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-ink">{item.name}</p>
                   <p className="truncate text-xs text-slate-500">{item.city}, {item.province}</p>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-700">Premium</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-amber-700">Destacado</p>
                 </div>
                 {item.score !== null && (
                   <div className="shrink-0 rounded-lg bg-brand-700 px-2 py-1 text-center text-white">

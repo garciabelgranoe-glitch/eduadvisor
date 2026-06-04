@@ -26,7 +26,7 @@ export function PremiumNameMark({ show, size = "md" }: PremiumNameMarkProps) {
       >
         <path d="M8 1.5 9.8 5l3.9.6-2.8 2.8.7 3.9L8 10.6l-3.6 1.7.7-3.9L2.3 5.6 6.2 5 8 1.5Z" />
       </svg>
-      <span className="uppercase tracking-[0.08em]">Premium</span>
+      <span className="uppercase tracking-[0.08em]">Destacado</span>
     </span>
   );
 }

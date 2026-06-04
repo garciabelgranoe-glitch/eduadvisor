@@ -24,7 +24,8 @@ const levelLabelMap: Record<string, string> = {
   MATERNAL: "Maternal",
   INICIAL: "Inicial",
   PRIMARIA: "Primaria",
-  SECUNDARIA: "Secundaria"
+  SECUNDARIA: "Secundaria",
+  SUPERIOR: "Superior"
 };
 
 export function SearchResultCard({
@@ -104,7 +105,7 @@ export function SearchResultCard({
               {school.name}
               {isPremiumProfile && (
                 <span className="ml-2 inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-amber-700">
-                  Premium
+                  Destacado
                 </span>
               )}
             </h3>
@@ -201,7 +202,7 @@ export function SearchResultCard({
         {/* Trust line — minimal */}
         <p className="text-[11px] text-slate-400">
           {school.profile.status === "PREMIUM"
-            ? "✓ Perfil premium · datos verificados por Radar Educativo"
+            ? "✓ Perfil Destacado · datos verificados por Radar Educativo"
             : school.profile.status === "VERIFIED"
               ? "✓ Perfil verificado por Radar Educativo"
               : "Perfil en consolidación · datos de fuentes públicas"}

@@ -31,9 +31,9 @@ const faqs = [
       "Sí, completamente. Buscar, comparar y contactar colegios en Radar Educativo es gratis para las familias. No necesitás crear una cuenta para explorar perfiles, ver cuotas estimadas ni consultar rankings por ciudad."
   },
   {
-    question: "¿Qué significa que un colegio tenga perfil Premium?",
+    question: "¿Qué significa que un colegio tenga perfil Destacado?",
     answer:
-      "Los colegios con perfil Premium han verificado su información y acceden a funcionalidades avanzadas: aparecen primero en los resultados de búsqueda, pueden subir fotos institucionales, reciben consultas de familias directamente y acceden a estadísticas de visitas. Para las familias, un perfil Premium es una señal de que la institución está activa y comprometida con su presencia digital."
+      "Los colegios con perfil Destacado han verificado su información y acceden a funcionalidades avanzadas: aparecen primero en los resultados de búsqueda, pueden subir fotos institucionales, reciben consultas de familias directamente y acceden a estadísticas de visitas. Para las familias, un perfil Destacado es una señal de que la institución está activa y comprometida con su presencia digital."
   },
   {
     question: "¿Cómo sé si la información de los colegios está actualizada?",

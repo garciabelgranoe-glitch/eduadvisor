@@ -53,7 +53,8 @@ const levelLabelMap: Record<string, string> = {
   MATERNAL: "Maternal",
   INICIAL: "Inicial",
   PRIMARIA: "Primaria",
-  SECUNDARIA: "Secundaria"
+  SECUNDARIA: "Secundaria",
+  SUPERIOR: "Superior"
 };
 
 function buildImportedSummary(school: ApiSchoolDetail) {
@@ -237,7 +238,7 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
             <div className="min-w-0 space-y-2">
               {isPremium && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-700">
-                  ✦ Perfil Premium verificado
+                  ✦ Perfil Destacado
                 </span>
               )}
               <h1 className="font-display text-2xl leading-tight text-ink sm:text-3xl md:text-4xl lg:text-5xl">
