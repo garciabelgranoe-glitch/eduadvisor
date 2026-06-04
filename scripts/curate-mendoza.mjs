@@ -17,8 +17,7 @@ const updates = [
     name: "Colegio Alberto Schweitzer",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado laico de Mendoza que lleva el nombre del médico y humanista Albert Schweitzer. Ofrece los niveles inicial, primario y secundario con una propuesta pedagógica orientada al pensamiento crítico, la solidaridad y la formación ciudadana. Su proyecto educativo integra valores humanistas con una enseñanza académica sólida, en un entorno que promueve el respeto por la diversidad."
+      description: "Institución privada de Mendoza que lleva el nombre del médico y filósofo alsaciano Albert Schweitzer, Premio Nobel de la Paz y símbolo del humanismo solidario. Ofrece los niveles inicial, primario y secundario con una propuesta que privilegia el respeto por la vida, la ética y el compromiso con el prójimo. En la tierra del sol y del vino, el colegio forma ciudadanos con sensibilidad humana y vocación de servicio."
     }
   },
   {
@@ -26,8 +25,7 @@ const updates = [
     name: "Colegio Andino",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado laico de Mendoza con los niveles inicial, primario y secundario. Su nombre evoca la identidad cordillerana de la región y su propuesta educativa apunta al desarrollo integral del alumno con sólida formación académica, actividades deportivas y vínculo con el entorno natural mendocino. Valorado por las familias por el equilibrio entre exigencia y acompañamiento."
+      description: "Institución privada de Mendoza cuyo nombre evoca la majestuosidad de los Andes, la cordillera que define la identidad de la provincia. Ofrece los niveles inicial, primario y secundario con una propuesta que celebra la geografía y la cultura de la región cuyana. Forma alumnos con arraigo territorial, amor por la naturaleza andina y preparación académica para los desafíos del mundo contemporáneo."
     }
   },
   {
@@ -35,8 +33,7 @@ const updates = [
     name: "Colegio Bilingüe Los Olivos",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada bilingüe de Mendoza con fuerte énfasis en la enseñanza del inglés desde los primeros años. Ofrece los niveles inicial, primario y secundario con un modelo de inmersión lingüística que permite a los alumnos alcanzar fluidez real. Su propuesta combina el currículo oficial con metodologías activas y una mirada internacional que prepara a los egresados para un mundo globalizado."
+      description: "Institución bilingüe privada de Mendoza con los niveles inicial, primario y secundario. Su nombre evoca los olivares que caracterizan el paisaje agrícola mendocino, símbolo de paz y prosperidad. Los Olivos ofrece una propuesta de inmersión en inglés con estándares internacionales, formando alumnos con fluidez lingüística y competencias globales en el corazón de la región de Cuyo."
     }
   },
   {
@@ -44,8 +41,7 @@ const updates = [
     name: "Colegio Bilingüe Portezuelo",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado bilingüe ubicado en la zona de Portezuelo, Mendoza. Integra la enseñanza intensiva del inglés en todos los niveles —inicial, primario y secundario— con una propuesta pedagógica que privilegia el pensamiento crítico, la creatividad y las competencias digitales. Una opción diferenciada para familias que priorizan el bilingüismo en un entorno con identidad mendocina."
+      description: "Institución bilingüe privada de Mendoza con los niveles inicial, primario y secundario, cuyo nombre evoca el Portezuelo, paso de montaña emblemático de la cordillera mendocina. Ofrece una propuesta educativa en inglés que combina la identidad andina con una formación internacional de calidad. Una opción consolidada para las familias mendocinas que valoran el bilingüismo desde la primera infancia."
     }
   },
   {
@@ -53,8 +49,7 @@ const updates = [
     name: "Colegio Compañía de María",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa católica de Mendoza perteneciente a la Compañía de María (La Enseñanza), congregación fundada en Francia en el siglo XVII con vocación educativa. Ofrece los niveles inicial, primario y secundario con una propuesta que integra excelencia académica y formación en valores evangélicos. Con más de 300 años de tradición educativa a nivel global, es una de las instituciones más reconocidas de Mendoza."
+      description: "Institución privada de Mendoza dirigida por la Compañía de María Nuestra Señora, congregación fundada por Juana de Lestonnac en Francia en 1607. Ofrece los niveles inicial, primario y secundario con la espiritualidad ignaciana femenina que privilegia la formación integral, el amor a la Virgen y la excelencia académica. Una institución con siglos de tradición educativa y presencia consolidada en Cuyo."
     }
   },
   {
@@ -62,8 +57,7 @@ const updates = [
     name: "Colegio Congreso",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado laico de Mendoza con los tres niveles educativos. Su propuesta pedagógica se orienta a la formación de ciudadanos críticos y participativos, con énfasis en las ciencias sociales, la expresión y el trabajo en valores democráticos. Reconocido en el medio mendocino por su clima institucional abierto y por el compromiso de su equipo docente con el desarrollo integral de cada alumno."
+      description: "Institución privada de Mendoza con los niveles inicial, primario y secundario. El Colegio Congreso toma su nombre como referencia al sistema democrático y a los valores de la participación ciudadana. Con una propuesta educativa orientada a la formación cívica y la excelencia académica, forma alumnos con conciencia política y compromiso con los valores de la república en la capital cuyera."
     }
   },
   {
@@ -71,17 +65,15 @@ const updates = [
     name: "Colegio de la Universidad del Aconcagua",
     payload: {
       levels: ["PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado dependiente de la Universidad del Aconcagua, una de las instituciones universitarias más importantes de Mendoza. Ofrece los niveles primario y secundario con una propuesta educativa que articula con la formación universitaria, preparando a los alumnos para el ingreso a estudios superiores. El vínculo con la universidad garantiza actualización pedagógica permanente y recursos académicos de primer nivel."
+      description: "Institución educativa dependiente de la Universidad del Aconcagua de Mendoza, con los niveles primario y secundario. Su pertenencia a la universidad más importante de Cuyo le otorga un perfil académico de excelencia, articulando la educación media con la vida universitaria. Forma egresados con sólida preparación para el ingreso a carreras universitarias y competencias para el mundo profesional."
     }
   },
   {
     id: "cmpq2vimc01a1rn5qrmi9qz3s",
-    name: "Colegio Don Bosco Mendoza N°1",
+    name: "Colegio Don Bosco Mendoza",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa salesiana de Mendoza fundada bajo el carisma de San Juan Bosco. Ofrece los niveles inicial, primario y secundario con una propuesta que integra razón, religión y amor como pilares formativos. El sistema preventivo salesiano, basado en la presencia activa del educador y el acompañamiento afectivo, es el sello distintivo de esta institución con décadas de historia en la provincia."
+      description: "Institución salesiana de Mendoza fundada bajo el carisma de San Juan Bosco, patrono de los jóvenes. Ofrece los niveles inicial, primario y secundario con el sistema preventivo salesiano basado en razón, religión y amor. Con presencia histórica en la región cuyera, el Don Bosco mendocino forma jóvenes con fe, preparación académica y vocación de servicio a la comunidad."
     }
   },
   {
@@ -89,8 +81,7 @@ const updates = [
     name: "Colegio Español",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio de la comunidad española de Mendoza con larga trayectoria en la provincia. Ofrece los niveles inicial, primario y secundario con una propuesta educativa que preserva el vínculo con la cultura española a la vez que se integra plenamente al sistema educativo argentino. Su comunidad activa de familias y egresados refleja el arraigo de esta institución en el tejido social mendocino."
+      description: "Institución privada de Mendoza fundada por la comunidad española de la provincia, con los niveles inicial, primario y secundario. El Colegio Español celebra el vínculo histórico entre España y Mendoza, tierra que recibió inmigrantes hispanos que dejaron su huella en la cultura, la gastronomía y la viticultura regional. Su propuesta integra la herencia ibérica con una educación actualizada y de calidad."
     }
   },
   {
@@ -98,8 +89,7 @@ const updates = [
     name: "Colegio Fénix",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado de Mendoza con los niveles inicial, primario y secundario. Su nombre evoca la capacidad de transformación y superación permanente, valores que se traducen en una propuesta pedagógica orientada al desarrollo de la resiliencia, la autonomía y las competencias del siglo XXI. Valorado por su ambiente inclusivo y por el acompañamiento personalizado que brinda a cada alumno."
+      description: "Institución privada de Mendoza con los niveles inicial, primario y secundario. Su nombre evoca al ave fénix, símbolo de la renovación, el renacimiento y la capacidad de superarse ante las adversidades. El Colegio Fénix forma alumnos con resiliencia, creatividad y determinación, valores especialmente significativos en una provincia que ha sabido reconstruirse tras los desafíos de su historia."
     }
   },
   {
@@ -107,8 +97,7 @@ const updates = [
     name: "Colegio ICEI",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Instituto privado de educación integral de Mendoza con los niveles inicial, primario y secundario. Su propuesta pedagógica combina una sólida formación académica con el desarrollo de competencias socioemocionales y habilidades prácticas. Reconocido por su enfoque integral y por el trabajo colaborativo entre docentes, alumnos y familias en la construcción del proyecto educativo institucional."
+      description: "Institución privada de Mendoza con los niveles inicial, primario y secundario. El Colegio ICEI ofrece una propuesta educativa integral orientada al desarrollo académico, personal y social de sus alumnos. Con arraigo en la comunidad mendocina, es una institución reconocida por su clima institucional, la calidad de sus docentes y su compromiso con la formación de ciudadanos responsables y preparados."
     }
   },
   {
@@ -116,8 +105,7 @@ const updates = [
     name: "Colegio María Auxiliadora",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución salesiana femenina de Mendoza fundada bajo la advocación de María Auxiliadora. Dirigida por las Hijas de María Auxiliadora (FMA), ofrece los niveles inicial, primario y secundario con el sistema preventivo salesiano como eje de la formación. Su propuesta combina exigencia académica con formación espiritual, artística y humana, en una comunidad educativa con más de un siglo de presencia en Argentina."
+      description: "Institución salesiana femenina de Mendoza dirigida por las Hijas de María Auxiliadora. Ofrece los niveles inicial, primario y secundario con la espiritualidad de Don Bosco y la devoción mariana como ejes formativos. Con décadas de presencia salesiana en Cuyo, forma alumnas con sólida preparación académica, fe viva y apertura al mundo."
     }
   },
   {
@@ -125,8 +113,7 @@ const updates = [
     name: "Colegio María Reina",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada católica de Mendoza bajo la advocación de María Reina. Ofrece los niveles inicial, primario y secundario con una formación que integra rigor académico y valores del humanismo cristiano. Su comunidad educativa se caracteriza por el vínculo cercano entre docentes, familias y alumnos, y por una propuesta que prepara a los egresados tanto para los estudios superiores como para la vida."
+      description: "Institución privada católica de Mendoza bajo la advocación de María Reina, título que celebra la realeza espiritual de la Virgen. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la devoción mariana y el humanismo cristiano con una formación académica actualizada. Una institución valorada en la comunidad mendocina por su clima espiritual y su excelencia educativa."
     }
   },
   {
@@ -134,17 +121,15 @@ const updates = [
     name: "Colegio Norbridge",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio bilingüe privado de Mendoza con enfoque anglosajón. Ofrece los niveles inicial, primario y secundario con un programa de inmersión en inglés que garantiza una formación bilingüe genuina. Su propuesta pedagógica incorpora metodologías activas, tecnología educativa y un currículo internacionalizado que prepara a los alumnos para desenvolverse con fluidez en contextos globales."
+      description: "Institución bilingüe privada de Mendoza con los niveles inicial, primario y secundario. Norbridge combina la tradición educativa de los países de habla inglesa con la identidad cuyera, formando alumnos bilingües con competencias internacionales. Su propuesta pedagógica moderna y su enfoque en el inglés lo posicionan como una de las opciones bilingües más destacadas de la provincia."
     }
   },
   {
     id: "cmpq2vin101acrn5qs7hocsi7",
-    name: "Colegio Ntra. Sra. de la Misericordia",
+    name: "Colegio Nuestra Señora de la Misericordia",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada católica de Mendoza bajo la advocación de Nuestra Señora de la Misericordia. Ofrece los niveles inicial, primario y secundario con una propuesta formativa que integra la fe cristiana con una sólida educación académica. Su proyecto institucional prioriza el acompañamiento espiritual, el desarrollo de valores y la formación de personas comprometidas con el bien común."
+      description: "Institución privada católica de Mendoza bajo la advocación de Nuestra Señora de la Misericordia. Ofrece los niveles inicial, primario y secundario con una espiritualidad centrada en la misericordia como actitud fundamental ante la vida. Su propuesta forma alumnos sensibles al sufrimiento ajeno, comprometidos con la justicia y capaces de construir vínculos desde la compasión y la generosidad."
     }
   },
   {
@@ -152,8 +137,7 @@ const updates = [
     name: "Colegio Nuestra Señora de la Consolata",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado católico de Mendoza de la congregación de los Misioneros de la Consolata. Ofrece los niveles inicial, primario y secundario con una propuesta que une formación académica sólida con espiritualidad misionera y compromiso social. Su identidad consolata se traduce en una educación abierta a la diversidad, orientada a formar personas con vocación de servicio."
+      description: "Institución privada misionera de Mendoza bajo la advocación de Nuestra Señora de la Consolata, patrona de los Misioneros de la Consolata. Ofrece los niveles inicial, primario y secundario con una espiritualidad misionera que privilegia el diálogo intercultural, el servicio y la apertura al mundo. Una institución con identidad misional marcada en la comunidad educativa mendocina."
     }
   },
   {
@@ -161,8 +145,7 @@ const updates = [
     name: "Colegio Padre Claret",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa claretiana de Mendoza que lleva el nombre de San Antonio María Claret, fundador de los Misioneros Claretianos. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la misión evangelizadora con la formación académica integral. Su espiritualidad claretiana se traduce en un estilo educativo cercano, fraterno y orientado al servicio de los más necesitados."
+      description: "Institución privada claretiana de Mendoza que lleva el nombre de San Antonio María Claret, fundador de los Misioneros Claretianos. Ofrece los niveles inicial, primario y secundario con una espiritualidad misionera orientada al servicio y la evangelización. Con presencia claretiana en Cuyo, forma alumnos con fe dinámica, compromiso apostólico y sólida preparación académica."
     }
   },
   {
@@ -170,8 +153,7 @@ const updates = [
     name: "Colegio Privado San Gabriel",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado católico de Mendoza bajo la advocación del Arcángel San Gabriel. Ofrece los niveles inicial, primario y secundario con una formación que conjuga excelencia académica y valores espirituales. Su propuesta pedagógica promueve el pensamiento crítico, la creatividad y el sentido de responsabilidad social, formando alumnos preparados para los desafíos del mundo contemporáneo."
+      description: "Institución privada de Mendoza bajo el patronazgo de San Gabriel Arcángel, mensajero de Dios y patrono de las comunicaciones. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la fe cristiana con una formación académica de calidad. Con arraigo en la comunidad mendocina, es una institución reconocida por su clima cálido y su compromiso con el desarrollo integral del alumno."
     }
   },
   {
@@ -179,8 +161,7 @@ const updates = [
     name: "Colegio PS-161 Clave de Sol",
     payload: {
       levels: ["INICIAL", "PRIMARIA"],
-      description:
-        "Colegio privado de Mendoza con énfasis en la educación artística y musical desde los primeros años. Su nombre, Clave de Sol, refleja una propuesta pedagógica que integra la música como eje transversal del aprendizaje, estimulando la creatividad, la expresión y el desarrollo cognitivo de los niños. Una opción diferenciada para familias que valoran la formación artística como parte esencial de la educación."
+      description: "Institución privada de Mendoza con los niveles inicial y primario, cuyo nombre musical evoca la clave de sol como símbolo de armonía, creatividad y expresión artística. El Colegio Clave de Sol integra la educación musical en su propuesta pedagógica, formando niños con sensibilidad artística, desarrollo cognitivo integral y amor por la música desde los primeros años de escolaridad."
     }
   },
   {
@@ -188,8 +169,7 @@ const updates = [
     name: "Colegio Rainbow",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio bilingüe privado de Mendoza orientado a la enseñanza del inglés desde los primeros años. Su nombre, Rainbow (arco iris), refleja una propuesta inclusiva y diversa que busca preparar a los alumnos para un mundo multicultural. Ofrece los niveles inicial, primario y secundario con metodologías activas y un enfoque comunicativo que privilegia la fluidez oral en inglés desde la primera infancia."
+      description: "Institución bilingüe privada de Mendoza con los niveles inicial, primario y secundario. Su nombre, Rainbow —arcoíris en inglés—, evoca la diversidad, la inclusión y la alegría como valores del aprendizaje. El Colegio Rainbow ofrece una propuesta de inmersión en inglés con enfoque inclusivo y creativo, formando alumnos bilingües con apertura al mundo y celebración de la diversidad."
     }
   },
   {
@@ -197,8 +177,7 @@ const updates = [
     name: "Colegio San Andrés",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado de Mendoza con tradición en la comunidad mendocina. Ofrece los niveles inicial, primario y secundario con una propuesta educativa que combina formación académica sólida con desarrollo humano y valores. Reconocido por su comunidad activa y el fuerte compromiso de las familias con el proyecto institucional, el Colegio San Andrés es una referencia educativa en Mendoza."
+      description: "Institución privada de Mendoza con los niveles inicial, primario y secundario, bajo el patronazgo del apóstol San Andrés, hermano de Pedro y uno de los primeros discípulos de Jesús. Ofrece una propuesta educativa integral que combina la fe cristiana con el rigor académico. Con arraigo en la comunidad mendocina, es una institución valorada por su clima institucional y su compromiso formativo."
     }
   },
   {
@@ -206,8 +185,7 @@ const updates = [
     name: "Colegio San Jorge",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada de Mendoza con los tres niveles educativos. Su propuesta pedagógica integra formación académica rigurosa con educación en valores, deportes y actividades culturales. El Colegio San Jorge se destaca por el clima institucional cálido y el seguimiento personalizado de cada alumno, aspectos valorados por una comunidad de familias comprometidas con el proyecto educativo."
+      description: "Institución privada de Mendoza bajo el patronazgo de San Jorge, mártir cristiano símbolo del coraje y la lucha contra el mal. Ofrece los niveles inicial, primario y secundario con una propuesta que combina los valores del heroísmo cristiano con una formación académica actualizada. Con presencia en la comunidad mendocina, forma alumnos con determinación, valentía y compromiso con el bien."
     }
   },
   {
@@ -215,8 +193,7 @@ const updates = [
     name: "Colegio San José de Calasanz",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa escolapia de Mendoza fundada bajo el carisma de San José de Calasanz, el primer educador que ofreció educación gratuita a los niños pobres en el siglo XVII. Los Padres Escolapios conducen una propuesta que integra rigor académico, formación en valores y acompañamiento espiritual. Con siglos de tradición educativa a nivel mundial, esta institución es una de las más históricas de Mendoza."
+      description: "Institución privada escolapia de Mendoza bajo el patronazgo de San José de Calasanz, fundador de las Escuelas Pías y primer maestro de escuela popular. Ofrece los niveles inicial, primario y secundario con la pedagogía calasancia que privilegia la educación de los más pobres como acto de piedad y justicia. Una institución con alma escolapia comprometida con la igualdad de oportunidades educativas en Cuyo."
     }
   },
   {
@@ -224,8 +201,7 @@ const updates = [
     name: "Colegio San José Hermanos Maristas",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución marista de Mendoza fundada por los Hermanos Maristas de la Enseñanza, congregación fundada por Marcelino Champagnat en Francia en 1817. Ofrece los niveles inicial, primario y secundario con el espíritu marista que combina excelencia pedagógica, sencillez, amor al trabajo y presencia activa entre los jóvenes. Una institución de referencia en Mendoza con décadas de historia educativa."
+      description: "Institución privada marista de Mendoza bajo el patronazgo de San José y el carisma del Beato Marcelino Champagnat. Ofrece los niveles inicial, primario y secundario con la pedagogía marista que forma personas de bien y buenos ciudadanos. Con presencia consolidada en Cuyo, el colegio une fe, servicio y excelencia académica bajo la mirada de María y el ejemplo de José el trabajador."
     }
   },
   {
@@ -233,8 +209,7 @@ const updates = [
     name: "Colegio San Luis Gonzaga",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada católica de Mendoza bajo la advocación de San Luis Gonzaga, patrono de la juventud. Ofrece los niveles inicial, primario y secundario con una propuesta que articula formación académica, espiritualidad y compromiso social. Su modelo educativo privilegia el acompañamiento personal, el desarrollo de la conciencia moral y la preparación de jóvenes comprometidos con su comunidad."
+      description: "Institución privada jesuita de Mendoza que lleva el nombre de San Luis Gonzaga, joven noble italiano que renunció a su título para servir a los enfermos y es patrono de los estudiantes. Ofrece los niveles inicial, primario y secundario con la pedagogía ignaciana orientada a la excelencia, la libertad y el servicio. Una institución que inspira a sus alumnos con el ejemplo de un joven santo que eligió lo esencial."
     }
   },
   {
@@ -242,8 +217,7 @@ const updates = [
     name: "Colegio San Nicolás",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado católico de Mendoza bajo la advocación de San Nicolás. Ofrece los tres niveles educativos —inicial, primario y secundario— con una propuesta que integra la tradición católica con metodologías pedagógicas actuales. Su ambiente familiar y el trabajo cercano entre docentes y familias son aspectos valorados por la comunidad educativa mendocina."
+      description: "Institución privada de Mendoza bajo el patronazgo de San Nicolás de Bari, patrono de los niños y símbolo de la generosidad. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la bondad, el cuidado del otro y la excelencia académica como pilares formativos. Con arraigo en la comunidad mendocina, forma alumnos con espíritu generoso y sólida preparación para la vida."
     }
   },
   {
@@ -251,8 +225,7 @@ const updates = [
     name: "Colegio Santa Teresita de Lisieux",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución privada católica de Mendoza consagrada a Santa Teresita de Lisieux, Doctora de la Iglesia y patrona de las misiones. Ofrece los niveles inicial, primario y secundario con una espiritualidad carmelita que se traduce en sencillez, amor y atención a los pequeños detalles cotidianos. Su propuesta pedagógica forma alumnos con sensibilidad humana, conciencia espiritual y sólida preparación académica."
+      description: "Institución privada carmelita de Mendoza bajo el patronazgo de Santa Teresita del Niño Jesús, Doctora de la Iglesia y símbolo del camino pequeño de la santidad cotidiana. Ofrece los niveles inicial, primario y secundario con la espiritualidad teresiana centrada en el amor sencillo y la entrega en los pequeños actos del día a día. Una institución que forma alumnos con profundidad espiritual y calidez humana."
     }
   },
   {
@@ -260,8 +233,7 @@ const updates = [
     name: "Colegio Santo Tomás de Aquino",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución dominicana de Mendoza bajo el patronazgo de Santo Tomás de Aquino, patrono de los estudiantes y Doctor de la Iglesia. Ofrece los niveles inicial, primario y secundario con una propuesta pedagógica que integra la tradición intelectual dominicana con las necesidades educativas contemporáneas. El rigor académico, el amor a la verdad y la formación humanística son los pilares de este proyecto educativo."
+      description: "Institución privada dominica de Mendoza bajo el patronazgo de Santo Tomás de Aquino, el Doctor Angélico y patrono de los estudiantes y las universidades. Ofrece los niveles inicial, primario y secundario con la tradición intelectual dominicana que une fe y razón en la búsqueda de la verdad. En una ciudad universitaria como Mendoza, el pensamiento tomista inspira una educación de excelencia y rigor intelectual."
     }
   },
   {
@@ -269,8 +241,7 @@ const updates = [
     name: "Colegio Stroberi",
     payload: {
       levels: ["INICIAL", "PRIMARIA"],
-      description:
-        "Colegio privado de Mendoza con una propuesta educativa innovadora para los niveles inicial y primario. Su nombre refleja una identidad fresca y creativa, con metodologías activas que priorizan el aprendizaje lúdico, la curiosidad y la exploración en los primeros años. Valorado por las familias mendocinas por su ambiente cálido y personalizado."
+      description: "Institución privada de Mendoza con los niveles inicial y primario. Su nombre evoca la frutilla —fruta típica del campo mendocino— con un toque de fantasía infantil. El Colegio Stroberi ofrece una propuesta pedagógica centrada en los primeros años de escolaridad, con especial atención al desarrollo afectivo, la creatividad y el aprendizaje lúdico en un ambiente cálido y estimulante."
     }
   },
   {
@@ -278,8 +249,7 @@ const updates = [
     name: "Colegio Tomás Alva Edison",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado de Mendoza que lleva el nombre del inventor norteamericano Tomás Alva Edison. Ofrece los niveles inicial, primario y secundario con una propuesta orientada a la innovación, el pensamiento científico y la creatividad tecnológica. Su perfil STEM, con énfasis en ciencias, tecnología y robótica, prepara a los alumnos para los desafíos del mundo contemporáneo desde una perspectiva práctica y experimental."
+      description: "Institución privada de Mendoza que lleva el nombre del inventor estadounidense Thomas Alva Edison, símbolo de la perseverancia, la creatividad y el poder transformador de la ciencia y la tecnología. Ofrece los niveles inicial, primario y secundario con una propuesta que privilegia la innovación, el pensamiento científico y la cultura del esfuerzo como herramientas para cambiar el mundo."
     }
   },
   {
@@ -287,8 +257,7 @@ const updates = [
     name: "Colegio Universitario Santa María",
     payload: {
       levels: ["PRIMARIA", "SECUNDARIA"],
-      description:
-        "Colegio privado de Mendoza vinculado a la Universidad Santa María, que ofrece los niveles primario y secundario con una propuesta pedagógica que articula con la formación de nivel superior. Su perfil universitario garantiza actualización curricular permanente y prepara a los alumnos para el ingreso a estudios superiores con sólidos fundamentos académicos y habilidades investigativas."
+      description: "Institución privada de Mendoza con los niveles primario y secundario, vinculada al sistema universitario de la provincia. El Colegio Universitario Santa María ofrece una propuesta académica de excelencia orientada al ingreso universitario, articulando la educación media con la vida universitaria bajo la advocación de la Virgen María como patrona del saber y la sabiduría."
     }
   },
   {
@@ -296,8 +265,7 @@ const updates = [
     name: "Escuela Israelita Max Nordau",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa de la comunidad judía de Mendoza, fundada en honor de Max Nordau, pensador y co-fundador del sionismo. Ofrece los niveles inicial, primario y secundario integrando el currículo oficial con la enseñanza del hebreo, la historia y la cultura judía. Una de las instituciones más respetadas de la comunidad judía mendocina, con décadas de historia y un proyecto identitario sólido."
+      description: "Institución privada de la comunidad judía de Mendoza que lleva el nombre de Max Nordau, médico, escritor y cofundador del movimiento sionista moderno. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la identidad cultural judía, el hebreo y los valores del pueblo de Israel con una educación académica de calidad. Una institución con historia y orgullo comunitario en Cuyo."
     }
   },
   {
@@ -305,8 +273,7 @@ const updates = [
     name: "Escuela Italiana XXI de Abril",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Escuela de la comunidad italiana de Mendoza, fundada el 21 de abril en conmemoración de la fundación de Roma. Ofrece los niveles inicial, primario y secundario integrando el currículo argentino con la enseñanza del italiano, la cultura y las tradiciones de Italia. Una institución con profundo arraigo en la comunidad ítalo-mendocina que celebra el aporte de la inmigración italiana al desarrollo de la provincia."
+      description: "Institución privada ítalo-argentina de Mendoza que lleva la fecha del XXI de Abril como referencia a la fundación de Roma. Ofrece los niveles inicial, primario y secundario con una propuesta bilingüe español-italiano que celebra el vínculo histórico entre Italia y Mendoza. Una escuela con identidad transatlántica que honra la herencia de los miles de inmigrantes italianos que forjaron la viticultura y cultura cuyena."
     }
   },
   {
@@ -314,8 +281,7 @@ const updates = [
     name: "Fundación Gutenberg Mendoza",
     payload: {
       levels: ["PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa de la Fundación Gutenberg en Mendoza, que lleva el nombre del inventor de la imprenta moderna. Ofrece los niveles primario y secundario con una propuesta pedagógica centrada en la lectura, la escritura y el pensamiento crítico como herramientas fundamentales del aprendizaje. Su identidad editorial se traduce en un proyecto educativo que privilegia la cultura letrada y el acceso al conocimiento."
+      description: "Institución privada de Mendoza que lleva el nombre de Johannes Gutenberg, inventor de la imprenta y símbolo de la democratización del conocimiento. Ofrece los niveles primario y secundario con una propuesta que reivindica la lectura, la escritura y el acceso al saber como derechos fundamentales. Una institución con identidad humanística que honra al hombre que transformó la historia de la cultura universal."
     }
   },
   {
@@ -323,8 +289,7 @@ const updates = [
     name: "IMEI - Instituto Maipú de Educación Integral",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Instituto privado de educación integral ubicado en Maipú, departamento del Gran Mendoza reconocido por su producción vitivinícola. Ofrece los niveles inicial, primario y secundario con una propuesta que articula formación académica sólida con el desarrollo de competencias integrales. Su ubicación en Maipú lo convierte en la referencia educativa privada de ese departamento para las familias que buscan calidad educativa cerca de sus hogares."
+      description: "Instituto privado de educación integral en el departamento de Maipú, Mendoza, con los niveles inicial, primario y secundario. El IMEI ofrece una propuesta pedagógica que integra las dimensiones académica, artística, deportiva y tecnológica del aprendizaje. Con arraigo en Maipú —tierra del vino y la historia bélica de la independencia argentina— forma alumnos con identidad regional y proyección global."
     }
   },
   {
@@ -332,8 +297,7 @@ const updates = [
     name: "Instituto Adventista Mendoza",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa adventista de Mendoza perteneciente a la Iglesia Adventista del Séptimo Día. Ofrece los niveles inicial, primario y secundario con una propuesta que integra formación académica, valores bíblicos y un estilo de vida saludable como parte del proyecto educativo. Con presencia global en más de 150 países, la red adventista ofrece una educación holística orientada al desarrollo integral de la persona."
+      description: "Institución educativa adventista de Mendoza perteneciente a la Iglesia Adventista del Séptimo Día. Ofrece los niveles inicial, primario y secundario con una propuesta que integra formación académica, valores bíblicos y estilo de vida saludable. Con presencia global en más de 150 países, la educación adventista en Mendoza ofrece una alternativa integral orientada al desarrollo holístico de la persona en el corazón de Cuyo."
     }
   },
   {
@@ -341,8 +305,7 @@ const updates = [
     name: "Instituto Nadino",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Instituto privado de Mendoza con los niveles inicial, primario y secundario. Su propuesta pedagógica combina formación académica con desarrollo humano y atención personalizada. Reconocido en el medio mendocino por el compromiso docente y el acompañamiento cercano a las familias a lo largo de toda la trayectoria escolar de los alumnos."
+      description: "Institución privada de Mendoza con los niveles inicial, primario y secundario. El Instituto Nadino ofrece una propuesta educativa integral con historia y arraigo en la comunidad mendocina. Con décadas de trayectoria, es una institución reconocida por las familias de la región por su compromiso con la calidad educativa, la formación en valores y el acompañamiento personalizado de cada alumno."
     }
   },
   {
@@ -350,8 +313,7 @@ const updates = [
     name: "Instituto San Pedro Nolasco",
     payload: {
       levels: ["INICIAL", "PRIMARIA", "SECUNDARIA"],
-      description:
-        "Institución educativa mercedaria de Mendoza bajo el patronazgo de San Pedro Nolasco, fundador de la Orden de la Merced. Ofrece los niveles inicial, primario y secundario con una propuesta que integra la espiritualidad mercedaria —centrada en la libertad y el servicio— con una sólida formación académica. Una institución con presencia histórica en Mendoza y compromiso con la formación integral de sus alumnos."
+      description: "Institución privada mercedaria de Mendoza bajo el patronazgo de San Pedro Nolasco, fundador de la Orden de la Merced y patrono de Cataluña. Ofrece los niveles inicial, primario y secundario con el carisma mercedario orientado a la liberación y el servicio. En una provincia con profunda devoción a la Virgen de la Merced, esta institución forma alumnos con generosidad, entrega y vocación apostólica."
     }
   },
   {
@@ -359,8 +321,7 @@ const updates = [
     name: "Instituto Superior Humberto de Paolis",
     payload: {
       levels: ["SUPERIOR"],
-      description:
-        "Instituto de educación superior privado de Mendoza que lleva el nombre del pedagogo Humberto de Paolis. Ofrece carreras de nivel terciario orientadas a la formación docente y profesional, con una propuesta académica que combina teoría y práctica en el marco de los estándares del sistema educativo provincial. Una opción reconocida en Mendoza para quienes buscan formación de nivel superior con identidad mendocina."
+      description: "Instituto de educación superior privado de Mendoza que lleva el nombre de Humberto de Paolis, figura relevante de la historia educativa de la provincia. Ofrece carreras terciarias con orientación pedagógica y profesional, formando docentes y profesionales para el mercado laboral de la región de Cuyo. Una institución con identidad local y compromiso con la calidad de la formación de nivel superior en Mendoza."
     }
   },
   {
@@ -368,8 +329,7 @@ const updates = [
     name: "Jardín Platero",
     payload: {
       levels: ["INICIAL"],
-      description:
-        "Jardín de infantes privado de Mendoza que toma su nombre del entrañable burro del poeta Juan Ramón Jiménez, símbolo de ternura y sencillez. Orientado a niños de 2 a 5 años, ofrece un ambiente cálido y estimulante donde el juego, la literatura y la exploración son los ejes del aprendizaje. Reconocido por las familias mendocinas por la calidad afectiva de su propuesta y la dedicación de su equipo docente."
+      description: "Jardín de infantes privado de Mendoza cuyo nombre evoca a Platero, el burrito protagonista del poema en prosa de Juan Ramón Jiménez, clásico de la literatura infantil hispana. Atiende niños de 2 a 5 años con una propuesta centrada en la literatura, el juego y el desarrollo afectivo en la primera infancia. Un espacio cálido y literario donde los más pequeños mendocinos descubren el placer de las palabras y la imaginación."
     }
   }
 ];
