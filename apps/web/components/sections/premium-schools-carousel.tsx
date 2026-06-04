@@ -89,7 +89,7 @@ export function PremiumSchoolsCarousel({ items }: PremiumSchoolsCarouselProps) {
                   schoolName: item.name
                 })
               }
-              className="group block min-w-[210px] rounded-2xl border border-brand-100 bg-white px-4 py-3 shadow-[0_8px_20px_rgba(13,27,31,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-[0_16px_28px_rgba(13,27,31,0.12)]"
+              className="group block w-[210px] shrink-0 rounded-2xl border border-brand-100 bg-white px-4 py-3 shadow-[0_8px_20px_rgba(13,27,31,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-[0_16px_28px_rgba(13,27,31,0.12)]"
             >
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-100 bg-white p-1">
