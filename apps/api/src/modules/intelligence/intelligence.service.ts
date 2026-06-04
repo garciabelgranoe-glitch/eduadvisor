@@ -243,7 +243,12 @@ export class IntelligenceService {
         phone: true,
         email: true,
         monthlyFeeEstimate: true,
-        studentsCount: true
+        studentsCount: true,
+        googleRating: true,
+        googleReviewCount: true,
+        verifiedAt: true,
+        levels: { select: { level: true } },
+        photos: { where: { isPrimary: true }, select: { id: true }, take: 1 }
       }
     });
 
@@ -355,26 +360,33 @@ export class IntelligenceService {
     for (const school of schools) {
       const ratings = reviewsBySchool.get(school.id) ?? [];
       const avgRating = ratings.length > 0 ? ratings.reduce((acc, value) => acc + value, 0) / ratings.length : null;
-      const reviewCount = ratings.length;
-      const leadsLast90Days = leads90BySchool.get(school.id) ?? 0;
       const leadsReceived = leadsTodayBySchool.get(school.id) ?? 0;
+
+      // Google component (60%): rating normalizado + credibilidad por cantidad de reseñas
+      const googleReviewCount = school.googleReviewCount ?? 0;
+      const reviewCredibility =
+        googleReviewCount === 0 ? 0
+        : googleReviewCount <= 5 ? 0.5
+        : googleReviewCount <= 20 ? 0.75
+        : googleReviewCount <= 50 ? 0.9
+        : 1.0;
+      const googleComponent = school.googleRating !== null ? (school.googleRating / 5) * reviewCredibility : 0;
+
+      // Profile completeness component (25%)
       const profileCompleteness = this.calculateProfileCompleteness(school);
 
-      const reviewsComponent = ((avgRating ?? 3) / 5) * 0.8 + Math.min(reviewCount / 30, 1) * 0.2;
-      const engagementComponent = Math.min(leadsLast90Days / 40, 1) * 0.7 + Math.min(reviewCount / 40, 1) * 0.3;
-      const consistencyComponent = this.calculateConsistency(ratings);
-      const dataQualityComponent = profileCompleteness;
-      const score =
-        (reviewsComponent * 0.35 + engagementComponent * 0.25 + consistencyComponent * 0.2 + dataQualityComponent * 0.2) *
-        100;
+      // Verified/claimed component (15%)
+      const verifiedComponent = school.verifiedAt !== null ? 1 : 0;
+
+      const score = (googleComponent * 0.6 + profileCompleteness * 0.25 + verifiedComponent * 0.15) * 100;
 
       scoreRows.push({
         schoolId: school.id,
         score: Number(score.toFixed(2)),
-        reviewsComponent: Number(reviewsComponent.toFixed(3)),
-        engagementComponent: Number(engagementComponent.toFixed(3)),
-        consistencyComponent: Number(consistencyComponent.toFixed(3)),
-        dataQualityComponent: Number(dataQualityComponent.toFixed(3))
+        reviewsComponent: Number(googleComponent.toFixed(3)),
+        engagementComponent: Number(profileCompleteness.toFixed(3)),
+        consistencyComponent: Number(verifiedComponent.toFixed(3)),
+        dataQualityComponent: Number(profileCompleteness.toFixed(3))
       });
 
       metricsRows.push({
@@ -670,19 +682,18 @@ export class IntelligenceService {
     website: string | null;
     phone: string | null;
     email: string | null;
-    monthlyFeeEstimate: number | null;
-    studentsCount: number | null;
+    photos: { id: string }[];
+    levels: { level: string }[];
   }) {
-    const fields = [
-      school.description,
-      school.website,
-      school.phone,
-      school.email,
-      school.monthlyFeeEstimate,
-      school.studentsCount
+    const checks = [
+      !!school.description,
+      !!school.website,
+      !!school.phone,
+      !!school.email,
+      school.photos.length > 0,
+      school.levels.length > 0
     ];
-    const completed = fields.filter((field) => field !== null && field !== undefined && field !== "").length;
-    return completed / fields.length;
+    return checks.filter(Boolean).length / checks.length;
   }
 
   private calculateConsistency(ratings: number[]) {
