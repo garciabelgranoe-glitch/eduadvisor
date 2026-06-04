@@ -10,6 +10,7 @@ const NAV_LINKS = [
 
 const INSTITUCIONAL_LINKS = [
   { label: "Sobre Radar Educativo", href: "/sobre-nosotros" },
+  { label: "Cómo funciona el Score R.E.", href: "/score-re" },
   { label: "Contacto", href: "mailto:soporte@radareducativo.com" }
 ];
 
