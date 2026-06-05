@@ -234,8 +234,8 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
         <div className={`p-6 sm:p-8 ${isPremium ? "bg-gradient-to-br from-white via-amber-50/40 to-white" : "bg-gradient-to-br from-white via-brand-50/30 to-white"}`}>
 
           {/* School name + logo */}
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0 space-y-2">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0 flex-1 space-y-2">
               {isPremium && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-amber-700">
                   ✦ Perfil Destacado

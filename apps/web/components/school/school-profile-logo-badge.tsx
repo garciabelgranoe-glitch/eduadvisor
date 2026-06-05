@@ -69,12 +69,12 @@ export function SchoolProfileLogoBadge({
         </div>
       </div>
 
-      <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-slate-500">Logo institucional</p>
-      <p className="mt-1 text-xs text-slate-600">Disponible en plan premium</p>
+      <p className="mt-2 hidden text-[10px] uppercase tracking-[0.16em] text-slate-500 sm:block">Logo institucional</p>
+      <p className="mt-1 hidden text-xs text-slate-600 sm:block">Disponible en plan premium</p>
       <Button
         asChild
         variant="ghost"
-        className="mt-2 h-8 rounded-lg border-amber-200 bg-white/90 px-3 text-xs font-semibold text-amber-800 hover:bg-amber-50"
+        className="mt-2 hidden h-8 rounded-lg border-amber-200 bg-white/90 px-3 text-xs font-semibold text-amber-800 hover:bg-amber-50 sm:flex"
       >
         <Link href={upgradeHref as never}>Activar premium</Link>
       </Button>
