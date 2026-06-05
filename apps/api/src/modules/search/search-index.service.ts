@@ -672,7 +672,7 @@ export class SearchIndexService {
     if (status === SchoolProfileStatus.CURATED) {
       return {
         status,
-        label: "Updated by EduAdvisor",
+        label: "Curado por Radar Educativo",
         badge: "curated",
         tone: "info" as const,
         verifiedAt: null,

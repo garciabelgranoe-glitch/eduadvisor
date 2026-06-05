@@ -572,7 +572,7 @@ export class MatchesService {
     }
 
     if ((school.scores[0]?.score ?? 0) >= 85) {
-      highlights.push("EduAdvisor Score alto");
+      highlights.push("Score R.E. alto");
     }
 
     return highlights.slice(0, 4);

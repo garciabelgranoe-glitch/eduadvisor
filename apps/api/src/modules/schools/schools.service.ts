@@ -1995,22 +1995,22 @@ export class SchoolsService {
     const map: Record<SchoolProfileStatus, { label: string; badge: string; tone: "neutral" | "info" | "success" | "warning" }> =
       {
         BASIC: {
-          label: "Profile not verified",
+          label: "Perfil no verificado",
           badge: "basic",
           tone: "neutral"
         },
         CURATED: {
-          label: "Updated by EduAdvisor",
+          label: "Curado por Radar Educativo",
           badge: "curated",
           tone: "info"
         },
         VERIFIED: {
-          label: "Verified school",
+          label: "Colegio verificado",
           badge: "verified",
           tone: "success"
         },
         PREMIUM: {
-          label: "Featured school",
+          label: "Colegio destacado",
           badge: "premium",
           tone: "warning"
         }

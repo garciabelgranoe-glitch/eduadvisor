@@ -65,7 +65,7 @@ export class ProductEventsService {
       ? `${input.schoolName} actualizó su perfil y cambió cuota estimada de ${this.formatMoney(
           input.previousMonthlyFeeEstimate
         )} a ${this.formatMoney(input.monthlyFeeEstimate)}.`
-      : `${input.schoolName} actualizó su perfil institucional en EduAdvisor.`;
+      : `${input.schoolName} actualizó su perfil institucional en Radar Educativo.`;
 
     return this.dispatchToSavedParents({
       type: ProductEventType.SCHOOL_PROFILE_UPDATED,
@@ -105,8 +105,8 @@ export class ProductEventsService {
       type: ProductEventType.EDUADVISOR_SCORE_CHANGED,
       schoolId: input.schoolId,
       dedupeKey: `eduadvisor-score-changed:${input.schoolId}:${this.toUtcDateKey(input.snapshotDate)}`,
-      title: "Cambió el EduAdvisor Score",
-      message: `El EduAdvisor Score de ${input.schoolName} ${trend} de ${input.previousScore.toFixed(1)} a ${input.score.toFixed(1)}.`,
+      title: "Cambió el Score R.E.",
+      message: `El Score R.E. de ${input.schoolName} ${trend} de ${input.previousScore.toFixed(1)} a ${input.score.toFixed(1)}.`,
       linkPath: `/school/${input.schoolSlug}`,
       payload: {
         previousScore: input.previousScore,

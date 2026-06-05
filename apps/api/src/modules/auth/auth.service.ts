@@ -141,7 +141,7 @@ export class AuthService {
       return {
         canLogin: false,
         reasonCode: "SCHOOL_NOT_FOUND",
-        message: "No encontramos ese colegio en EduAdvisor.",
+        message: "No encontramos ese colegio en Radar Educativo.",
         school: null,
         representative: null,
         claim: {
@@ -244,7 +244,7 @@ export class AuthService {
       return {
         canLogin: false,
         reasonCode: "CLAIM_UNDER_REVIEW",
-        message: "Tu claim está en revisión por el equipo de EduAdvisor.",
+        message: "Tu claim está en revisión por el equipo de Radar Educativo.",
         school,
         representative,
         claim: latestClaim
