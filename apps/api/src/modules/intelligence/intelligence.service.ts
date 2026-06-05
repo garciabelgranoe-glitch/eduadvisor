@@ -378,7 +378,7 @@ export class IntelligenceService {
       // Verified/claimed component (15%)
       const verifiedComponent = school.verifiedAt !== null ? 1 : 0;
 
-      const score = (googleComponent * 0.6 + profileCompleteness * 0.25 + verifiedComponent * 0.15) * 100;
+      const score = (googleComponent * 0.7 + profileCompleteness * 0.2 + verifiedComponent * 0.1) * 100;
 
       scoreRows.push({
         schoolId: school.id,

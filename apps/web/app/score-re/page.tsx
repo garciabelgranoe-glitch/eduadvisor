@@ -12,21 +12,21 @@ export const metadata: Metadata = buildPageMetadata({
 
 const COMPONENTS = [
   {
-    weight: "60%",
+    weight: "70%",
     label: "Rating de Google",
     color: "bg-brand-700",
     description:
       "Tomamos el rating promedio de Google Maps del colegio y lo combinamos con la cantidad de reseñas para medir qué tan confiable es ese dato. Un colegio con 4.8 estrellas y 200 reseñas pesa mucho más que uno con 5 estrellas y 2 reseñas."
   },
   {
-    weight: "25%",
+    weight: "20%",
     label: "Perfil completo",
     color: "bg-brand-500",
     description:
       "Evaluamos qué tan completa está la información institucional: descripción, teléfono, sitio web, email, logo y niveles educativos. Un perfil completo le da a las familias los datos que necesitan para tomar una decisión informada."
   },
   {
-    weight: "15%",
+    weight: "10%",
     label: "Perfil verificado",
     color: "bg-brand-300",
     description:
