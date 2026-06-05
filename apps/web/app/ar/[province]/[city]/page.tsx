@@ -10,6 +10,7 @@ import {
   buildBreadcrumbSchema,
   cityPath,
   cityRankingsPath,
+  citySchoolProfilePath,
   citySchoolsPath,
   evaluateGeoIndexability
 } from "@/lib/seo";
@@ -106,32 +107,50 @@ export default async function CityPage({ params }: CityPageProps) {
 
       <div className="grid gap-4 md:grid-cols-2">
         <Link href={citySchoolsPath(context.landing.city.provinceSlug, context.landing.city.slug) as never}>
-          <Card className="h-full space-y-2 transition hover:border-brand-300">
+          <Card className="group h-full space-y-2 transition hover:border-brand-300 hover:shadow-md">
             <h2 className="text-2xl font-semibold text-ink">Listado de colegios</h2>
             <p className="text-sm text-slate-600">Explorá colegios, destacados, FAQ local y checklist de decisión.</p>
+            <p className="pt-1 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+              Ver colegios en {context.landing.city.name} →
+            </p>
           </Card>
         </Link>
 
         <Link href={cityRankingsPath(context.landing.city.provinceSlug, context.landing.city.slug) as never}>
-          <Card className="h-full space-y-2 transition hover:border-brand-300">
+          <Card className="group h-full space-y-2 transition hover:border-brand-300 hover:shadow-md">
             <h2 className="text-2xl font-semibold text-ink">Rankings por ciudad</h2>
             <p className="text-sm text-slate-600">Revisá metodología Radar Score y ranking local transparente.</p>
+            <p className="pt-1 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+              Ver ranking de {context.landing.city.name} →
+            </p>
           </Card>
         </Link>
       </div>
 
-      <Card className="space-y-2">
-        <h2 className="text-xl font-semibold text-ink">Colegios destacados en esta ciudad</h2>
-        {schools.items.length === 0 ? (
-          <p className="text-sm text-slate-600">No hay colegios disponibles por el momento.</p>
-        ) : (
-          <ul className="space-y-1 text-sm text-slate-600">
+      {schools.items.length > 0 && (
+        <Card className="space-y-3">
+          <h2 className="text-xl font-semibold text-ink">Colegios en {context.landing.city.name}</h2>
+          <ul className="space-y-2">
             {schools.items.map((school) => (
-              <li key={school.id}>• {school.name}</li>
+              <li key={school.id}>
+                <Link
+                  href={citySchoolProfilePath(school.location.province, school.location.city, school.slug) as never}
+                  className="flex items-center justify-between rounded-lg border border-brand-100 bg-brand-50/30 px-4 py-3 text-sm font-medium text-ink transition hover:border-brand-300 hover:bg-brand-50"
+                >
+                  <span>{school.name}</span>
+                  <span className="text-brand-600">→</span>
+                </Link>
+              </li>
             ))}
           </ul>
-        )}
-      </Card>
+          <Link
+            href={citySchoolsPath(context.landing.city.provinceSlug, context.landing.city.slug) as never}
+            className="block pt-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          >
+            Ver todos los colegios →
+          </Link>
+        </Card>
+      )}
     </section>
   );
 }
