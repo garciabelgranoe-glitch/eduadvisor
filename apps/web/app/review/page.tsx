@@ -17,9 +17,19 @@ interface ReviewPageProps {
 
 export default async function ReviewPage({ searchParams }: ReviewPageProps) {
   const schoolSlug = pickParam(searchParams?.school);
-  const schoolsResponse = await getSchools({ limit: "500", sortBy: "name", sortOrder: "asc" });
 
-  const schools = schoolsResponse.items.map((school) => ({
+  // Paginate through all schools (API max limit is 50)
+  const allItems: Awaited<ReturnType<typeof getSchools>>["items"] = [];
+  let page = 1;
+  while (true) {
+    const batch = await getSchools({ limit: "50", page: String(page), sortBy: "name", sortOrder: "asc" });
+    if (!batch.items.length) break;
+    allItems.push(...batch.items);
+    if (allItems.length >= (batch.meta?.total ?? 0)) break;
+    page++;
+  }
+
+  const schools = allItems.map((school) => ({
     id: school.id,
     slug: school.slug,
     name: school.name,
