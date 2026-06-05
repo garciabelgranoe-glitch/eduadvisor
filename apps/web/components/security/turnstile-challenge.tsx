@@ -80,13 +80,7 @@ export function TurnstileChallenge({ token, onTokenChange, onError, className }:
   }, [scriptReady, token]);
 
   if (disabled) {
-    return (
-      <div className={className}>
-        <p className="text-xs text-slate-500">
-          Verificación anti-bot no configurada en este entorno (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`).
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (
