@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 160">
+  <!-- Top yellow triangle -->
+  <polygon points="50,0 92,82 8,82" fill="#F9C234"/>
+  <!-- Bottom teal triangle -->
+  <polygon points="50,160 92,82 8,82" fill="#1f5c4d"/>
+  <!-- White eye diamond -->
+  <polygon points="50,60 74,82 50,104 26,82" fill="white"/>
+  <!-- Teal iris -->
+  <circle cx="50" cy="82" r="13" fill="#1f5c4d"/>
+  <!-- Yellow pupil -->
+  <circle cx="50" cy="82" r="6" fill="#F9C234"/>
+</svg>

@@ -8,6 +8,11 @@ export const baseMetadata: Metadata = {
     default: `${SEO_SITE_NAME} | Encontrá y compará colegios privados`,
     template: `%s | ${SEO_SITE_NAME}`
   },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg"
+  },
   description:
     "Buscá, comparás y elegís el colegio privado ideal para tu hijo. Scores, cuotas, niveles y reseñas de colegios en Argentina.",
   alternates: {
