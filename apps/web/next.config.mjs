@@ -132,6 +132,16 @@ const nextConfig = {
 
     return rules;
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "radareducativo.com" }],
+        destination: "https://www.radareducativo.com/:path*",
+        permanent: true
+      }
+    ];
+  },
   async rewrites() {
     return [
       { source: "/sitemap_index.xml", destination: "/sitemaps/index" },
