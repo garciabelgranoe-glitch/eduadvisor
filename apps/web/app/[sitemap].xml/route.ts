@@ -3,6 +3,7 @@ import {
   buildSitemapIndexXml,
   buildUrlSetXml,
   chunkSitemapUrls,
+  getBlogSitemapUrls,
   getGeoSitemapUrls,
   getRankingsSitemapUrls,
   getSchoolSitemapUrls,
@@ -30,7 +31,8 @@ export async function GET(_: Request, { params }: SitemapRouteProps) {
       { loc: `${SEO_SITE_URL}/sitemap_static.xml`, lastmod: now },
       { loc: `${SEO_SITE_URL}/sitemap_geo.xml`, lastmod: now },
       { loc: `${SEO_SITE_URL}/sitemap_schools.xml`, lastmod: now },
-      { loc: `${SEO_SITE_URL}/sitemap_rankings.xml`, lastmod: now }
+      { loc: `${SEO_SITE_URL}/sitemap_rankings.xml`, lastmod: now },
+      { loc: `${SEO_SITE_URL}/sitemap_blog.xml`, lastmod: now }
     ]);
 
     return xmlResponse(xml);
@@ -68,6 +70,10 @@ export async function GET(_: Request, { params }: SitemapRouteProps) {
           );
 
     return xmlResponse(xml);
+  }
+
+  if (sitemap === "sitemap_blog") {
+    return xmlResponse(buildUrlSetXml(getBlogSitemapUrls(SEO_SITE_URL)));
   }
 
   if (sitemap === "sitemap_rankings") {

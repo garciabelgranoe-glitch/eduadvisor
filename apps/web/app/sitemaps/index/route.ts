@@ -10,7 +10,8 @@ export async function GET() {
     { loc: `${SEO_SITE_URL}/sitemap_static.xml`, lastmod: now },
     { loc: `${SEO_SITE_URL}/sitemap_geo.xml`, lastmod: now },
     { loc: `${SEO_SITE_URL}/sitemap_schools.xml`, lastmod: now },
-    { loc: `${SEO_SITE_URL}/sitemap_rankings.xml`, lastmod: now }
+    { loc: `${SEO_SITE_URL}/sitemap_rankings.xml`, lastmod: now },
+    { loc: `${SEO_SITE_URL}/sitemap_blog.xml`, lastmod: now }
   ]);
 
   return new Response(xml, {

@@ -20,7 +20,8 @@ const navItems: Array<{ href: Route; label: string; icon: string }> = [
   { href: "/compare",        label: "Comparar",          icon: "⚖️" },
   { href: "/rankings",       label: "Rankings",          icon: "🏆" },
   { href: "/matches",        label: "Recomendaciones",   icon: "✨" },
-  { href: "/market-insights",label: "Insights",          icon: "📊" }
+  { href: "/market-insights",label: "Insights",          icon: "📊" },
+  { href: "/blog" as Route,  label: "Blog",              icon: "✏️" }
 ];
 
 export function SiteHeader() {

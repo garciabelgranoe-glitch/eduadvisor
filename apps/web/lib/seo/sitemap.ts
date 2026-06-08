@@ -1,4 +1,5 @@
 import { getRankings, getSchools, getSeoCities, getSeoSitemap } from "@/lib/api";
+import { ALL_POSTS } from "@/lib/blog";
 import { SEO_SITEMAP_CHUNK_SIZE } from "./config";
 import {
   arHomePath,
@@ -80,8 +81,19 @@ export async function getStaticSitemapUrls(baseUrl: string): Promise<SitemapUrl[
     { loc: `${baseUrl}/privacidad`, changefreq: "monthly", priority: 0.4, lastmod: now },
     { loc: `${baseUrl}/terminos`, changefreq: "monthly", priority: 0.4, lastmod: now },
     { loc: `${baseUrl}/para-colegios`, changefreq: "monthly", priority: 0.7, lastmod: now },
-    { loc: `${baseUrl}/score-re`, changefreq: "monthly", priority: 0.6, lastmod: now }
+    { loc: `${baseUrl}/score-re`, changefreq: "monthly", priority: 0.6, lastmod: now },
+    { loc: `${baseUrl}/blog`, changefreq: "weekly", priority: 0.8, lastmod: now }
   ];
+}
+
+export function getBlogSitemapUrls(baseUrl: string): SitemapUrl[] {
+  const now = new Date().toISOString();
+  return ALL_POSTS.map((post) => ({
+    loc: `${baseUrl}/blog/${post.slug}`,
+    lastmod: post.updatedAt ?? post.publishedAt,
+    changefreq: "monthly" as const,
+    priority: 0.75
+  }));
 }
 
 export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> {
