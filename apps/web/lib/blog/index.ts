@@ -19,6 +19,7 @@ import { post as colegiosPrivadosLaPlata } from "./posts/colegios-privados-la-pl
 import { post as colegiosPrivadosVicenteLopez } from "./posts/colegios-privados-vicente-lopez";
 import { post as colegiosPrivadosMarDelPlata } from "./posts/colegios-privados-mar-del-plata";
 import { post as colegiosBilingsGba } from "./posts/colegios-bilingues-gba";
+import { post as colegiosPrivadosLongchamps } from "./posts/colegios-privados-longchamps";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -41,6 +42,7 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosVicenteLopez,
   colegiosPrivadosMarDelPlata,
   colegiosBilingsGba,
+  colegiosPrivadosLongchamps,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
