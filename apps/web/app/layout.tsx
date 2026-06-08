@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -37,7 +38,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ScrollDepthTracker />
           <ChunkLoadRecovery />
           <div className="relative min-h-screen overflow-hidden">
-            <div className="pointer-events-none absolute inset-0 grid-pattern opacity-50" />
+            {process.env.NEXT_PUBLIC_GA_ID ? <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} /> : null}
+          <div className="pointer-events-none absolute inset-0 grid-pattern opacity-50" />
             <div className="relative">
               <SiteHeader />
               <main className="mx-auto max-w-6xl px-4 pb-10 pt-2 md:pt-4">{children}</main>
