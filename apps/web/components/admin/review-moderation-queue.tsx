@@ -27,7 +27,7 @@ export function ReviewModerationQueue({ items }: ReviewModerationQueueProps) {
   const [localItems, setLocalItems] = useState(items);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  async function moderate(reviewId: string, status: "APPROVED" | "REJECTED") {
+  async function moderate(reviewId: string, status: "APPROVED" | "REJECTED", schoolSlug: string) {
     setLoadingId(reviewId);
     setErrorMessage(null);
 
@@ -37,7 +37,7 @@ export function ReviewModerationQueue({ items }: ReviewModerationQueueProps) {
         headers: {
           "content-type": "application/json"
         },
-        body: JSON.stringify({ reviewId, status })
+        body: JSON.stringify({ reviewId, status, schoolSlug })
       });
 
       if (!response.ok) {
@@ -75,14 +75,14 @@ export function ReviewModerationQueue({ items }: ReviewModerationQueueProps) {
             <Button
               variant="secondary"
               disabled={loadingId === review.id}
-              onClick={() => moderate(review.id, "APPROVED")}
+              onClick={() => moderate(review.id, "APPROVED", review.school.slug)}
             >
               Aprobar
             </Button>
             <Button
               variant="ghost"
               disabled={loadingId === review.id}
-              onClick={() => moderate(review.id, "REJECTED")}
+              onClick={() => moderate(review.id, "REJECTED", review.school.slug)}
             >
               Rechazar
             </Button>
