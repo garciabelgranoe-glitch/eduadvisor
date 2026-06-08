@@ -202,10 +202,22 @@ export default async function SchoolProfilePage({ params }: SchoolProfilePagePro
     { name: school.name, path: resolved.canonicalPath }
   ]);
   const schoolSchema = buildSchoolSchema({
-    name: school.name, description: school.description, path: resolved.canonicalPath,
-    address: { city: school.location.city, province: school.location.province, country: school.location.country },
-    geo: school.location.coordinates, telephone: school.contacts.phone,
-    sameAs: school.contacts.website ? [school.contacts.website] : undefined, rating: school.rating
+    name: school.name,
+    description: school.description,
+    path: resolved.canonicalPath,
+    address: {
+      city: school.location.city,
+      province: school.location.province,
+      countryCode: "AR"
+    },
+    geo: school.location.coordinates,
+    telephone: school.contacts.phone,
+    sameAs: school.contacts.website ? [school.contacts.website] : undefined,
+    rating: school.rating,
+    levels: school.levels,
+    logoUrl: school.media?.logoUrl,
+    numberOfStudents: school.studentsCount,
+    monthlyFeeEstimate: school.monthlyFeeEstimate
   });
 
   return (

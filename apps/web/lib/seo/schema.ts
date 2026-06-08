@@ -44,6 +44,14 @@ export function buildItemListSchema({
   };
 }
 
+const EDUCATION_LEVEL_MAP: Record<string, string> = {
+  MATERNAL: "Preschool",
+  INICIAL: "Preschool",
+  PRIMARIA: "PrimaryEducation",
+  SECUNDARIA: "SecondaryEducation",
+  SUPERIOR: "HigherEducation"
+};
+
 export function buildSchoolSchema({
   name,
   description,
@@ -52,7 +60,11 @@ export function buildSchoolSchema({
   geo,
   telephone,
   sameAs,
-  rating
+  rating,
+  levels,
+  logoUrl,
+  numberOfStudents,
+  monthlyFeeEstimate
 }: {
   name: string;
   description?: string | null;
@@ -60,7 +72,7 @@ export function buildSchoolSchema({
   address: {
     city: string;
     province: string;
-    country: string;
+    countryCode: string;
   };
   geo?: {
     latitude: number;
@@ -72,7 +84,15 @@ export function buildSchoolSchema({
     average: number | null;
     count: number;
   };
+  levels?: string[];
+  logoUrl?: string | null;
+  numberOfStudents?: number | null;
+  monthlyFeeEstimate?: number | null;
 }) {
+  const educationalLevels = levels && levels.length > 0
+    ? [...new Set(levels.map((l) => EDUCATION_LEVEL_MAP[l]).filter(Boolean))]
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "School",
@@ -81,11 +101,16 @@ export function buildSchoolSchema({
     url: absoluteUrl(path),
     telephone: telephone ?? undefined,
     sameAs: sameAs && sameAs.length > 0 ? sameAs : undefined,
+    image: logoUrl ?? undefined,
+    numberOfStudents: numberOfStudents ?? undefined,
+    priceRange: monthlyFeeEstimate
+      ? `$${Math.round(monthlyFeeEstimate * 0.8).toLocaleString("es-AR")} – $${Math.round(monthlyFeeEstimate * 1.2).toLocaleString("es-AR")}`
+      : undefined,
     address: {
       "@type": "PostalAddress",
       addressLocality: address.city,
       addressRegion: address.province,
-      addressCountry: address.country
+      addressCountry: address.countryCode
     },
     geo:
       geo && Number.isFinite(geo.latitude) && Number.isFinite(geo.longitude)
@@ -95,12 +120,15 @@ export function buildSchoolSchema({
             longitude: geo.longitude
           }
         : undefined,
+    educationalLevel: educationalLevels,
     aggregateRating:
-      rating && rating.average !== null
+      rating && rating.average !== null && rating.count > 0
         ? {
             "@type": "AggregateRating",
             ratingValue: rating.average,
-            reviewCount: rating.count
+            reviewCount: rating.count,
+            bestRating: 5,
+            worstRating: 1
           }
         : undefined
   };
