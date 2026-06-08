@@ -139,6 +139,7 @@ const nextConfig = {
       { source: "/sitemap_geo.xml", destination: "/sitemaps/geo" },
       { source: "/sitemap_schools.xml", destination: "/sitemaps/schools" },
       { source: "/sitemap_rankings.xml", destination: "/sitemaps/rankings" },
+      { source: "/sitemap_blog.xml", destination: "/sitemaps/blog" },
       { source: "/sitemap.xml", destination: "/sitemaps/index" }
     ];
   }
