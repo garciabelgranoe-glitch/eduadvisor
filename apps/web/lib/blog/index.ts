@@ -9,6 +9,16 @@ import { post as colegiosPrivadosBerazategui } from "./posts/colegios-privados-b
 import { post as colegiosPrivadosMerlo } from "./posts/colegios-privados-merlo";
 import { post as colegiosPrivadosItuzaingo } from "./posts/colegios-privados-ituzaingo";
 import { post as colegiosPrivadosHurlingham } from "./posts/colegios-privados-hurlingham";
+import { post as colegiosPrivadosQuilmes } from "./posts/colegios-privados-quilmes";
+import { post as colegiosPrivadosLomasDeZamora } from "./posts/colegios-privados-lomas-de-zamora";
+import { post as colegiosPrivadosLaMatanza } from "./posts/colegios-privados-la-matanza";
+import { post as colegiosPrivadosSalta } from "./posts/colegios-privados-salta";
+import { post as colegiosPrivadosCordoba } from "./posts/colegios-privados-cordoba";
+import { post as colegiosPrivadosRosario } from "./posts/colegios-privados-rosario";
+import { post as colegiosPrivadosLaPlata } from "./posts/colegios-privados-la-plata";
+import { post as colegiosPrivadosVicenteLopez } from "./posts/colegios-privados-vicente-lopez";
+import { post as colegiosPrivadosMarDelPlata } from "./posts/colegios-privados-mar-del-plata";
+import { post as colegiosBilingsGba } from "./posts/colegios-bilingues-gba";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -21,6 +31,16 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMerlo,
   colegiosPrivadosItuzaingo,
   colegiosPrivadosHurlingham,
+  colegiosPrivadosQuilmes,
+  colegiosPrivadosLomasDeZamora,
+  colegiosPrivadosLaMatanza,
+  colegiosPrivadosSalta,
+  colegiosPrivadosCordoba,
+  colegiosPrivadosRosario,
+  colegiosPrivadosLaPlata,
+  colegiosPrivadosVicenteLopez,
+  colegiosPrivadosMarDelPlata,
+  colegiosBilingsGba,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
