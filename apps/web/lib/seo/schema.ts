@@ -134,6 +134,46 @@ export function buildSchoolSchema({
   };
 }
 
+export function buildBlogPostSchema({
+  title,
+  description,
+  publishedAt,
+  updatedAt,
+  path
+}: {
+  title: string;
+  description: string;
+  publishedAt: string;
+  updatedAt?: string;
+  path: string;
+}) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished: publishedAt,
+    dateModified: updatedAt ?? publishedAt,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: {
+      "@type": "Organization",
+      name: "Radar Educativo",
+      url: absoluteUrl("/")
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Radar Educativo",
+      url: absoluteUrl("/"),
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/icon.svg")
+      }
+    }
+  };
+}
+
 export function buildFaqSchema(items: Array<{ question: string; answer: string }>) {
   return {
     "@context": "https://schema.org",
