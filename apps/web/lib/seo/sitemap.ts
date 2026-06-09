@@ -206,7 +206,7 @@ export async function getSchoolSitemapUrls(baseUrl: string): Promise<SitemapUrl[
     page++;
   }
 
-  const seoSitemap = await getSeoSitemap({ limit: "1000" }).catch(() => null);
+  const seoSitemap = await getSeoSitemap({ limit: "2000" }).catch(() => null);
   const lastmodBySlug = new Map<string, string>();
   for (const school of seoSitemap?.schools ?? []) {
     lastmodBySlug.set(school.slug, school.lastModified);
