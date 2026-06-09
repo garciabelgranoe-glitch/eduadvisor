@@ -25,6 +25,11 @@ import { post as colegiosPrivadosSantaFe } from "./posts/colegios-privados-santa
 import { post as colegiosPrivadosBanfield } from "./posts/colegios-privados-banfield";
 import { post as colegiosPrivadosTemperley } from "./posts/colegios-privados-temperley";
 import { post as colegiosPrivadosAvellaneda } from "./posts/colegios-privados-avellaneda";
+import { post as colegiosPrivadosCorrientes } from "./posts/colegios-privados-corrientes";
+import { post as colegiosPrivadosBahiaBlanca } from "./posts/colegios-privados-bahia-blanca";
+import { post as colegiosPrivadosNeuquen } from "./posts/colegios-privados-neuquen";
+import { post as colegiosPrivadosSanJuan } from "./posts/colegios-privados-san-juan";
+import { post as colegiosPrivadosResistencia } from "./posts/colegios-privados-resistencia";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -53,6 +58,11 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosBanfield,
   colegiosPrivadosTemperley,
   colegiosPrivadosAvellaneda,
+  colegiosPrivadosCorrientes,
+  colegiosPrivadosBahiaBlanca,
+  colegiosPrivadosNeuquen,
+  colegiosPrivadosSanJuan,
+  colegiosPrivadosResistencia,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
