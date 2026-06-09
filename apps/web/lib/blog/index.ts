@@ -30,6 +30,15 @@ import { post as colegiosPrivadosBahiaBlanca } from "./posts/colegios-privados-b
 import { post as colegiosPrivadosNeuquen } from "./posts/colegios-privados-neuquen";
 import { post as colegiosPrivadosSanJuan } from "./posts/colegios-privados-san-juan";
 import { post as colegiosPrivadosResistencia } from "./posts/colegios-privados-resistencia";
+import { post as colegiosPrivadosViedma } from "./posts/colegios-privados-viedma";
+import { post as colegiosPrivadosCipolletti } from "./posts/colegios-privados-cipolletti";
+import { post as colegiosPrivadosRioCuarto } from "./posts/colegios-privados-rio-cuarto";
+import { post as colegiosPrivadosParana } from "./posts/colegios-privados-parana";
+import { post as colegiosPrivadosGualeguaychu } from "./posts/colegios-privados-gualeguaychu";
+import { post as colegiosPrivadosMerloSanLuis } from "./posts/colegios-privados-merlo-san-luis";
+import { post as colegiosPrivadosPosadas } from "./posts/colegios-privados-posadas";
+import { post as colegiosPrivadosSanMartinMendoza } from "./posts/colegios-privados-san-martin-mendoza";
+import { post as colegiosPrivadosGuaymallen } from "./posts/colegios-privados-guaymallen";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -63,6 +72,15 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosNeuquen,
   colegiosPrivadosSanJuan,
   colegiosPrivadosResistencia,
+  colegiosPrivadosViedma,
+  colegiosPrivadosCipolletti,
+  colegiosPrivadosRioCuarto,
+  colegiosPrivadosParana,
+  colegiosPrivadosGualeguaychu,
+  colegiosPrivadosMerloSanLuis,
+  colegiosPrivadosPosadas,
+  colegiosPrivadosSanMartinMendoza,
+  colegiosPrivadosGuaymallen,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
