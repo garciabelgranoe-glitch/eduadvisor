@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-ituzaingo",
-  title: "Los mejores colegios privados de Ituzaingó en 2025",
+  title: "Los mejores colegios privados de Ituzaingó en 2026",
   description: "Guía de colegios privados en Ituzaingó: bilingüe, religiosos y con nombres de grandes pensadores. Todo para elegir colegio en el oeste del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",

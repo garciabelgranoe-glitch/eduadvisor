@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-cordoba",
-  title: "Los mejores colegios privados de Córdoba capital en 2025",
+  title: "Los mejores colegios privados de Córdoba capital en 2026",
   description: "Guía completa de colegios privados en Córdoba: bilingüe alemán, jesuitas, dominicos y con propuesta innovadora. Todo para elegir el mejor colegio en la Docta.",
   publishedAt: "2025-06-08",
   category: "ciudad",

@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-la-matanza",
-  title: "Los mejores colegios privados de La Matanza en 2025",
+  title: "Los mejores colegios privados de La Matanza en 2026",
   description: "Guía de colegios privados en La Matanza: el municipio más poblado del GBA tiene una oferta educativa privada diversa. Todo para elegir el mejor colegio en Ramos Mejía, San Justo y más.",
   publishedAt: "2025-06-08",
   category: "ciudad",

@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-mar-del-plata",
-  title: "Los mejores colegios privados de Mar del Plata en 2025",
+  title: "Los mejores colegios privados de Mar del Plata en 2026",
   description: "Guía de colegios privados en Mar del Plata: bilingüe Northern Hills, De las Naciones Unidas, salesianos y con propuesta innovadora. Todo para elegir colegio en la ciudad atlántica.",
   publishedAt: "2025-06-08",
   category: "ciudad",

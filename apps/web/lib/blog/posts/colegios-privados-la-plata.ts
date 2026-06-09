@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-la-plata",
-  title: "Los mejores colegios privados de La Plata en 2025",
+  title: "Los mejores colegios privados de La Plata en 2026",
   description: "Guía de colegios privados en La Plata: bilingüe, religiosos y con propuesta universitaria. Todo para elegir el mejor colegio en la capital de la provincia de Buenos Aires.",
   publishedAt: "2025-06-08",
   category: "ciudad",

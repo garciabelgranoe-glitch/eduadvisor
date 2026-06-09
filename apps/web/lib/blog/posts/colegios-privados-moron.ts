@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-moron",
-  title: "Los mejores colegios privados de Morón en 2025",
+  title: "Los mejores colegios privados de Morón en 2026",
   description: "Guía completa de colegios privados en Morón: religiosos, bilingüe y laicos. Comparativa de niveles, cuotas y propuestas educativas del partido.",
   publishedAt: "2025-06-07",
   category: "ciudad",

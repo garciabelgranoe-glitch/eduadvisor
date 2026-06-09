@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-lomas-de-zamora",
-  title: "Los mejores colegios privados de Lomas de Zamora en 2025",
+  title: "Los mejores colegios privados de Lomas de Zamora en 2026",
   description: "Guía de colegios privados en Lomas de Zamora: bilingüe anglosajón, religioso y con propuesta diferencial. Todo para elegir el mejor colegio del sur del GBA.",
   publishedAt: "2025-06-08",
   category: "ciudad",

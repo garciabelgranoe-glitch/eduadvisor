@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-salta",
-  title: "Los mejores colegios privados de Salta capital en 2025",
+  title: "Los mejores colegios privados de Salta capital en 2026",
   description: "Guía de colegios privados en Salta capital: bilingüe italo-argentino, religiosos y con historia. Todo para elegir el mejor colegio en la Ciudad de Salta.",
   publishedAt: "2025-06-08",
   category: "ciudad",

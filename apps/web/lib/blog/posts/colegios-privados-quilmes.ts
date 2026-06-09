@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-quilmes",
-  title: "Los mejores colegios privados de Quilmes en 2025",
+  title: "Los mejores colegios privados de Quilmes en 2026",
   description: "Guía completa de colegios privados en Quilmes: bilingüe, religiosos y con historia. Todo para elegir el mejor colegio en el sur del GBA.",
   publishedAt: "2025-06-08",
   category: "ciudad",

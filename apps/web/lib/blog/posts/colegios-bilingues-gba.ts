@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-bilingues-gba",
-  title: "Los mejores colegios bilingüe del GBA en 2025",
+  title: "Los mejores colegios bilingüe del GBA en 2026",
   description: "Guía completa de colegios bilingüe en el Gran Buenos Aires: inglés, alemán, francés e italiano. Los mejores por zona: norte, sur, este y oeste del GBA.",
   publishedAt: "2025-06-08",
   category: "guia",

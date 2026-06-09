@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-castelar",
-  title: "Los mejores colegios privados de Castelar en 2025",
+  title: "Los mejores colegios privados de Castelar en 2026",
   description: "Guía de colegios privados en Castelar: bilingüe, religiosos y con propuesta diferencial. Todo sobre la oferta educativa privada del partido de Morón.",
   publishedAt: "2025-06-07",
   category: "ciudad",

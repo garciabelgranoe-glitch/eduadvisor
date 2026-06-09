@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-tigre",
-  title: "Los mejores colegios privados de Tigre en 2025",
+  title: "Los mejores colegios privados de Tigre en 2026",
   description: "Guía de colegios privados en Tigre y Nordelta: bilingüe internacionales, Montessori, ORT y religiosos. Todo lo que necesitás saber para elegir colegio en el norte del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",

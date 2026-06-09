@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-hurlingham",
-  title: "Los mejores colegios privados de Hurlingham en 2025",
+  title: "Los mejores colegios privados de Hurlingham en 2026",
   description: "Guía de colegios privados en Hurlingham: bilingüe con tradición anglosajona, Waldorf y religiosos. Todo sobre la oferta educativa del partido del polo y el Hurlingham Club.",
   publishedAt: "2025-06-07",
   category: "ciudad",

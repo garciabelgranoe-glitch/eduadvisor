@@ -73,8 +73,8 @@ export async function generateMetadata({ params, searchParams }: CitySchoolsPage
   const shouldIndex = resolved.guardrail.indexable && !isPaginated && !hasUnknownFacetParams;
 
   return buildPageMetadata({
-    title: `Colegios privados en ${resolved.context.landing.city.name}`,
-    description: `Compará colegios en ${resolved.context.landing.city.name}, ${resolved.context.landing.city.province}, con destacados, FAQ local y datos de mercado.`,
+    title: `Colegios privados en ${resolved.context.landing.city.name} 2026 — Guía para padres`,
+    description: `Encontrá el mejor colegio privado para tu hijo en ${resolved.context.landing.city.name}. Comparativa de precios, niveles, bilingüe y religioso. Guía actualizada 2026.`,
     canonicalPath: citySchoolsPath(
       resolved.context.landing.city.provinceSlug,
       resolved.context.landing.city.slug

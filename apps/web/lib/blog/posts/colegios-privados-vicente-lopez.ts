@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-vicente-lopez",
-  title: "Los mejores colegios privados de Vicente López en 2025",
+  title: "Los mejores colegios privados de Vicente López en 2026",
   description: "Guía de colegios privados en Vicente López y Olivos: bilingüe de élite, armenio, salesiano y con propuesta internacional. Todo para elegir colegio en el norte del GBA.",
   publishedAt: "2025-06-08",
   category: "ciudad",

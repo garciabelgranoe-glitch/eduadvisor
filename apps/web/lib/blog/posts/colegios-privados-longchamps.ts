@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-longchamps",
-  title: "Los mejores colegios privados de Longchamps en 2025",
+  title: "Los mejores colegios privados de Longchamps en 2026",
   description: "Guía completa de colegios privados en Longchamps: con más de cuatro décadas de historia, religiosos, cooperativos y con propuesta integral. Todo para elegir el mejor colegio en el partido de Almirante Brown.",
   publishedAt: "2025-06-08",
   category: "ciudad",

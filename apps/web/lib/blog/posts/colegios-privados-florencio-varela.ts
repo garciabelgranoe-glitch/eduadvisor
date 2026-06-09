@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-florencio-varela",
-  title: "Los mejores colegios privados de Florencio Varela en 2025",
+  title: "Los mejores colegios privados de Florencio Varela en 2026",
   description: "Guía de colegios privados en Florencio Varela: religiosos, artísticos y con propuesta diferencial. Encontrá el mejor colegio del sur del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",

@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-rosario",
-  title: "Los mejores colegios privados de Rosario en 2025",
+  title: "Los mejores colegios privados de Rosario en 2026",
   description: "Guía de colegios privados en Rosario: salesianos, italo-argentinos, Fasta y con propuesta innovadora. Todo para elegir el mejor colegio en la ciudad de la bandera.",
   publishedAt: "2025-06-08",
   category: "ciudad",

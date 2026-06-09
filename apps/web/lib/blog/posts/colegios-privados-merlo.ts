@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-merlo",
-  title: "Los mejores colegios privados de Merlo en 2025",
+  title: "Los mejores colegios privados de Merlo en 2026",
   description: "Guía de colegios privados en Merlo: religiosos, Waldorf y con historia. Todo para elegir el mejor colegio en uno de los partidos más poblados del oeste del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",

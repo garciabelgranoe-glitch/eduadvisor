@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-san-isidro",
-  title: "Los mejores colegios privados de San Isidro en 2025",
+  title: "Los mejores colegios privados de San Isidro en 2026",
   description: "Guía completa de colegios privados en San Isidro: bilingüe, Waldorf, alemanes y religiosos. Los perfiles más destacados del norte del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",

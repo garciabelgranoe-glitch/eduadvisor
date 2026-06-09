@@ -2,7 +2,7 @@ import type { BlogPost } from "../types";
 
 export const post: BlogPost = {
   slug: "colegios-privados-berazategui",
-  title: "Los mejores colegios privados de Berazategui en 2025",
+  title: "Los mejores colegios privados de Berazategui en 2026",
   description: "Guía de colegios privados en Berazategui: bilingüe, religiosos y con historia. Incluye Ranelagh y su herencia irlandesa. Todo para elegir colegio en el sur del GBA.",
   publishedAt: "2025-06-07",
   category: "ciudad",
