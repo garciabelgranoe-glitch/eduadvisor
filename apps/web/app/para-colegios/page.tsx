@@ -429,8 +429,8 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
               ))}
             </ul>
             <Button asChild variant="secondary" className="w-full">
-              <a href={MP_MENSUAL} target="_blank" rel="noopener noreferrer">
-                Suscribirse mensual →
+              <a href="#solicitud-colegio">
+                Reclamar perfil →
               </a>
             </Button>
           </Card>
@@ -456,8 +456,8 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
               ))}
             </ul>
             <Button asChild className="w-full bg-amber-400 text-amber-950 hover:bg-amber-300">
-              <a href={MP_ANUAL} target="_blank" rel="noopener noreferrer">
-                Suscribirse anual →
+              <a href="#solicitud-colegio">
+                Reclamar perfil →
               </a>
             </Button>
           </Card>
