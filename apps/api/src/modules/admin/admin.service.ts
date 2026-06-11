@@ -277,6 +277,8 @@ export class AdminService {
               endsAt: school.subscriptions[0].endsAt
             }
           : null,
+        email: school.email,
+        phone: school.phone,
         leadsCount: school._count.leads,
         reviewsCount: school._count.reviews,
         createdAt: school.createdAt,
