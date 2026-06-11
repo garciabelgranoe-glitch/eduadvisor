@@ -5,6 +5,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import { GetGrowthFunnelDto } from "./dto/get-growth-funnel.dto";
 import { ListAdminSchoolsDto } from "./dto/list-admin-schools.dto";
 import { ListProductEventsDto } from "./dto/list-product-events.dto";
+import { UpdateSchoolFieldsDto } from "./dto/update-school-fields.dto";
 import { UpdateSchoolStatusDto } from "./dto/update-school-status.dto";
 import { UpdateSchoolSubscriptionDto } from "./dto/update-school-subscription.dto";
 
@@ -422,6 +423,32 @@ export class AdminService {
       dropOff: metrics.dropOff,
       recommendations: this.buildGrowthRecommendations(metrics.stages, metrics.conversion)
     };
+  }
+
+  async updateSchoolFields(slug: string, payload: UpdateSchoolFieldsDto) {
+    const existing = await this.prisma.school.findFirst({
+      where: { slug },
+      select: { id: true }
+    });
+
+    if (!existing) {
+      throw new NotFoundException("School not found");
+    }
+
+    const data: Record<string, unknown> = {};
+    if (payload.email !== undefined) data.email = payload.email;
+    if (payload.phone !== undefined) data.phone = payload.phone;
+    if (payload.website !== undefined) data.website = payload.website;
+
+    const school = await this.prisma.school.update({
+      where: { id: existing.id },
+      data,
+      select: { id: true, name: true, slug: true, email: true, phone: true, website: true, updatedAt: true }
+    });
+
+    await this.cache.invalidateMany(["schools:list", "schools:search", "schools:detail"]);
+
+    return school;
   }
 
   async updateSchoolStatus(schoolId: string, payload: UpdateSchoolStatusDto) {

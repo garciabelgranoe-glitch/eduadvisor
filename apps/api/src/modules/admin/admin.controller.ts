@@ -9,6 +9,7 @@ import { SchoolsService } from "../schools/schools.service";
 import { GetGrowthFunnelDto } from "./dto/get-growth-funnel.dto";
 import { ListAdminSchoolsDto } from "./dto/list-admin-schools.dto";
 import { ListProductEventsDto } from "./dto/list-product-events.dto";
+import { UpdateSchoolFieldsDto } from "./dto/update-school-fields.dto";
 import { UpdateSchoolStatusDto } from "./dto/update-school-status.dto";
 import { UpdateSchoolSubscriptionDto } from "./dto/update-school-subscription.dto";
 import { AdminService } from "./admin.service";
@@ -58,6 +59,13 @@ export class AdminController {
   @AdminScopes("read")
   async productEvents(@Query() query: ListProductEventsDto) {
     return this.adminService.listProductEvents(query);
+  }
+
+  @Patch("schools/:slug/fields")
+  @UseGuards(AdminApiKeyGuard)
+  @AdminScopes("write")
+  async updateSchoolFields(@Param("slug") slug: string, @Body() payload: UpdateSchoolFieldsDto) {
+    return this.adminService.updateSchoolFields(slug, payload);
   }
 
   @Patch("schools/:schoolId/status")
