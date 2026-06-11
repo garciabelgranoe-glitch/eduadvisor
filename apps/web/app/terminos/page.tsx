@@ -30,7 +30,7 @@ export default function TerminosPage() {
             Radar Educativo es una plataforma de información educativa que permite a familias buscar, comparar y contactar colegios privados en Argentina. También ofrece herramientas de gestión y visibilidad a instituciones educativas que reclaman su perfil.
           </p>
           <p>
-            El servicio se presta "tal cual está disponible". Nos reservamos el derecho de modificar, suspender o discontinuar cualquier funcionalidad en cualquier momento, con o sin previo aviso.
+            El servicio se presta &ldquo;tal cual está disponible&rdquo;. Nos reservamos el derecho de modificar, suspender o discontinuar cualquier funcionalidad en cualquier momento, con o sin previo aviso.
           </p>
         </section>
 
@@ -63,7 +63,7 @@ export default function TerminosPage() {
         <section className="space-y-3">
           <h2 className="font-semibold text-xl text-ink">5. Claim de perfil institucional</h2>
           <p>
-            Las instituciones educativas pueden reclamar la titularidad de su perfil ("claim") completando el proceso de verificación correspondiente. Al hacer el claim, la institución:
+            Las instituciones educativas pueden reclamar la titularidad de su perfil (&ldquo;claim&rdquo;) completando el proceso de verificación correspondiente. Al hacer el claim, la institución:
           </p>
           <ul className="list-disc pl-5 space-y-1">
             <li>Declara tener autorización para representar a la institución en la plataforma</li>
