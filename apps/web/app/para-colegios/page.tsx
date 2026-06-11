@@ -52,10 +52,13 @@ const steps = [
   }
 ];
 
+const MP_MENSUAL = "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=5e56b9e1deb84722968c3b45935ab1f1";
+const MP_ANUAL = "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=c733e3511c5f408c94d46756a7024d1f";
+
 const faqs = [
   {
     q: "¿Cuánto cuesta el plan Premium?",
-    a: "El precio varía según el tamaño del colegio y el mercado. Contactanos al enviar el formulario y te enviamos una propuesta personalizada."
+    a: "El plan mensual tiene un valor de $20.000 pesos por mes. El plan anual cuesta $175.000 pesos al año — ahorrás $65.000 frente al mensual. El pago se procesa de forma segura por MercadoPago."
   },
   {
     q: "¿Ya tengo un perfil creado en Radar Educativo?",
@@ -104,12 +107,12 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
 
             <div className="flex flex-wrap gap-6 pt-2">
               <div>
-                <p className="text-2xl font-bold text-white">+688</p>
+                <p className="text-2xl font-bold text-white">+1500</p>
                 <p className="text-sm text-white/60">colegios en catálogo</p>
               </div>
               <div className="w-px bg-white/20" />
               <div>
-                <p className="text-2xl font-bold text-white">20</p>
+                <p className="text-2xl font-bold text-white">+60</p>
                 <p className="text-sm text-white/60">ciudades cubiertas</p>
               </div>
               <div className="w-px bg-white/20" />
@@ -389,7 +392,7 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-3xl gap-5 md:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-3">
           {/* Free */}
           <Card className="flex flex-col space-y-5 border-slate-200 bg-slate-50/60">
             <div>
@@ -410,17 +413,39 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
             </Button>
           </Card>
 
-          {/* Premium */}
+          {/* Premium mensual */}
+          <Card className="flex flex-col space-y-5 border-amber-200 bg-gradient-to-b from-amber-50/60 to-white">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-amber-700">Premium mensual</p>
+              <p className="mt-1 font-display text-3xl text-ink">$20.000</p>
+              <p className="mt-1 text-sm text-slate-500">por mes · cancelá cuando quieras</p>
+            </div>
+            <ul className="flex flex-1 flex-col gap-2">
+              {premiumFeatures.map(({ icon, text }) => (
+                <li key={text} className="flex items-start gap-2 text-sm text-amber-900">
+                  <span className="mt-0.5 text-base leading-none">{icon}</span>
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <Button asChild variant="secondary" className="w-full">
+              <a href={MP_MENSUAL} target="_blank" rel="noopener noreferrer">
+                Suscribirse mensual →
+              </a>
+            </Button>
+          </Card>
+
+          {/* Premium anual */}
           <Card className="relative flex flex-col space-y-5 border-amber-300 bg-gradient-to-b from-amber-50/80 to-white shadow-[0_16px_40px_rgba(161,98,7,0.15)]">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <span className="rounded-full bg-amber-400 px-4 py-1 text-xs font-bold uppercase tracking-widest text-amber-900">
-                Recomendado
+                Mejor precio
               </span>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-amber-700">Premium</p>
-              <p className="mt-1 font-display text-3xl text-ink">A consultar</p>
-              <p className="mt-1 text-sm text-slate-500">Según tamaño y mercado del colegio</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-amber-700">Premium anual</p>
+              <p className="mt-1 font-display text-3xl text-ink">$175.000</p>
+              <p className="mt-1 text-sm text-brand-700 font-medium">Ahorrás $65.000 vs mensual</p>
             </div>
             <ul className="flex flex-1 flex-col gap-2">
               {premiumFeatures.map(({ icon, text }) => (
@@ -431,7 +456,9 @@ export default function ForSchoolsPage({ searchParams }: ForSchoolsPageProps) {
               ))}
             </ul>
             <Button asChild className="w-full bg-amber-400 text-amber-950 hover:bg-amber-300">
-              <a href="#solicitud-colegio">Quiero activar Premium</a>
+              <a href={MP_ANUAL} target="_blank" rel="noopener noreferrer">
+                Suscribirse anual →
+              </a>
             </Button>
           </Card>
         </div>
