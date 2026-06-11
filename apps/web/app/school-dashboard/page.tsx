@@ -264,7 +264,7 @@ export default async function SchoolDashboardPage({ searchParams }: SchoolDashbo
                 </Button>
               ) : (
                 <Button asChild variant="secondary" size="sm">
-                  <a href={`/api/schools/billing/checkout?schoolId=${encodeURIComponent(dashboard.school.id)}&school=${encodeURIComponent(dashboard.school.slug)}`}>
+                  <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=5e56b9e1deb84722968c3b45935ab1f1" target="_blank" rel="noopener noreferrer">
                     Activar Premium →
                   </a>
                 </Button>
