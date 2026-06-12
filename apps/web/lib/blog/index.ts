@@ -39,6 +39,11 @@ import { post as colegiosPrivadosMerloSanLuis } from "./posts/colegios-privados-
 import { post as colegiosPrivadosPosadas } from "./posts/colegios-privados-posadas";
 import { post as colegiosPrivadosSanMartinMendoza } from "./posts/colegios-privados-san-martin-mendoza";
 import { post as colegiosPrivadosGuaymallen } from "./posts/colegios-privados-guaymallen";
+import { post as colegiosPrivadosSantiagoDelEstero } from "./posts/colegios-privados-santiago-del-estero";
+import { post as colegiosPrivadosFormosa } from "./posts/colegios-privados-formosa";
+import { post as colegiosPrivadosSanLuis } from "./posts/colegios-privados-san-luis";
+import { post as colegiosPrivadosRioGallegos } from "./posts/colegios-privados-rio-gallegos";
+import { post as colegiosPrivadosUshuaia } from "./posts/colegios-privados-ushuaia";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -81,6 +86,11 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosPosadas,
   colegiosPrivadosSanMartinMendoza,
   colegiosPrivadosGuaymallen,
+  colegiosPrivadosSantiagoDelEstero,
+  colegiosPrivadosFormosa,
+  colegiosPrivadosSanLuis,
+  colegiosPrivadosRioGallegos,
+  colegiosPrivadosUshuaia,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
