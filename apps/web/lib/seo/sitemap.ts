@@ -98,6 +98,18 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
   const seoCities = await getSeoCities({ country: "AR", limit: "500" });
   const todayIso = new Date().toISOString();
 
+  // When two cities share the same slug in different provinces, only the one
+  // with more schools is canonical (the API always returns that one by slug).
+  const canonicalSlug = new Map<string, string>();
+  for (const city of seoCities.items) {
+    const existing = seoCities.items.find(
+      (c) => c.slug === city.slug && c.provinceSlug !== city.provinceSlug
+    );
+    if (!existing || city.schoolCount >= existing.schoolCount) {
+      canonicalSlug.set(city.slug, city.provinceSlug);
+    }
+  }
+
   const provinceSet = new Set<string>();
   const urls: SitemapUrl[] = [
     {
@@ -110,6 +122,11 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
 
   for (const city of seoCities.items) {
     provinceSet.add(city.provinceSlug);
+
+    // Skip non-canonical province for duplicate city slugs
+    if (canonicalSlug.get(city.slug) !== city.provinceSlug) {
+      continue;
+    }
 
     const cityBase = cityPath(city.provinceSlug, city.slug);
     const citySchools = citySchoolsPath(city.provinceSlug, city.slug);
