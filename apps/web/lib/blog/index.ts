@@ -44,6 +44,14 @@ import { post as colegiosPrivadosFormosa } from "./posts/colegios-privados-formo
 import { post as colegiosPrivadosSanLuis } from "./posts/colegios-privados-san-luis";
 import { post as colegiosPrivadosRioGallegos } from "./posts/colegios-privados-rio-gallegos";
 import { post as colegiosPrivadosUshuaia } from "./posts/colegios-privados-ushuaia";
+import { post as colegiosPrivadosPilar } from "./posts/colegios-privados-pilar";
+import { post as colegiosPrivadosMoreno } from "./posts/colegios-privados-moreno";
+import { post as colegiosPrivadosSanFernando } from "./posts/colegios-privados-san-fernando";
+import { post as colegiosPrivadosMontGrande } from "./posts/colegios-privados-monte-grande";
+import { post as colegiosPrivadosCaseros } from "./posts/colegios-privados-caseros";
+import { post as colegiosPrivadosEscobar } from "./posts/colegios-privados-escobar";
+import { post as colegiosPrivadosJoseCPaz } from "./posts/colegios-privados-jose-c-paz";
+import { post as colegiosPrivadosVillaBallester } from "./posts/colegios-privados-villa-ballester";
 
 export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosMoron,
@@ -91,6 +99,14 @@ export const ALL_POSTS: BlogPost[] = [
   colegiosPrivadosSanLuis,
   colegiosPrivadosRioGallegos,
   colegiosPrivadosUshuaia,
+  colegiosPrivadosPilar,
+  colegiosPrivadosMoreno,
+  colegiosPrivadosSanFernando,
+  colegiosPrivadosMontGrande,
+  colegiosPrivadosCaseros,
+  colegiosPrivadosEscobar,
+  colegiosPrivadosJoseCPaz,
+  colegiosPrivadosVillaBallester,
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
