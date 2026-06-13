@@ -16,6 +16,7 @@ interface SessionState {
 }
 
 const navItems: Array<{ href: Route; label: string; icon: string }> = [
+  { href: "/ar" as Route,    label: "Argentina",         icon: "🗺️" },
   { href: "/search",         label: "Buscar colegios",   icon: "🔍" },
   { href: "/compare",        label: "Comparar",          icon: "⚖️" },
   { href: "/rankings",       label: "Rankings",          icon: "🏆" },

@@ -41,7 +41,7 @@ async function resolvePageData(params: CitySchoolsPageProps["params"]) {
     return null;
   }
 
-  const schools = await getGeoSchools(context.landing.city.slug, "24");
+  const schools = await getGeoSchools(context.landing.city.slug, "50");
   const faq = buildGeoFaq({ city: context.landing.city.name, province: context.landing.city.province });
   const guardrail = evaluateGeoIndexability({
     schoolCount: context.landing.stats.schoolCount,
