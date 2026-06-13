@@ -99,6 +99,16 @@ export default async function RankingsCityPage({ params }: RankingsCityPageProps
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={itemListSchema} />
 
+      <nav className="flex items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+        <Link href="/ar" className="hover:text-brand-700">Argentina</Link>
+        <span>/</span>
+        <Link href={`/ar/${context.landing.city.provinceSlug}`} className="hover:text-brand-700">{context.landing.city.province}</Link>
+        <span>/</span>
+        <Link href={`/ar/${context.landing.city.provinceSlug}/${context.landing.city.slug}`} className="hover:text-brand-700">{context.landing.city.name}</Link>
+        <span>/</span>
+        <span className="text-slate-400">Rankings</span>
+      </nav>
+
       <Card className="space-y-2 bg-gradient-to-r from-brand-50 to-white">
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Radar Score</p>
         <h1 className="font-display text-4xl text-ink">Ranking en {context.landing.city.name}</h1>

@@ -148,6 +148,16 @@ export default async function CitySchoolsPage({ params, searchParams }: CityScho
       <JsonLd data={listSchema} />
       <JsonLd data={faqSchema} />
 
+      <nav className="flex items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+        <Link href="/ar" className="hover:text-brand-700">Argentina</Link>
+        <span>/</span>
+        <Link href={`/ar/${context.landing.city.provinceSlug}`} className="hover:text-brand-700">{context.landing.city.province}</Link>
+        <span>/</span>
+        <Link href={cityPath(context.landing.city.provinceSlug, context.landing.city.slug) as never} className="hover:text-brand-700">{context.landing.city.name}</Link>
+        <span>/</span>
+        <span className="text-slate-400">Colegios</span>
+      </nav>
+
       <Card className="space-y-4 bg-gradient-to-r from-brand-50 via-white to-amber-50">
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Listado principal</p>
         <h1 className="font-display text-4xl text-ink">Colegios privados en {context.landing.city.name}</h1>
