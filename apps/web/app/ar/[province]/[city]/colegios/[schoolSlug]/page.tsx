@@ -134,8 +134,14 @@ export async function generateMetadata({ params }: SchoolProfilePageProps): Prom
     ratingStr,
     "Compará cuotas, opiniones y pedí información gratis en Radar Educativo."
   ].filter(Boolean).join(" ").slice(0, 155);
+  const city = s.location.city;
+  // Template appends " | Radar Educativo" (18 chars). Target total ≤ 65 chars.
+  // Fixed parts: " en " (4) + " 2026" (5) + city = 9 + city.length chars
+  // Available for name: 65 - 18 - 9 - city.length = 38 - city.length
+  const maxNameLen = Math.max(15, 38 - city.length);
+  const nameForTitle = s.name.length > maxNameLen ? s.name.slice(0, maxNameLen - 1) + "…" : s.name;
   return buildPageMetadata({
-    title: `${s.name} en ${s.location.city} 2026 — Cuotas, opiniones y niveles`,
+    title: `${nameForTitle} en ${city} 2026`,
     description: metaDescription,
     canonicalPath: resolved.canonicalPath,
     openGraphType: "article"
