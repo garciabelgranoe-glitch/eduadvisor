@@ -122,9 +122,21 @@ export async function generateMetadata({ params }: SchoolProfilePageProps): Prom
   }
   const resolved = await resolveSchool(params);
   if (!resolved) return buildPageMetadata({ title: "Colegio no encontrado", description: "No encontramos el perfil solicitado.", canonicalPath: "/ar", index: false });
+  const s = resolved.school;
+  const levelLabels = s.levels.map((l) => levelLabelMap[l] ?? l);
+  const levelStr = levelLabels.length > 0 ? levelLabels.join(", ") : null;
+  const feeStr = s.monthlyFeeEstimate ? `Cuota desde $${Math.round(s.monthlyFeeEstimate / 1000)}k.` : null;
+  const ratingStr = s.quality?.google?.rating ? `Rating ${s.quality.google.rating.toFixed(1)}★ en Google.` : null;
+  const metaDescription = [
+    `Conocé ${s.name} en ${s.location.city}, ${s.location.province}.`,
+    levelStr ? `Niveles: ${levelStr}.` : null,
+    feeStr,
+    ratingStr,
+    "Compará cuotas, opiniones y pedí información gratis en Radar Educativo."
+  ].filter(Boolean).join(" ").slice(0, 155);
   return buildPageMetadata({
-    title: `${resolved.school.name} en ${resolved.school.location.city} — reseñas, cuota y niveles`,
-    description: resolved.school.description ?? buildImportedSummary(resolved.school),
+    title: `${s.name} en ${s.location.city} 2026 — Cuotas, opiniones y niveles`,
+    description: metaDescription,
     canonicalPath: resolved.canonicalPath,
     openGraphType: "article"
   });
