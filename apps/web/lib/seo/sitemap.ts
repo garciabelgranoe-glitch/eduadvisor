@@ -5,7 +5,6 @@ import {
   arHomePath,
   cityPath,
   cityRankingsPath,
-  citySchoolsCategoryPath,
   citySchoolProfilePath,
   citySchoolsPath,
   provincePath
@@ -72,7 +71,6 @@ export async function getStaticSitemapUrls(baseUrl: string): Promise<SitemapUrl[
   return [
     { loc: `${baseUrl}/`, changefreq: "daily", priority: 1, lastmod: now },
     { loc: `${baseUrl}/ar`, changefreq: "daily", priority: 0.95, lastmod: now },
-    { loc: `${baseUrl}/search`, changefreq: "weekly", priority: 0.9, lastmod: now },
     { loc: `${baseUrl}/compare`, changefreq: "weekly", priority: 0.8, lastmod: now },
     { loc: `${baseUrl}/rankings`, changefreq: "weekly", priority: 0.8, lastmod: now },
     { loc: `${baseUrl}/matches`, changefreq: "weekly", priority: 0.7, lastmod: now },
@@ -150,34 +148,6 @@ export async function getGeoSitemapUrls(baseUrl: string): Promise<SitemapUrl[]> 
       }
     );
 
-    if (city.schoolCount >= 12) {
-      urls.push(
-        {
-          loc: `${baseUrl}${citySchoolsCategoryPath(city.provinceSlug, city.slug, "bilingues")}`,
-          lastmod: todayIso,
-          changefreq: "weekly",
-          priority: 0.7
-        },
-        {
-          loc: `${baseUrl}${citySchoolsCategoryPath(city.provinceSlug, city.slug, "deportes")}`,
-          lastmod: todayIso,
-          changefreq: "weekly",
-          priority: 0.65
-        },
-        {
-          loc: `${baseUrl}${citySchoolsCategoryPath(city.provinceSlug, city.slug, "jornada-completa")}`,
-          lastmod: todayIso,
-          changefreq: "weekly",
-          priority: 0.7
-        },
-        {
-          loc: `${baseUrl}${citySchoolsCategoryPath(city.provinceSlug, city.slug, "tecnologicos")}`,
-          lastmod: todayIso,
-          changefreq: "weekly",
-          priority: 0.65
-        }
-      );
-    }
   }
 
   for (const provinceSlug of provinceSet) {
@@ -232,36 +202,6 @@ export async function getRankingsSitemapUrls(baseUrl: string): Promise<SitemapUr
     const cityRoute = cityRankingsPath(item.city.provinceSlug, item.city.slug);
     const base = [{ loc: `${baseUrl}${cityRoute}`, lastmod: todayIso, changefreq: "weekly" as const, priority: 0.75 }];
 
-    if (item.schools < 12) {
-      return base;
-    }
-
-    return [
-      ...base,
-      {
-        loc: `${baseUrl}${citySchoolsCategoryPath(item.city.provinceSlug, item.city.slug, "bilingues")}`,
-        lastmod: todayIso,
-        changefreq: "weekly" as const,
-        priority: 0.7
-      },
-      {
-        loc: `${baseUrl}${citySchoolsCategoryPath(item.city.provinceSlug, item.city.slug, "deportes")}`,
-        lastmod: todayIso,
-        changefreq: "weekly" as const,
-        priority: 0.65
-      },
-      {
-        loc: `${baseUrl}${citySchoolsCategoryPath(item.city.provinceSlug, item.city.slug, "jornada-completa")}`,
-        lastmod: todayIso,
-        changefreq: "weekly" as const,
-        priority: 0.7
-      },
-      {
-        loc: `${baseUrl}${citySchoolsCategoryPath(item.city.provinceSlug, item.city.slug, "tecnologicos")}`,
-        lastmod: todayIso,
-        changefreq: "weekly" as const,
-        priority: 0.65
-      }
-    ];
+    return base;
   });
 }
