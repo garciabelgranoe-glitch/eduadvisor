@@ -48,8 +48,8 @@ export default async function ArgentinaHomePage() {
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Mapa SEO Argentina</p>
         <h1 className="font-display text-4xl text-ink">Colegios privados por provincia y ciudad</h1>
         <p className="max-w-3xl text-sm text-slate-600">
-          Esta es la entrada principal para búsquedas geográficas. Desde acá podés navegar a landings provinciales,
-          ciudades y listados canónicos sin depender de filtros indexables.
+          Encontrá colegios privados en cualquier provincia y ciudad de Argentina. Comparativas de cuotas, niveles y
+          opiniones actualizadas para ayudarte a elegir.
         </p>
       </Card>
 
