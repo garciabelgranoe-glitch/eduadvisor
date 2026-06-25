@@ -6,12 +6,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/ar", "/compare"],
+        allow: ["/", "/ar"],
         disallow: [
           "/admin",
           "/school-dashboard",
           "/parent-dashboard",
           "/api/",
+          "/compare",
+          "/review",
           "/*?*feeMin=*",
           "/*?*feeMax=*",
           "/*?*distance=*",
