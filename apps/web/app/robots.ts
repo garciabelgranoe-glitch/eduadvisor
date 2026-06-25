@@ -18,6 +18,9 @@ export default function robots(): MetadataRoute.Robots {
           "/*?*level=*",
           "/*?*tags=*",
           "/*?*page=*",
+          "/*?*schools=*",
+          "/*?*flow=*",
+          "/*?*school=*",
           "/staging"
         ]
       }
