@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/ar", "/compare", "/compare/", "/ar/"],
+        allow: ["/", "/ar", "/compare"],
         disallow: [
           "/admin",
           "/school-dashboard",

@@ -8,6 +8,7 @@ import { getGeoContext, getGeoSchools } from "@/lib/seo/geo-data";
 import {
   buildPageMetadata,
   buildBreadcrumbSchema,
+  buildFaqSchema,
   cityPath,
   cityRankingsPath,
   citySchoolProfilePath,
@@ -41,7 +42,8 @@ async function resolveMetadata(params: CityPageProps["params"]) {
 
   return {
     context,
-    guardrail
+    guardrail,
+    faq
   };
 }
 
@@ -75,7 +77,7 @@ export default async function CityPage({ params }: CityPageProps) {
     notFound();
   }
 
-  const { context } = result;
+  const { context, faq } = result;
 
   if (!context.isCanonical) {
     permanentRedirect(context.canonicalPath);
@@ -93,9 +95,12 @@ export default async function CityPage({ params }: CityPageProps) {
     }
   ]);
 
+  const faqSchema = buildFaqSchema(faq);
+
   return (
     <section className="space-y-6">
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
 
       <Card className="space-y-3 bg-gradient-to-r from-brand-50 to-white">
         <p className="text-xs uppercase tracking-[0.2em] text-brand-700">{context.landing.city.province}</p>
@@ -150,6 +155,28 @@ export default async function CityPage({ params }: CityPageProps) {
             Ver todos los colegios →
           </Link>
         </Card>
+      )}
+
+      {faq.length > 0 && (
+        <section className="space-y-4">
+          <h2 className="font-display text-2xl text-ink">
+            Preguntas frecuentes sobre colegios en {context.landing.city.name}
+          </h2>
+          <div className="space-y-3">
+            {faq.map((item) => (
+              <details
+                key={item.question}
+                className="group rounded-2xl border border-brand-100 bg-white px-6 py-4 open:shadow-sm transition-all"
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-4 list-none font-semibold text-ink">
+                  {item.question}
+                  <span className="shrink-0 text-brand-600 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       )}
     </section>
   );

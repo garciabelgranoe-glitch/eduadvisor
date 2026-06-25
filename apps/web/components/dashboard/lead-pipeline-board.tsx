@@ -56,6 +56,7 @@ const LEVEL_LABEL: Record<string, string> = {
   INICIAL: "Inicial",
   PRIMARIA: "Primaria",
   SECUNDARIA: "Secundaria",
+  SUPERIOR: "Superior",
   MATERNAL: "Maternal"
 };
 

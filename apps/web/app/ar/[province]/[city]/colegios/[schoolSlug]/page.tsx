@@ -135,10 +135,10 @@ export async function generateMetadata({ params }: SchoolProfilePageProps): Prom
     "Compará cuotas, opiniones y pedí información gratis en Radar Educativo."
   ].filter(Boolean).join(" ").slice(0, 155);
   const city = s.location.city;
-  // Template appends " | Radar Educativo" (18 chars). Target total ≤ 65 chars.
+  // Template appends " | Radar Educativo" (18 chars). Target total ≤ 60 chars.
   // Fixed parts: " en " (4) + " 2026" (5) + city = 9 + city.length chars
-  // Available for name: 65 - 18 - 9 - city.length = 38 - city.length
-  const maxNameLen = Math.max(15, 38 - city.length);
+  // Available for name: 60 - 18 - 9 - city.length = 33 - city.length
+  const maxNameLen = Math.max(15, 33 - city.length);
   const nameForTitle = s.name.length > maxNameLen ? s.name.slice(0, maxNameLen - 1) + "…" : s.name;
   return buildPageMetadata({
     title: `${nameForTitle} en ${city} 2026`,
@@ -147,6 +147,8 @@ export async function generateMetadata({ params }: SchoolProfilePageProps): Prom
     openGraphType: "article"
   });
 }
+
+export const revalidate = 3600;
 
 export default async function SchoolProfilePage({ params }: SchoolProfilePageProps) {
   const categoryData = await resolveCategory(params);

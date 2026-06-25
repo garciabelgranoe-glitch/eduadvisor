@@ -42,7 +42,8 @@ export function CompareTable({ schools }: CompareTableProps) {
     MATERNAL: "Maternal",
     INICIAL: "Inicial",
     PRIMARIA: "Primaria",
-    SECUNDARIA: "Secundaria"
+    SECUNDARIA: "Secundaria",
+  SUPERIOR: "Superior"
   };
   const profileStatusLabel: Record<string, string> = {
     BASIC: "No verificado",

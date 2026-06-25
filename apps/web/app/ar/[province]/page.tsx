@@ -8,6 +8,8 @@ import {
   buildPageMetadata,
   canonicalizeSlug,
   buildBreadcrumbSchema,
+  buildItemListSchema,
+  citySchoolsPath,
   cityPath,
   provincePath
 } from "@/lib/seo";
@@ -60,15 +62,23 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
     { name: provinceName, path: provincePath(canonicalProvince) }
   ]);
 
+  const itemListSchema = buildItemListSchema({
+    name: `Colegios privados en ${provinceName}`,
+    description: `Ciudades con colegios privados en ${provinceName}`,
+    path: provincePath(canonicalProvince),
+    itemUrls: cities.items.map((city) => citySchoolsPath(city.provinceSlug, city.slug))
+  });
+
   return (
     <section className="space-y-6">
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={itemListSchema} />
 
       <Card className="space-y-3 bg-gradient-to-r from-brand-50 to-white">
-        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Landing provincial</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-brand-700">Argentina · {provinceName}</p>
         <h1 className="font-display text-4xl text-ink">Colegios privados en {provinceName}</h1>
         <p className="max-w-3xl text-sm text-slate-600">
-          Navegá por ciudades con intención local consolidada para encontrar listados, rankings y perfiles de colegio.
+          Explorá colegios privados en todas las ciudades de {provinceName}. Comparativas de cuotas, niveles, rankings y reseñas de familias actualizadas.
         </p>
       </Card>
 
@@ -78,7 +88,6 @@ export default async function ProvincePage({ params }: ProvincePageProps) {
             <Card className="h-full space-y-1 transition hover:border-brand-300">
               <h2 className="text-xl font-semibold text-ink">{city.city}</h2>
               <p className="text-sm text-slate-600">{city.schoolCount} colegios activos</p>
-              <p className="text-sm text-slate-600">Ruta canónica: {city.provinceSlug}/{city.slug}</p>
             </Card>
           </Link>
         ))}

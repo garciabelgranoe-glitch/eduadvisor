@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CityLandingLinks } from "@/components/sections/city-landing-links";
 import { HeroSearch } from "@/components/sections/hero-search";
@@ -10,7 +11,14 @@ import { FeatureState } from "@/components/ui/feature-state";
 import { SectionHeader } from "@/components/ui/section-header";
 import { getRankings, getSchools, getSeoCities } from "@/lib/api";
 import { rankingByCity } from "@/lib/mock-data";
-import { cityRankingsPath } from "@/lib/seo";
+import { buildPageMetadata, cityRankingsPath } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Comparador de colegios privados en Argentina",
+  description:
+    "Compará colegios privados por score, cuota, nivel y reseñas reales. La herramienta para elegir el mejor colegio para tu hijo en Argentina.",
+  canonicalPath: "/"
+});
 
 export const revalidate = 120;
 
