@@ -11,6 +11,7 @@ import {
 } from "@/lib/seo/sitemap";
 
 export const revalidate = 86400;
+export const maxDuration = 60;
 
 interface SitemapRouteProps {
   params?: {
